@@ -35,7 +35,6 @@ class DummyWebSocket:
 
     Provides `accept`, `close`, `receive_text`, `send_text`.
     """
-
     def __init__(self, incoming: Optional[list[str]] = None) -> None:
         self.accepted = False
         self.closed = False
@@ -63,7 +62,10 @@ class DummyWebSocket:
 
 @pytest.fixture()
 def session() -> BaseSession:
-    return BaseSession()
+    class ConcreteSession(BaseSession):
+        def dispatch(msg: Dict[str, Any]):
+            return msg
+    return ConcreteSession()
 
 
 # --------------------------------- tests ---------------------------------
@@ -148,7 +150,8 @@ async def test_run_loop_basic_flow_calls_helpers(monkeypatch):
         async def recv_json(self, ws):
             calls["recv"] += 1
             # Echo protocol: read one message then signal termination by raising
-            return json.loads(await ws.receive_text())
+            result = json.loads(await ws.receive_text())
+            raise WebSocketDisconnect(code=1000)
 
         async def send_json(self, ws, payload):
             calls["send"] += 1

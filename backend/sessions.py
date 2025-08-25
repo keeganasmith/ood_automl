@@ -1,13 +1,93 @@
 # sessions.py (stubs; define later)
 from typing import Any, Dict, Awaitable, Callable, Optional
+from fastapi import WebSocket, WebSocketDisconnect
+import asyncio
+import json
+from abc import ABC, abstractmethod
 
 class BaseSession:
-    async def run_loop(self, ws): ...
-    async def on_connect(self, ws): ...
+    async def run_loop(self, ws):
+        """
+        Lifecycle:
+          1) on_connect(ws)           – handshake/auth
+          2) Loop:
+               msg = recv_json(ws)    – one message from client
+               resp = dispatch(msg)   – subclass provides business logic
+               send_json(ws, resp)    – optional; only if resp is not None
+             Handle JSON/validation errors with send_error(ws, ...).
+             Exit cleanly on disconnect.
+          3) on_close(ws, exc)        – cleanup (exc is the terminal exception, if any)
+        """
+        exc: Optional[BaseException] = None
+        await self.on_connect(ws)
+        try:
+            while True:
+                try:
+                    msg: Dict[str, Any] = await self.recv_json(ws)
+                except WebSocketDisconnect as e:
+                    exc = e
+                    break
+                except asyncio.CancelledError as e:
+                    exc = e
+                    break
+                except Exception as e:
+                    await self.send_error(ws, f"bad message: {e}", code="bad_message")
+                    # continue the loop and wait for the next message
+                    continue
+
+                try:
+                    # Subclasses should implement dispatch(msg) -> Optional[Dict]
+                    resp = await self.dispatch(msg)  # type: ignore[attr-defined]
+                except WebSocketDisconnect as e:
+                    exc = e
+                    break
+                except asyncio.CancelledError as e:
+                    exc = e
+                    break
+                except Exception as e:
+                    await self.send_error(ws, f"server error: {e}", code="server_error")
+                    # choose to continue or break; continue keeps the session alive
+                    continue
+
+                if resp is not None:
+                    await self.send_json(ws, resp)
+        finally:
+            await self.on_close(ws, exc)
+
+
+    async def on_connect(self, ws):
+        await ws.accept()
+
     async def on_close(self, ws, exc: Optional[BaseException]): ...
-    async def recv_json(self, ws) -> Dict[str, Any]: ...
-    async def send_json(self, ws, payload: Dict[str, Any]) -> None: ...
-    async def send_error(self, ws, detail: str, code: str = "bad_request") -> None: ...
+    async def recv_json(self, ws: WebSocket) -> Dict[str, Any]:
+        raw = await ws.receive_text()
+        try:
+            obj = json.loads(raw)
+        except json.JSONDecodeError as e:
+            raise ValueError(f"Invalid JSON from client: {e.msg}") from e
+
+        if not isinstance(obj, dict):
+            raise TypeError("Expected top-level JSON object (dict)")
+
+        return obj
+
+
+    async def send_json(self, ws: WebSocket, payload: Dict[str, Any]) -> None:
+        try:
+            text = json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
+        except (TypeError, ValueError) as e:
+            # Surface a clear error if the payload isn't JSON-serializable
+            raise ValueError(f"send_json payload not serializable: {e}") from e
+        await ws.send_text(text)
+
+
+    async def send_error(self, ws, detail: str, code: str = "bad_request") -> None:
+        payload: Dict[str, Any] = {
+            "type": "error",
+            "code": str(code),
+            "detail": str(detail),
+        }
+        await self.send_json(ws, payload)
 
 class ModifyDatasetSession(BaseSession):
     def __init__(self):

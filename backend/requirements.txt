@@ -1,3 +1,6 @@
 autogluon
 pytest
 anyio
+trio
+fastapi
+asyncio
