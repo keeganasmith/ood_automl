@@ -156,6 +156,9 @@ async def test_run_loop_basic_flow_calls_helpers(monkeypatch):
         async def send_json(self, ws, payload):
             calls["send"] += 1
             await ws.send_text(json.dumps(payload))
+        
+        async def dispatch(self, msg):
+            return msg
 
     sess = TestSession()
     ws = DummyWebSocket(incoming=[json.dumps({"echo": 1})])
