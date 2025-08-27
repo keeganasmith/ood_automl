@@ -20,6 +20,7 @@ import json
 import os
 from typing import Any, Dict, Optional
 from pathlib import Path
+from fastapi import WebSocket, WebSocketDisconnect
 import sys
 
 PARENT = Path(__file__).resolve().parent.parent
@@ -51,7 +52,7 @@ class DummyWebSocket:
 
     async def receive_text(self) -> str:
         if not self._incoming:
-            raise RuntimeError("No more incoming messages for DummyWebSocket")
+            raise WebSocketDisconnect("No more incoming messages for DummyWebSocket")
         return self._incoming.pop(0)
 
     async def send_text(self, data: str) -> None:
@@ -151,7 +152,7 @@ async def test_run_loop_basic_flow_calls_helpers(monkeypatch):
             calls["recv"] += 1
             # Echo protocol: read one message then signal termination by raising
             result = json.loads(await ws.receive_text())
-            raise WebSocketDisconnect(code=1000)
+            return result
 
         async def send_json(self, ws, payload):
             calls["send"] += 1

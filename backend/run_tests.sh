@@ -1,2 +1,2 @@
 #!/bin/bash
-pytest --runxfail -vv
+pytest --runxfail -vv -s
