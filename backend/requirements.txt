@@ -4,3 +4,4 @@ anyio
 trio
 fastapi
 asyncio
+pytest-asyncio
