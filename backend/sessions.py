@@ -1,6 +1,6 @@
 # sessions.py
 from __future__ import annotations
-
+import copy
 from typing import Any, Dict, Awaitable, Callable, Optional, List
 from fastapi import WebSocket, WebSocketDisconnect
 import asyncio
@@ -372,7 +372,9 @@ class RunControlSession(BaseSession):
 
         async def emit(payload: Dict[str, Any]) -> None:
             # Normalize to a stable envelope for the client
-            await self.send_json(self._ws, {"type": "event", "subtype": payload.get("type"), **payload})
+            payload_without_type = copy.deepcopy(payload)
+            del payload_without_type["type"]
+            await self.send_json(self._ws, {"type": "event", "subtype": payload.get("type"), **payload_without_type})
 
         async def _stream_and_cleanup():
             with contextlib.suppress(Exception):
