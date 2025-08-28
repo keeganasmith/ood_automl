@@ -1,0 +1,14 @@
+:root { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+body { margin: 2rem; }
+fieldset { border: 1px solid #ddd; border-radius: 12px; padding: 1rem; margin-bottom: 1rem; }
+legend { padding: 0 .4rem; color: #333; }
+label { display: block; margin: .25rem 0 .25rem; font-size: .95rem; color: #444; }
+input[type="text"] { width: 100%; padding: .5rem; border: 1px solid #ccc; border-radius: 8px; }
+textarea { width: 100%; min-height: 140px; padding: .5rem; border: 1px solid #ccc; border-radius: 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+button { padding: .5rem .8rem; border-radius: 8px; border: 1px solid #bbb; background: #fff; cursor: pointer; margin-right: .5rem; }
+button:disabled { opacity: .5; cursor: not-allowed; }
+.row { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
+.muted { color: #666; }
+#log { background: #0b1020; color: #e6e6e6; border-radius: 12px; padding: .75rem; min-height: 220px; white-space: pre-wrap; max-height: 60vh; overflow: auto; }
+.ok { color: #2a7; }
+.err { color: #e55; }

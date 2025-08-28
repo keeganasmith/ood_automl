@@ -9,7 +9,7 @@ import uuid
 import logging
 import threading
 import contextlib
-
+from helper import load_table
 SUCCESS_MESSAGE = {"status": "success"}
 
 # =========================
@@ -228,10 +228,9 @@ class JobRunner:
             hyperparameters = cfg.get("hyperparameters")  # optional dict
             problem_type = cfg.get("problem_type")  # optional
 
-            train_df = cfg.get("train_df")
-            train_data = cfg.get("train_data")  # alias
-            if train_data is None:
-                train_data = train_df
+            train_data = cfg.get("train_df")
+            if(cfg.get("train_path")):
+                train_data = load_table(cfg.get("train_path"))
 
             tuning_data = cfg.get("tuning_data")  # optional
 

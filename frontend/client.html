@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Run Controller Client</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    body { margin: 2rem; }
+    fieldset { border: 1px solid #ddd; border-radius: 12px; padding: 1rem; margin-bottom: 1rem; }
+    legend { padding: 0 .4rem; color: #333; }
+    label { display: block; margin: .25rem 0 .25rem; font-size: .95rem; color: #444; }
+    input[type="text"] { width: 100%; padding: .5rem; border: 1px solid #ccc; border-radius: 8px; }
+    textarea { width: 100%; min-height: 140px; padding: .5rem; border: 1px solid #ccc; border-radius: 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    button { padding: .5rem .8rem; border-radius: 8px; border: 1px solid #bbb; background: #fff; cursor: pointer; margin-right: .5rem; }
+    button:disabled { opacity: .5; cursor: not-allowed; }
+    .row { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
+    .muted { color: #666; }
+    #log { background: #0b1020; color: #e6e6e6; border-radius: 12px; padding: .75rem; min-height: 220px; white-space: pre-wrap; }
+    .tag { display:inline-block; padding: .05rem .4rem; border-radius: 6px; font-size: .75rem; margin-right: .25rem; background: #eef; color: #223; }
+    .ok { color: #2a7; }
+    .err { color: #e55; }
+  </style>
+</head>
+<body>
+  <h1>Run Controller Client</h1>
+
+  <fieldset>
+    <legend>Connection</legend>
+    <label>WebSocket URL</label>
+    <input id="wsUrl" type="text" />
+    <div class="row" style="margin-top:.5rem;">
+      <button id="connectBtn">Connect</button>
+      <button id="disconnectBtn" disabled>Disconnect</button>
+      <span id="status" class="muted">disconnected</span>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Start Config (JSON)</legend>
+    <textarea id="cfg"></textarea>
+    <div class="row" style="margin-top:.5rem;">
+      <button id="startBtn" disabled>Start</button>
+      <button id="statusBtn" disabled>Status</button>
+      <button id="cancelBtn" disabled>Cancel</button>
+      <button id="clearBtn">Clear Log</button>
+      <span class="muted">Run ID: <code id="runId">(none)</code></span>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Events</legend>
+    <div id="log"></div>
+  </fieldset>
+
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const wsUrl = $("wsUrl");
+  const connectBtn = $("connectBtn");
+  const disconnectBtn = $("disconnectBtn");
+  const startBtn = $("startBtn");
+  const statusBtn = $("statusBtn");
+  const cancelBtn = $("cancelBtn");
+  const clearBtn = $("clearBtn");
+  const cfg = $("cfg");
+  const statusEl = $("status");
+  const runIdEl = $("runId");
+  const logEl = $("log");
+
+  // Default URL → same host, ws scheme, /create_run
+  function defaultWsURL() {
+    const proto = location.protocol === "https:" ? "wss" : "ws";
+    const host = location.host || "localhost:8000";
+    return `${proto}://${host}/create_run`;
+  }
+
+  wsUrl.value = defaultWsURL();
+  cfg.value = JSON.stringify({
+    action_type: "start",
+    cfg: {
+      label: "label_column",
+      // Server should load data from this CSV path (your backend must support train_path)
+      train_path: "./data/train.csv",
+      presets: "medium_quality_faster_train",
+      // time_limit: 120
+    }
+  }, null, 2);
+
+  let ws = null;
+  let currentRunId = null;
+
+  function setConnected(yes) {
+    connectBtn.disabled = yes;
+    disconnectBtn.disabled = !yes;
+    startBtn.disabled = !yes;
+    statusBtn.disabled = !yes;
+    cancelBtn.disabled = !yes;
+    statusEl.textContent = yes ? "connected" : "disconnected";
+  }
+
+  function appendLine(line, css = "") {
+    const ts = new Date().toLocaleTimeString();
+    const div = document.createElement("div");
+    if (css) div.className = css;
+    div.textContent = `[${ts}] ${line}`;
+    logEl.appendChild(div);
+    logEl.scrollTop = logEl.scrollHeight;
+  }
+
+  function appendEvent(obj) {
+    // Normalize common envelopes from RunControlSession
+    if (obj.type === "event") {
+      const subtype = obj.subtype || obj.type;
+      // Pretty print notable subtypes
+      if (subtype === "log") {
+        appendLine(`[log] ${obj.logger || ""} ${obj.level || ""} — ${obj.msg || ""}`);
+      } else if (subtype === "milestone") {
+        appendLine(`[milestone] ${obj.stage || ""}`, "ok");
+      } else if (subtype === "finished") {
+        appendLine(`[finished] artifacts at ${obj.result_path || "(unknown path)"}`, "ok");
+      } else if (subtype === "error") {
+        appendLine(`[error] ${obj.error || "(no detail)"}`, "err");
+      } else {
+        appendLine(`[${subtype}] ${JSON.stringify(obj)}`);
+      }
+      return;
+    }
+
+    if (obj.type === "error") {
+      appendLine(`[protocol error] ${obj.detail || JSON.stringify(obj)}`, "err");
+      return;
+    }
+
+    // Start/status/cancel responses
+    if (obj.status) {
+      if (obj.status === "success") {
+        appendLine(`[ok] ${JSON.stringify(obj)}`, "ok");
+      } else {
+        appendLine(`[fail] ${JSON.stringify(obj)}`, "err");
+      }
+      if (obj.run_id) {
+        currentRunId = obj.run_id;
+        runIdEl.textContent = currentRunId;
+      }
+      return;
+    }
+
+    appendLine(`[other] ${JSON.stringify(obj)}`);
+  }
+
+  connectBtn.addEventListener("click", () => {
+    if (ws) return;
+    try {
+      ws = new WebSocket(wsUrl.value);
+    } catch (e) {
+      appendLine(`Failed to open WebSocket: ${e}`, "err");
+      return;
+    }
+    ws.onopen = () => {
+      setConnected(true);
+      appendLine("WebSocket connected", "ok");
+    };
+    ws.onclose = (ev) => {
+      setConnected(false);
+      appendLine(`WebSocket closed (code=${ev.code})`);
+      ws = null;
+    };
+    ws.onerror = (ev) => {
+      appendLine("WebSocket error (see console)", "err");
+      console.error(ev);
+    };
+    ws.onmessage = (ev) => {
+      try {
+        const obj = JSON.parse(ev.data);
+        appendEvent(obj);
+      } catch (e) {
+        appendLine(`bad JSON from server: ${e}`, "err");
+      }
+    };
+  });
+
+  disconnectBtn.addEventListener("click", () => {
+    if (ws) ws.close();
+  });
+
+  clearBtn.addEventListener("click", () => {
+    logEl.innerHTML = "";
+  });
+
+  startBtn.addEventListener("click", () => {
+    if (!ws || ws.readyState !== WebSocket.OPEN) return;
+    let payload;
+    try {
+      payload = JSON.parse(cfg.value);
+    } catch (e) {
+      appendLine(`Config JSON error: ${e}`, "err");
+      return;
+    }
+    if (!payload || payload.action_type !== "start") {
+      appendLine(`Config must be an object like {"action_type":"start","cfg":{...}}`, "err");
+      return;
+    }
+    ws.send(JSON.stringify(payload));
+    appendLine("→ sent start");
+  });
+
+  statusBtn.addEventListener("click", () => {
+    if (!ws || ws.readyState !== WebSocket.OPEN) return;
+    const msg = currentRunId
+      ? { action_type: "status", run_id: currentRunId }
+      : { action_type: "status" };
+    ws.send(JSON.stringify(msg));
+    appendLine("→ sent status");
+  });
+
+  cancelBtn.addEventListener("click", () => {
+    if (!ws || ws.readyState !== WebSocket.OPEN) return;
+    const msg = currentRunId
+      ? { action_type: "cancel", run_id: currentRunId }
+      : { action_type: "cancel" };
+    ws.send(JSON.stringify(msg));
+    appendLine("→ sent cancel");
+  });
+})();
+</script>
+</body>
+</html>
