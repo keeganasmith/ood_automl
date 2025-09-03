@@ -56,9 +56,9 @@ onMounted(() => {
   cfgText.value = JSON.stringify({
     action_type: 'start',
     cfg: {
-      label: 'label_column',
+      label: 'Survived',
       // Server should load data from this CSV path (backend must support train_path)
-      train_path: './data/train.csv',
+      train_path: './sample_datasets/train.csv',
       presets: 'medium_quality_faster_train',
       // time_limit: 120
     },
@@ -81,6 +81,7 @@ function appendEvent(obj) {
   if (obj.type === 'event') {
     const subtype = obj.subtype || obj.type
     if (subtype === 'log') {
+      console.log(obj.msg)
       appendLine(`[log] ${(obj.logger || '')} ${(obj.level || '')} — ${(obj.msg || '')}`)
     } else if (subtype === 'milestone') {
       appendLine(`[milestone] ${obj.stage || ''}`, 'ok')

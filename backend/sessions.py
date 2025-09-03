@@ -10,6 +10,10 @@ import logging
 import threading
 import contextlib
 from helper import load_table
+from contextlib import redirect_stdout, redirect_stderr
+from autogluon_log_parser import parse_autogluon_log
+import sys
+import time
 SUCCESS_MESSAGE = {"status": "success"}
 
 # =========================
@@ -118,6 +122,16 @@ class ModifyDatasetSession(BaseSession):
 
 
 # =========================
+# Autogluon custom callback class
+# =========================
+
+try:
+    from autogluon.core.callbacks import AbstractCallback
+except Exception:
+    AbstractCallback = object  # fallback if older AG
+
+
+# =========================
 # Job runner (AutoGluon)
 # =========================
 
@@ -160,6 +174,7 @@ class JobRunner:
         self._state: str = "idle"
         self._result_path: Optional[str] = None
         self._last_error: Optional[str] = None
+        self._run_log_path: str = None;
 
     @property
     def is_running(self) -> bool:
@@ -196,6 +211,7 @@ class JobRunner:
         root.setLevel(min(root.level, logging.INFO) if root.level else logging.INFO)
         logging.getLogger("autogluon").setLevel(logging.INFO)
 
+        self.logger = logging.getLogger("autogluon")
         # kick off the training in a background thread
         self._thread = threading.Thread(
             target=self._train_entry, args=(cfg, self._run_id), daemon=True
@@ -233,21 +249,23 @@ class JobRunner:
                 train_data = load_table(cfg.get("train_path"))
 
             tuning_data = cfg.get("tuning_data")  # optional
-
+            self._run_log_path = path + "/logs/predictor_log.txt"
             predictor = TabularPredictor(
                 label=label,
                 path=path,
                 problem_type=problem_type,
+                log_to_file=True,
+                log_file_path="auto"
             )
 
             self._notify({"run_id": run_id, "type": "milestone", "stage": "fit_begin"})
+
             predictor.fit(
                 train_data=train_data,
                 tuning_data=tuning_data,
                 hyperparameters=hyperparameters,
                 presets=presets,
                 time_limit=time_limit,
-                verbosity=2,  # ensure logs are emitted
             )
             self._result_path = predictor.path
             self._state = "finished"
@@ -285,6 +303,21 @@ class JobRunner:
     async def restart(self, run_id: str) -> str:
         raise NotImplementedError("restart not supported")
 
+    def log_stream(self, stop_evt: threading.Event):
+        current_log_file = ""
+        while not stop_evt.is_set():
+            logging.getLogger("autogluon").info("got to stream")
+            if(not (self._run_log_path is None)):
+                with open(self._run_log_path, "r") as file:
+                    log_file_contents = file.read()
+                parsed_log_file = parse_autogluon_log(log_file_contents)["models"]
+                if(len(parsed_log_file) > len(current_log_file)):
+                    diff = parsed_log_file[len(current_log_file):]
+                    item = {"type": "log", "msg": diff, "run_id": self._run_id}
+                    current_log_file = parsed_log_file
+                    self._notify(item)
+            time.sleep(.01)
+
     async def status(self, run_id: str) -> Dict[str, Any]:
         return {
             "run_id": run_id,
@@ -300,18 +333,31 @@ class JobRunner:
         emit: Callable[[Dict[str, Any]], Awaitable[None]]
     ) -> None:
         """Drain internal queue and forward to the provided emitter until EOF."""
+        self._stop_evt.clear()
+        log_thread = threading.Thread(
+            target=self.log_stream, args=(self._stop_evt,), daemon=True
+        )
+        log_thread.start()
         if not self._q:
             return
-        while True:
-            item = await self._q.get()
-            try:
-                if item.get("type") == "eof":
-                    # don't forward EOF to client; it's internal
-                    return
-                await emit(item)
-            finally:
-                self._q.task_done()
+        try:
+            while True:
+                item = await self._q.get()
+                try:
+                    if item.get("type") == "eof":
+                        self._stop_evt.set()
+                        await asyncio.to_thread(log_thread.join, 5.0)
+                        # don't forward EOF to client; it's internal
+                        return
+                    await emit(item)
 
+                finally:
+                    self._q.task_done()
+        except asyncio.CancelledError:
+            # If the coroutine is cancelled, also stop the log thread
+            self._stop_evt.set()
+            await asyncio.to_thread(log_thread.join, 5.0)
+            raise
 
 # =========================
 # Run control session
