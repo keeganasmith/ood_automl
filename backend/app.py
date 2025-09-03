@@ -5,8 +5,8 @@ from fastapi import FastAPI, WebSocket
 from fastapi.responses import JSONResponse
 
 # Import your sessions + runner
-from sessions import ModifyDatasetSession, RunControlSession, JobRunner
-
+from Modify_Session import ModifyDatasetSession
+from Run_Session import JobRunner, RunControlSession
 app = FastAPI(title="Run Controller API")
 
 # --------------------------------------------------------------------------------------

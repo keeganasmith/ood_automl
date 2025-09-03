@@ -14,6 +14,7 @@ from contextlib import redirect_stdout, redirect_stderr
 from autogluon_log_parser import parse_autogluon_log
 import sys
 import time
+from Base_Session import BaseSession
 SUCCESS_MESSAGE = {"status": "success"}
 # =========================
 # ModifyDatasetSession (stubs)
