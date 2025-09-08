@@ -24,10 +24,6 @@ app.include_router(prefix_router)
 # Shared singleton JobRunner (enforces at-most-one AutoGluon run across all connections)
 # --------------------------------------------------------------------------------------
 job_runner = JobRunner()
-@app.get(BASE_URL + "/")
-async def root():
-    return JSONResponse({"ok": True})
-
 # ============================== HTTP endpoints ==============================
 
 @app.get(BASE_URL + "/healthz")
