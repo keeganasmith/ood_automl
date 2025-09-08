@@ -1,18 +1,30 @@
 from __future__ import annotations
 from typing import Any, Awaitable, Callable, Dict, Iterable, List, Optional, Tuple, Union, Literal
-
-from fastapi import FastAPI, WebSocket
+import os
+from fastapi import FastAPI, WebSocket, APIRouter
 from fastapi.responses import JSONResponse
 
 # Import your sessions + runner
 from Modify_Session import ModifyDatasetSession
 from Run_Session import JobRunner, RunControlSession
+
+BASE_URL = os.getenv("BASE_URL", "")  # e.g. "/node/lc05/42801"
+
 app = FastAPI(title="Run Controller API")
+"""
+prefix_router = APIRouter(prefix=BASE_URL)
+print("base url is: ", BASE_URL)
+app.include_router(prefix_router)
+"""
+    
 
 # --------------------------------------------------------------------------------------
 # Shared singleton JobRunner (enforces at-most-one AutoGluon run across all connections)
 # --------------------------------------------------------------------------------------
 job_runner = JobRunner()
+@app.get(BASE_URL + "/")
+async def root():
+    return JSONResponse({"ok": True})
 
 # ============================== HTTP endpoints ==============================
 
