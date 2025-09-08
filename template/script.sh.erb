@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+echo SLURM_JOBID: $SLURM_JOBID
+
+# Benchmark info
+clustername
+echo "TIMING - Starting main script at: $(date)"
+
+# Set working directory to home directory
+cd "${SCRATCH}"
+
+#
+# Start Jupyter Notebook Server
+#
+
+# Purge the module environment to avoid conflicts
+#source /etc/profile.d/hprc_profile.sh
+module purge
+module load WebProxy
+export CODE_PATH="${SCRATCH}/ood_automl"
+source "${CODE_PATH}/modules.sh"
+source "${CODE_PATH}/backend/venv/bin/activate"
+module list
+
+# unset XDG_RUNTIME_DIR. It cause trouble starting jupyter notebook
+unset XDG_RUNTIME_DIR
+
+# Benchmark info
+echo "TIMING - Starting ood_automl at: $(date)"
+export BASE_URL="/node/${host}/${port}"
+cd "${CODE_PATH}/backend"
+ls
+
+# Launch the Jupyter Notebook Server
+python3 -m uvicorn app:app \
+  --host 0.0.0.0 \
+  --port "${port}" \
+  #--root-path "${BASE_PATH}" \
+  --forwarded-allow-ips="*" \
+  > server.log 2>&1 &
+wait
