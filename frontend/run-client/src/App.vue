@@ -36,7 +36,7 @@
 
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
-
+import { getWsURL } from './main'
 const ws = ref(null)
 const connected = ref(false)
 const wsUrl = ref('')
@@ -45,14 +45,10 @@ const currentRunId = ref(null)
 const log = ref([])
 const logEl = ref(null)
 
-function defaultWsURL() {
-  const proto = location.protocol === 'https:' ? 'wss' : 'ws'
-  const host = 'localhost:8000'
-  return `${proto}://${host}/create_run`
-}
+
 
 onMounted(() => {
-  wsUrl.value = defaultWsURL()
+  wsUrl.value = getWsURL()
   cfgText.value = JSON.stringify({
     action_type: 'start',
     cfg: {

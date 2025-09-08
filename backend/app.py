@@ -1,14 +1,16 @@
 from __future__ import annotations
 from typing import Any, Awaitable, Callable, Dict, Iterable, List, Optional, Tuple, Union, Literal
 import os
-from fastapi import FastAPI, WebSocket, APIRouter
+from pathlib import Path
+from fastapi import FastAPI, WebSocket, APIRouter, HTTPException
 from fastapi.responses import JSONResponse
-
+from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.staticfiles import StaticFiles
 # Import your sessions + runner
 from Modify_Session import ModifyDatasetSession
 from Run_Session import JobRunner, RunControlSession
 
-BASE_URL = os.getenv("BASE_URL", "")  # e.g. "/node/lc05/42801"
+BASE_URL = os.getenv("BASE_URL", "")
 
 app = FastAPI(title="Run Controller API")
 """
@@ -28,7 +30,7 @@ async def root():
 
 # ============================== HTTP endpoints ==============================
 
-@app.get("/healthz")
+@app.get(BASE_URL + "/healthz")
 async def healthz():
     return JSONResponse({"ok": True, "runner_active": job_runner.is_running})
 
@@ -43,12 +45,32 @@ async def healthz():
 # async def ws_modify_dataset_endpoint(ws: WebSocket):
 #     await ModifyDatasetSession().run_loop(ws)
 
-@app.websocket("/create_run")
+@app.websocket(BASE_URL + "/create_run")
 async def ws_run_endpoint(ws: WebSocket):
     # Each websocket gets its own session, but they all share the same job_runner
     # so only one AutoGluon run can be active at a time.
     await RunControlSession(job_runner=job_runner).run_loop(ws)
 
+
+# frontend rendering
+# --- Static site (Vue build) ---
+DIST_DIR = (Path(__file__).parent.parent / "frontend" / "run-client" / "dist").resolve()
+
+# Serve built assets (JS/CSS/images)
+app.mount("/assets", StaticFiles(directory=DIST_DIR / "assets"), name="assets")
+
+# Serve index.html at root
+@app.get("/", response_class=HTMLResponse)
+async def index():
+  return FileResponse(DIST_DIR / "index.html")
+
+# SPA fallback for client-side routes (but don’t shadow your API)
+@app.get("/{path:path}", response_class=HTMLResponse)
+async def spa_fallback(path: str):
+  # Let API/websocket/static paths 404 normally
+  if path.startswith(("assets", "healthz", "create_run")):
+    raise HTTPException(status_code=404)
+  return FileResponse(DIST_DIR / "index.html")
 
 if __name__ == "__main__":
     # Optional local dev entrypoint:
