@@ -69,7 +69,7 @@ async def spa_fallback(path: str):
   path = "/" + path
   dist_dir_sub_path = path[path.find(BASE_URL) + len(BASE_URL):]
   print(dist_dir_sub_path)
-  return FileResponse(DIST_DIR / "index.html")
+  return FileResponse((DIST_DIR / dist_dir_sub_path.lstrip("/")))
 
 if __name__ == "__main__":
     # Optional local dev entrypoint:
