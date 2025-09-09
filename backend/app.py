@@ -61,14 +61,14 @@ async def index():
   return FileResponse(DIST_DIR / "index.html")
 
 # SPA fallback for client-side routes (but don’t shadow your API)
-@app.get("/{path:path}", response_class=HTMLResponse)
+@app.get(BASE_URL + "/{path:path}", response_class=HTMLResponse)
 async def spa_fallback(path: str):
   # Let API/websocket/static paths 404 normally
+  print(path)
   if path.startswith(("assets", "healthz", "create_run")):
     raise HTTPException(status_code=404)
   path = "/" + path
   dist_dir_sub_path = path[path.find(BASE_URL) + len(BASE_URL):]
-  print(dist_dir_sub_path)
   return FileResponse((DIST_DIR / dist_dir_sub_path.lstrip("/")))
 
 if __name__ == "__main__":
