@@ -65,10 +65,12 @@ async def index():
 async def spa_fallback(path: str):
   # Let API/websocket/static paths 404 normally
   print(path)
-  if path.startswith(("assets", "healthz", "create_run")):
+  if path.startswith(("healthz", "create_run")):
     raise HTTPException(status_code=404)
   path = "/" + path
-  return FileResponse((DIST_DIR / path.lstrip("/")))
+  dist_dir = DIST_DIR / path.lstrip("/")
+  print(dist_dir)
+  return FileResponse(dist_dir)
 
 if __name__ == "__main__":
     # Optional local dev entrypoint:
