@@ -68,8 +68,7 @@ async def spa_fallback(path: str):
   if path.startswith(("assets", "healthz", "create_run")):
     raise HTTPException(status_code=404)
   path = "/" + path
-  dist_dir_sub_path = path[path.find(BASE_URL) + len(BASE_URL):]
-  return FileResponse((DIST_DIR / dist_dir_sub_path.lstrip("/")))
+  return FileResponse((DIST_DIR / path.lstrip("/")))
 
 if __name__ == "__main__":
     # Optional local dev entrypoint:
