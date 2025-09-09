@@ -66,6 +66,7 @@ async def spa_fallback(path: str):
   # Let API/websocket/static paths 404 normally
   if path.startswith(("assets", "healthz", "create_run")):
     raise HTTPException(status_code=404)
+  print("requested path: ", path)
   return FileResponse(DIST_DIR / "index.html")
 
 if __name__ == "__main__":
