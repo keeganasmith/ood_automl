@@ -56,12 +56,12 @@ DIST_DIR = (Path(__file__).parent.parent / "frontend" / "run-client" / "dist").r
 app.mount("/assets", StaticFiles(directory=DIST_DIR / "assets"), name="assets")
 
 # Serve index.html at root
-@app.get("/", response_class=HTMLResponse)
+@app.get(BASE_URL + "/", response_class=HTMLResponse)
 async def index():
   return FileResponse(DIST_DIR / "index.html")
 
 # SPA fallback for client-side routes (but don’t shadow your API)
-@app.get("/{path:path}", response_class=HTMLResponse)
+@app.get(BASE_URL + "/{path:path}", response_class=HTMLResponse)
 async def spa_fallback(path: str):
   # Let API/websocket/static paths 404 normally
   if path.startswith(("assets", "healthz", "create_run")):
