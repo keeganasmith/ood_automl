@@ -61,7 +61,7 @@ async def index():
   return FileResponse(DIST_DIR / "index.html")
 
 # SPA fallback for client-side routes (but don’t shadow your API)
-@app.get(BASE_URL + "/{path:path}", response_class=HTMLResponse)
+@app.get("/{path:path}", response_class=HTMLResponse)
 async def spa_fallback(path: str):
   # Let API/websocket/static paths 404 normally
   if path.startswith(("assets", "healthz", "create_run")):
