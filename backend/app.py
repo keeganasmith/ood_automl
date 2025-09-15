@@ -23,7 +23,6 @@ app.include_router(prefix_router)
 # --------------------------------------------------------------------------------------
 # Shared singleton JobRunner (enforces at-most-one AutoGluon run across all connections)
 # --------------------------------------------------------------------------------------
-job_runner = JobRunner()
 # ============================== HTTP endpoints ==============================
 
 @app.get(BASE_URL + "/healthz")
@@ -45,6 +44,8 @@ async def healthz():
 async def ws_run_endpoint(ws: WebSocket):
     # Each websocket gets its own session, but they all share the same job_runner
     # so only one AutoGluon run can be active at a time.
+    print("got to create run")
+    job_runner = JobRunner()
     await RunControlSession(job_runner=job_runner).run_loop(ws)
 
 

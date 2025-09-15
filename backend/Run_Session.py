@@ -129,7 +129,13 @@ class JobRunner:
                 train_data = load_table(cfg.get("train_path"))
 
             tuning_data = cfg.get("tuning_data")  # optional
+            
             self._run_log_path = path + "/logs/predictor_log.txt"
+            if not os.path.exists(path + "/logs"):
+                os.makedirs(path + "/logs")
+            
+            open(self._run_log_path, 'w').close()
+
             predictor = TabularPredictor(
                 label=label,
                 path=path,
@@ -187,15 +193,20 @@ class JobRunner:
         current_log_file = ""
         while not stop_evt.is_set():
             if(not (self._run_log_path is None)):
-                with open(self._run_log_path, "r") as file:
-                    log_file_contents = file.read()
-                parsed_log_file = parse_autogluon_log(log_file_contents)["models"]
-                if(len(parsed_log_file) > len(current_log_file)):
-                    diff = parsed_log_file[len(current_log_file):]
+                try:
+                    with open(self._run_log_path, "r") as file:
+                        log_file_contents = file.read()
+                except:
+                    continue
+                #parsed_log_file = parse_autogluon_log(log_file_contents)["models"]
+                if(len(log_file_contents) > len(current_log_file)):
+                    #diff = parsed_log_file[len(current_log_file):]
+                    diff = log_file_contents[len(current_log_file):]
+                    #item = {"type": "log", "msg": diff, "run_id": self._run_id}
                     item = {"type": "log", "msg": diff, "run_id": self._run_id}
-                    current_log_file = parsed_log_file
+                    current_log_file = log_file_contents
                     self._notify(item)
-            time.sleep(.01)
+            time.sleep(0)
 
     async def status(self, run_id: str) -> Dict[str, Any]:
         return {
@@ -225,13 +236,13 @@ class JobRunner:
                 try:
                     if item.get("type") == "eof":
                         self._stop_evt.set()
-                        await asyncio.to_thread(log_thread.join, 5.0)
                         # don't forward EOF to client; it's internal
                         return
                     await emit(item)
 
                 finally:
                     self._q.task_done()
+
         except asyncio.CancelledError:
             # If the coroutine is cancelled, also stop the log thread
             self._stop_evt.set()

@@ -2,7 +2,7 @@
   <div>
     <h1>Run Controller Client</h1>
 
-    <fieldset>
+    <!-- <fieldset>
       <legend>Connection</legend>
       <label>WebSocket URL</label>
       <input id="wsUrl" type="text" v-model="wsUrl" />
@@ -11,19 +11,18 @@
         <button id="disconnectBtn" @click="disconnect" :disabled="!connected">Disconnect</button>
         <span id="status" class="muted">{{ connected ? 'connected' : 'disconnected' }}</span>
       </div>
-    </fieldset>
+    </fieldset> -->
 
-    <fieldset>
-      <legend>Start Config (JSON)</legend>
-      <textarea id="cfg" v-model="cfgText"></textarea>
-      <div class="row" style="margin-top:.5rem;">
-        <button id="startBtn" @click="sendStart" :disabled="!connected">Start</button>
-        <button id="statusBtn" @click="sendStatus" :disabled="!connected">Status</button>
-        <button id="cancelBtn" @click="sendCancel" :disabled="!connected">Cancel</button>
-        <button id="clearBtn" @click="clearLog">Clear Log</button>
-        <span class="muted">Run ID: <code id="runId">{{ currentRunId ?? '(none)' }}</code></span>
-      </div>
-    </fieldset>
+    <!-- NEW: Config editor component -->
+    <ConfigEditor
+      v-model="cfgText"
+      :connected="connected"
+      :current-run-id="currentRunId"
+      @start="sendStart"
+      @status="sendStatus"
+      @cancel="sendCancel"
+      @clear="clearLog"
+    />
 
     <fieldset>
       <legend>Events</legend>
@@ -37,6 +36,8 @@
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
 import { getWsURL } from './main'
+import ConfigEditor from './components/ConfigEditor.vue'
+
 const ws = ref(null)
 const connected = ref(false)
 const wsUrl = ref('')
@@ -53,10 +54,8 @@ onMounted(() => {
     action_type: 'start',
     cfg: {
       label: 'Survived',
-      // Server should load data from this CSV path (backend must support train_path)
       train_path: './sample_datasets/train.csv',
       presets: 'medium_quality_faster_train',
-      // time_limit: 120
     },
   }, null, 2)
 })
@@ -109,11 +108,8 @@ function appendEvent(obj) {
   appendLine(`[other] ${JSON.stringify(obj)}`)
 }
 
+
 function connect() {
-  console.log("got here")
-  if (ws.value){
-    console.log("ws.value was: ", ws.value)
-  } 
   try {
     ws.value = new WebSocket(wsUrl.value)
   } catch (e) {
@@ -150,12 +146,69 @@ function disconnect() {
 function clearLog() {
   log.value = []
 }
+function waitForClose(sock, timeout = 5000) {
+  if(!ws.value) return Promise.resolve();
+  if (sock.readyState === WebSocket.CLOSED) return Promise.resolve();
 
-function sendStart() {
+  return new Promise((resolve, reject) => {
+    const tid = setTimeout(() => {
+      cleanup();
+      reject(new Error('WebSocket open timeout'));
+    }, timeout);
+
+    function cleanup() {
+      clearTimeout(tid);
+      sock.removeEventListener('open', onOpen);
+      sock.removeEventListener('error', onError);
+      sock.removeEventListener('close', onClose);
+    }
+    function onOpen() { cleanup(); reject(); }
+    function onError(e) { cleanup(); reject(e); }
+    function onClose() { cleanup(); resolve(); }
+
+    sock.addEventListener('open', onOpen, { once: true });
+    sock.addEventListener('error', onError, { once: true });
+    sock.addEventListener('close', onClose, { once: true });
+  });
+}
+function waitForOpen(sock, timeout = 5000) {
+  if (sock.readyState === WebSocket.OPEN) return Promise.resolve();
+  if (sock.readyState === WebSocket.CLOSED) return Promise.reject(new Error('Socket is closed'));
+
+  return new Promise((resolve, reject) => {
+    const tid = setTimeout(() => {
+      cleanup();
+      reject(new Error('WebSocket open timeout'));
+    }, timeout);
+
+    function cleanup() {
+      clearTimeout(tid);
+      sock.removeEventListener('open', onOpen);
+      sock.removeEventListener('error', onError);
+      sock.removeEventListener('close', onClose);
+    }
+    function onOpen() { cleanup(); resolve(); }
+    function onError(e) { cleanup(); reject(e); }
+    function onClose() { cleanup(); reject(new Error('Closed before open')); }
+
+    sock.addEventListener('open', onOpen, { once: true });
+    sock.addEventListener('error', onError, { once: true });
+    sock.addEventListener('close', onClose, { once: true });
+  });
+}
+
+async function sendStart() {
+  disconnect();
+  await waitForClose(ws.value, 5000);
+  connect();
+  try { await waitForOpen(ws.value, 5000); }
+  catch (e) { appendLine(`Cannot send: ${e.message}`, 'err'); return; }
+  console.log("ws ready state: ", ws.value.readyState)
   if (!ws.value || ws.value.readyState !== WebSocket.OPEN) return
   let payload
   try {
     payload = JSON.parse(cfgText.value)
+    console.log(payload)
   } catch (e) {
     appendLine(`Config JSON error: ${e}`, 'err')
     return
