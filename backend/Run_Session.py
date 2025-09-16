@@ -14,6 +14,9 @@ from autogluon_log_parser import parse_autogluon_log
 import sys
 import time
 from Base_Session import BaseSession
+import os
+from autogluon.tabular import TabularPredictor
+from autogluon.multimodal import MultiModalPredictor
 SUCCESS_MESSAGE = {"status": "success"}
 class _AsyncQueueLogHandler(logging.Handler):
     """Logging handler that pushes log records into an asyncio.Queue from any thread."""
@@ -104,14 +107,7 @@ class JobRunner:
 
     def _train_entry(self, cfg: Dict[str, Any], run_id: str) -> None:
         try:
-            import os
-            # reasonable defaults to avoid runaway threading
-            os.environ.setdefault("OMP_NUM_THREADS", "4")
-            os.environ.setdefault("MKL_NUM_THREADS", "4")
-            os.environ.setdefault("OPENBLAS_NUM_THREADS", "4")
-            os.environ.setdefault("NUMEXPR_NUM_THREADS", "4")
-
-            from autogluon.tabular import TabularPredictor
+            
 
             self._state = "running"
             # let the UI know some structured milestones too
@@ -123,6 +119,7 @@ class JobRunner:
             time_limit = cfg.get("time_limit")  # seconds
             hyperparameters = cfg.get("hyperparameters")  # optional dict
             problem_type = cfg.get("problem_type")  # optional
+            data_type = cfg.get("data_type") #tabular, mm, or series
 
             train_data = cfg.get("train_df")
             if(cfg.get("train_path")):
@@ -135,14 +132,24 @@ class JobRunner:
                 os.makedirs(path + "/logs")
             
             open(self._run_log_path, 'w').close()
+            predictor = None
 
-            predictor = TabularPredictor(
-                label=label,
-                path=path,
-                problem_type=problem_type,
-                log_to_file=True,
-                log_file_path="auto"
-            )
+            if(data_type == "tabular"):
+                predictor = TabularPredictor(
+                    label=label,
+                    path=path,
+                    problem_type=problem_type,
+                    log_to_file=True,
+                    log_file_path="auto"
+                )
+            elif(data_type == "mm"):
+                predictor = MultiModalPredictor(
+                    label=label,
+                    path=path,
+                    problem_type=problem_type,
+                    log_to_file=True,
+                    log_file_path="auto"
+                )
 
             self._notify({"run_id": run_id, "type": "milestone", "stage": "fit_begin"})
 

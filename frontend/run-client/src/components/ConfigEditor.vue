@@ -24,6 +24,17 @@
                   </n-gi>
 
                   <n-gi>
+                    <n-form-item label="data_type">
+                      <n-select
+                        v-model:value="form.data_type"
+                        :options="dataTypeOptions"
+                        placeholder="tabular"
+                        clearable
+                      />
+                    </n-form-item>
+                  </n-gi>
+
+                  <n-gi>
                     <n-form-item label="path (output dir)">
                       <n-input v-model:value="form.path" placeholder="./autogluon_runs/{run_id}" />
                     </n-form-item>
@@ -152,12 +163,19 @@ const form = ref({
   problem_type: '',
   hyperparametersText: '',
   tuningDataText: '',
+  data_type: '',
 })
 
 const presetOptions = [
   { label: 'medium_quality', value: 'medium_quality' },
   { label: 'high_quality', value: 'high_quality' },
   { label: 'best_quality', value: 'best_quality' },
+]
+
+const dataTypeOptions = [
+  { label: "tabular", value: "tabular"},
+  { label: "multi-modal", value: "mm"},
+  { label: "series", value: "series"}
 ]
 
 const problemTypeOptions = [
@@ -187,6 +205,7 @@ function buildCfgFromForm () {
   if (f.label) cfg.label = f.label
   if (f.train_path) cfg.train_path = f.train_path
   if (f.path) cfg.path = f.path
+  if (f.data_type) cfg.data_type = f.data_type
   if (f.presets ?? '' ) { // treat null as ''
     if (f.presets !== '') cfg.presets = f.presets
   }
@@ -208,38 +227,4 @@ function clickStart(){
   emit('update:modelValue', JSON.stringify(result))
   emit('start')
 }
-// OUT: whenever the form changes and JSON areas are valid, emit JSON to parent
-// watch(
-//   () => ({ ...form.value }),
-//   () => {
-//     if (!isValid.value) return
-//     const cfg = buildCfgFromForm()
-//     emit('update:modelValue', JSON.stringify(cfg))
-//   },
-//   { deep: true }
-// )
-
-// // IN: if parent changes modelValue externally, reflect into the form
-// watch(
-//   () => props.modelValue,
-//   (text) => {
-//     if (!text) return
-//     const parsed = safeParse(text)
-//     if (!parsed.ok || typeof parsed.value !== 'object' || !parsed.value) return
-//     const v = parsed.value
-
-//     // Rehydrate only known keys; leave text areas empty if missing
-//     form.value.label = v.label ?? ''
-//     form.value.train_path = v.train_path ?? ''
-//     form.value.path = v.path ?? ''
-//     form.value.presets = v.presets ?? ''
-//     form.value.time_limit = Number.isFinite(v.time_limit) ? v.time_limit : null
-//     form.value.problem_type = v.problem_type ?? ''
-
-//     form.value.hyperparametersText = v.hyperparameters ? JSON.stringify(v.hyperparameters, null, 2) : ''
-//     form.value.tuningDataText = v.tuning_data ? JSON.stringify(v.tuning_data, null, 2) : ''
-//   },
-//   { immediate: true }
-// )
-
 </script>

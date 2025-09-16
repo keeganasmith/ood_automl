@@ -44,7 +44,6 @@ async def healthz():
 async def ws_run_endpoint(ws: WebSocket):
     # Each websocket gets its own session, but they all share the same job_runner
     # so only one AutoGluon run can be active at a time.
-    print("got to create run")
     job_runner = JobRunner()
     await RunControlSession(job_runner=job_runner).run_loop(ws)
 
