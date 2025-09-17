@@ -18,6 +18,11 @@ import os
 import pickle
 from autogluon.tabular import TabularPredictor
 from autogluon.multimodal import MultiModalPredictor
+import torch
+NUM_GPUS = 0
+if torch.cuda.is_available():
+    NUM_GPUS = torch.cuda.device_count()
+print("num_gpus: ", NUM_GPUS)
 HISTORIC_JOBS_DIRECTORY = os.path.expanduser("~/.ood_automl")
 print(HISTORIC_JOBS_DIRECTORY)
 if not os.path.exists(HISTORIC_JOBS_DIRECTORY):
@@ -182,6 +187,7 @@ class JobRunner:
                 hyperparameters=hyperparameters,
                 presets=presets,
                 time_limit=time_limit,
+                num_gpus=NUM_GPUS
             )
             self._result_path = predictor.path
             self._state = "finished"

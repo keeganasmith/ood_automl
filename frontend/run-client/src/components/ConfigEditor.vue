@@ -170,6 +170,7 @@ const presetOptions = [
   { label: 'medium_quality', value: 'medium_quality' },
   { label: 'high_quality', value: 'high_quality' },
   { label: 'best_quality', value: 'best_quality' },
+  { label: 'extreme_quality', value: 'extreme_quality'}
 ]
 
 const dataTypeOptions = [
