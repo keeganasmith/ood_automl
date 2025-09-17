@@ -11,6 +11,20 @@ from Modify_Session import ModifyDatasetSession
 from Run_Session import JobRunner, RunControlSession, HISTORIC_JOBS_FILE
 import pickle
 import asyncio
+import anyio
+import pandas as pd
+from autogluon.tabular import TabularPredictor
+
+from pydantic import BaseModel, Field
+def _expand(p: str) -> str:
+    return os.path.abspath(os.path.expanduser(p))
+
+class InferenceRequest(BaseModel):
+    test_path: str = Field(..., description="Path to test data (CSV or Parquet)")
+    job_id: str = Field(..., description="ID of the AutoGluon job")
+    output_path: str = Field(..., description="File path where predictions will be written (CSV)")
+    proba: bool = Field(False, description="If true, write predict_proba instead of class labels")
+
 BASE_URL = os.getenv("BASE_URL", "")
 
 app = FastAPI(title="Run Controller API")
@@ -71,7 +85,116 @@ async def get_job(job_id: str):
     with open(file_path, "r") as my_file:
       log_file_content = my_file.read()
     return JSONResponse({"ok": True, "job_id": job_id, "log_content": log_file_content, "cfg": config})
-      
+
+def _locate_predictor_dir(job_dir: str) -> Optional[str]:
+    """
+    Try common locations or discover by finding 'learner.pkl'.
+    Returns the directory passed to TabularPredictor.load(...)
+    """
+    # 1) Explicit hints in mapping (if you store them)
+    for hint in ("predictor_path", "model_path", "result_path"):
+        # caller can pass these via job_map if available
+        pass
+
+    # 2) Common subdirs
+    candidates = [
+        os.path.join(job_dir, "predictor"),
+        os.path.join(job_dir, "artifacts"),
+        job_dir,  # sometimes predictor is saved directly in job_dir
+    ]
+    for c in candidates:
+        if os.path.isfile(os.path.join(c, "learner.pkl")):
+            return c
+
+    # 3) Search shallowly for learner.pkl (depth-limited)
+    max_depth = 3
+    base_parts = _expand(job_dir).rstrip(os.sep).split(os.sep)
+    for root, dirs, files in os.walk(job_dir):
+        depth = len(_expand(root).split(os.sep)) - len(base_parts)
+        if depth > max_depth:
+            # prune deeper traversal
+            dirs[:] = []
+            continue
+        if "learner.pkl" in files:
+            return root
+    return None
+
+
+def _read_frame(path: str) -> pd.DataFrame:
+    if path.lower().endswith(".csv"):
+        return pd.read_csv(path)
+    if path.lower().endswith(".parquet"):
+        return pd.read_parquet(path)
+    # Default to CSV if extension unknown
+    return pd.read_csv(path)
+
+
+def _write_frame(df: pd.DataFrame, path: str) -> None:
+    parent = os.path.dirname(path)
+    if parent and not os.path.exists(parent):
+        os.makedirs(parent, exist_ok=True)
+    df.to_csv(path, index=False)
+
+
+def _predict_sync(predictor_dir: str, test_path: str, out_path: str, proba: bool) -> dict:
+    if TabularPredictor is None:
+        raise RuntimeError("AutoGluon not installed. pip install autogluon.tabular")
+
+    predictor = TabularPredictor.load(predictor_dir)
+    df = _read_frame(test_path)
+
+    if proba:
+        # predict_proba returns DataFrame (multiclass) or Series (binary)
+        proba_out = predictor.predict_proba(df)
+        if isinstance(proba_out, pd.Series):
+            proba_out = proba_out.to_frame("proba")
+        proba_out.insert(0, "row", range(len(proba_out)))
+        _write_frame(proba_out, out_path)
+        n_rows = len(proba_out)
+        cols = list(proba_out.columns)
+    else:
+        preds = predictor.predict(df)
+        out = pd.DataFrame({"prediction": preds})
+        out.insert(0, "row", range(len(out)))
+        _write_frame(out, out_path)
+        n_rows = len(out)
+        cols = list(out.columns)
+
+    return {"rows": n_rows, "columns": cols}
+
+@app.post(BASE_URL + "/inference")
+async def run_inference(req: InferenceRequest):
+    # Resolve paths
+    test_path = _expand(req.test_path)
+    out_path = _expand(req.output_path)
+
+    # Validate inputs
+    if not os.path.exists(test_path):
+        raise HTTPException(status_code=404, detail=f"test_path not found: {test_path}")
+
+    with open(HISTORIC_JOBS_FILE, "rb") as f:
+      job_map = pickle.load(f)
+    
+    job_id = req.job_id
+    predictor_dir = job_map[job_id]["file_path"]
+    try:
+        result = await anyio.to_thread.run_sync(
+            _predict_sync, predictor_dir, test_path, out_path, req.proba
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Inference failed: {e}")
+
+    return JSONResponse(
+        {
+            "ok": True,
+            "job_id": req.job_id,
+            "predictor_dir": predictor_dir,
+            "test_path": test_path,
+            "output_path": out_path,
+            "proba": req.proba,
+            "result": result,
+        }
+    ) 
 
 @app.websocket(BASE_URL + "/ws")
 async def ws_file_stream(ws: WebSocket, job_id: str):
@@ -114,6 +237,7 @@ async def ws_file_stream(ws: WebSocket, job_id: str):
             await ws.send_text(f"ERROR: {e}")
         finally:
             await ws.close(code=1011)
+
 
 # frontend rendering
 # --- Static site (Vue build) ---
