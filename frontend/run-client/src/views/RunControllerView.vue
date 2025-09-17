@@ -54,6 +54,7 @@
   
   onMounted(() => {
     wsUrl.value = getWsURL()
+    console.log("wsURL: ", wsUrl.value)
     cfgText.value = JSON.stringify({
       action_type: 'start',
       cfg: {

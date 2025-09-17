@@ -15,7 +15,7 @@ function join(a, b) {
     if (!a.endsWith("/")) a += "/";
     return a + (b.startsWith("/") ? b.slice(1) : b);
 }
-export function getBaseURL(){
+export function getBaseURL(path = ""){
   const u = new URL(window.location.href);
   const qp = u.searchParams.get("ws");
   if (qp) return qp;
@@ -33,7 +33,8 @@ export function getBaseURL(){
   // 4) Auto-infer (OOD-safe)
   const proto = location.protocol
   const base = inferBasePath(location.pathname);   // e.g. "/node/lc05/42801/"
-  return `${proto}://${location.host}${base}`;
+  console.log(`${proto}//${location.host}${join(base, path)}`)
+  return `${proto}//${location.host}${join(base, path)}`;
 }
 
 export function getWsURL(path = "create_run") {

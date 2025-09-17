@@ -57,6 +57,7 @@ async def get_running_jobs():
 
 @app.get(BASE_URL + "/historic_jobs")
 async def get_historic_jobs():
+    print("got to historic jobs endpoint")
     with open(HISTORIC_JOBS_FILE, "rb") as my_file:
       job_id_mapping = pickle.load(my_file)
     return JSONResponse({"ok": True, "job_ids": list(job_id_mapping.keys())})
@@ -72,7 +73,7 @@ async def get_job(job_id: str):
     return JSONResponse({"ok": True, "job_id": job_id, "log_content": log_file_content, "cfg": config})
       
 
-@app.websocket("/ws")
+@app.websocket(BASE_URL + "/ws")
 async def ws_file_stream(ws: WebSocket, job_id: str):
     await ws.accept()
     try:

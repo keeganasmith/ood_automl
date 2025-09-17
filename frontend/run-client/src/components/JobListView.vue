@@ -45,6 +45,7 @@
   
   function jobsUrl() {
     // Backend endpoint: GET <BASE_URL>/historic_jobs
+    console.log(getBaseURL("historic_jobs"))
     return getBaseURL("historic_jobs");
   }
   

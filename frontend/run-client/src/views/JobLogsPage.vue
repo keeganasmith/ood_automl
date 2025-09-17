@@ -13,7 +13,7 @@
   <script setup>
   import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
   import { useRoute } from 'vue-router'
-  import { getBaseURL } from '../main' // if your helper lives in main.js
+  import { getWsURL } from '../main' // if your helper lives in main.js
   
   const route = useRoute()
   const id = route.params.id
@@ -24,12 +24,10 @@
   const logEl = ref(null)
   
   function getLogWsURL(jobId) {
-    const httpProto = window.location.protocol
-    const host = window.location.host
-    const base = getBaseURL() // e.g. https://host/node/.../
-    const prefix = base.replace(`${httpProto}//${host}`, '') // /node/.../
-    const wsProto = httpProto === 'https:' ? 'wss' : 'ws'
-    return `${wsProto}://${host}${prefix}ws?job_id=${encodeURIComponent(jobId)}`
+    let path = `ws?job_id=${encodeURIComponent(jobId)}`
+    let wsurl = getWsURL(path)
+    console.log("wsurl is: ", wsurl)
+    return wsurl
   }
   
   function append(text) {
