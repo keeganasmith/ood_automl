@@ -6,3 +6,4 @@ trio
 fastapi
 asyncio
 pytest-asyncio
+aiofiles

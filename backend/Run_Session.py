@@ -15,8 +15,18 @@ import sys
 import time
 from Base_Session import BaseSession
 import os
+import pickle
 from autogluon.tabular import TabularPredictor
 from autogluon.multimodal import MultiModalPredictor
+HISTORIC_JOBS_DIRECTORY = os.path.expanduser("~/.ood_automl")
+print(HISTORIC_JOBS_DIRECTORY)
+if not os.path.exists(HISTORIC_JOBS_DIRECTORY):
+    os.makedirs(HISTORIC_JOBS_DIRECTORY)
+HISTORIC_JOBS_FILE = HISTORIC_JOBS_DIRECTORY + "/runs_index.pkl"
+if not os.path.exists(HISTORIC_JOBS_FILE):
+    with open(HISTORIC_JOBS_FILE, 'wb+') as my_file:
+        pickle.dump({}, my_file)
+
 SUCCESS_MESSAGE = {"status": "success"}
 class _AsyncQueueLogHandler(logging.Handler):
     """Logging handler that pushes log records into an asyncio.Queue from any thread."""
@@ -105,6 +115,16 @@ class JobRunner:
         await self._q.put({"run_id": self._run_id, "type": "state", "state": "running"})
         return self._run_id
 
+    def write_to_mapping_file(self, path, cfg):
+        with open(HISTORIC_JOBS_FILE, "rb") as map_file:
+            current_job_id_mapping = pickle.load(map_file)
+
+        current_job_id_mapping[self._run_id] = {}
+        current_job_id_mapping[self._run_id]["file_path"] = path
+        current_job_id_mapping[self._run_id]["cfg"] = cfg
+        with open(HISTORIC_JOBS_FILE, "wb") as map_file:
+            pickle.dump(current_job_id_mapping, map_file)
+
     def _train_entry(self, cfg: Dict[str, Any], run_id: str) -> None:
         try:
             
@@ -131,6 +151,9 @@ class JobRunner:
             if not os.path.exists(path + "/logs"):
                 os.makedirs(path + "/logs")
             
+            print("made it here")
+            self.write_to_mapping_file(path, cfg)
+
             open(self._run_log_path, 'w').close()
             predictor = None
 
@@ -163,6 +186,7 @@ class JobRunner:
             self._result_path = predictor.path
             self._state = "finished"
             self._notify({"run_id": run_id, "type": "finished", "result_path": predictor.path})
+            self.__init__()
         except Exception as e:
             self._last_error = str(e)
             self._state = "error"
