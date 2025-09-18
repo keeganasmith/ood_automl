@@ -1,9 +1,9 @@
 ---
-name: Jupyter Notebook
+name: AutoGluon
 category: Interactive Apps
 subcategory: Servers
 role: batch_connect
 description: |
-  This app will launch a [Jupyter Notebook] server on the LAUNCH cluster.
+  This app will launch an interactive AutoGluon server on the LAUNCH cluster.
   
-  [Jupyter Notebook]: http://jupyter.org
+  [AutoGluon]: https://github.com/autogluon/autogluon
