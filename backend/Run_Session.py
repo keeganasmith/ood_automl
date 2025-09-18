@@ -187,7 +187,8 @@ class JobRunner:
                 hyperparameters=hyperparameters,
                 presets=presets,
                 time_limit=time_limit,
-                num_gpus=NUM_GPUS
+                num_gpus=NUM_GPUS,
+                ag_args_fit={'num_gpus': NUM_GPUS}
             )
             self._result_path = predictor.path
             self._state = "finished"
