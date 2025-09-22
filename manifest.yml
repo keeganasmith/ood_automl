@@ -7,3 +7,4 @@ description: |
   This app will launch an interactive AutoGluon server on the LAUNCH cluster.
   
   [AutoGluon]: https://github.com/autogluon/autogluon
+icon: icon.png
