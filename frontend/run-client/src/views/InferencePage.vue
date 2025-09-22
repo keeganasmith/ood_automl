@@ -115,6 +115,7 @@
         output_path: outputPath.value,
         proba: !!proba.value,
       }
+      console.log("inference endpoint: ", api('inference'))
       const res = await fetch(api('inference'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

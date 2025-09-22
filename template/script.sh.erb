@@ -37,5 +37,6 @@ python3 -m uvicorn app:app \
   --port "${port}" \
   #--root-path "${BASE_PATH}" \
   --forwarded-allow-ips="*" \
+  --timeout-keep-alive 3600 \
   > server.log 2>&1 &
 wait
