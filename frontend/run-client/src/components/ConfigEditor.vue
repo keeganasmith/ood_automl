@@ -45,7 +45,7 @@
                       <n-select
                         v-model:value="form.presets"
                         :options="presetOptions"
-                        placeholder="(omit)"
+                        placeholder="medium"
                         clearable
                       />
                     </n-form-item>
@@ -163,7 +163,7 @@ const form = ref({
   problem_type: '',
   hyperparametersText: '',
   tuningDataText: '',
-  data_type: '',
+  data_type: 'tabular',
 })
 
 const presetOptions = [
