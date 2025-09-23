@@ -14,6 +14,14 @@ import asyncio
 import anyio
 import pandas as pd
 from autogluon.tabular import TabularPredictor
+"""
+def _setup_log_to_file(self, log_file_path: str):
+        if log_file_path == "auto":
+            log_file_path = os.path.join(self.path, "logs", self._predictor_log_file_name)
+        log_file_path = os.path.abspath(os.path.normpath(log_file_path))
+        os.makedirs(os.path.dirname(log_file_path), exist_ok=True)
+        add_log_to_file(log_file_path)
+"""
 
 from pydantic import BaseModel, Field
 def _expand(p: str) -> str:

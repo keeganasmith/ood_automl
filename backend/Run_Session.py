@@ -19,6 +19,8 @@ import pickle
 from autogluon.tabular import TabularPredictor
 from autogluon.multimodal import MultiModalPredictor
 import torch
+from autogluon.common.utils.log_utils import add_log_to_file
+
 NUM_GPUS = 0
 if torch.cuda.is_available():
     NUM_GPUS = torch.cuda.device_count()
@@ -31,6 +33,11 @@ HISTORIC_JOBS_FILE = HISTORIC_JOBS_DIRECTORY + "/runs_index.pkl"
 if not os.path.exists(HISTORIC_JOBS_FILE):
     with open(HISTORIC_JOBS_FILE, 'wb+') as my_file:
         pickle.dump({}, my_file)
+
+def _setup_log_to_file(log_file_path: str):
+    log_file_path = os.path.abspath(os.path.normpath(log_file_path))
+    os.makedirs(os.path.dirname(log_file_path), exist_ok=True)
+    add_log_to_file(log_file_path)
 
 SUCCESS_MESSAGE = {"status": "success"}
 class _AsyncQueueLogHandler(logging.Handler):
@@ -167,18 +174,14 @@ class JobRunner:
                     label=label,
                     path=path,
                     problem_type=problem_type,
-                    log_to_file=True,
-                    log_file_path="auto"
                 )
             elif(data_type == "mm"):
                 predictor = MultiModalPredictor(
                     label=label,
                     path=path,
                     problem_type=problem_type,
-                    log_to_file=True,
-                    log_file_path="auto"
                 )
-
+            _setup_log_to_file(self._run_log_path)
             self._notify({"run_id": run_id, "type": "milestone", "stage": "fit_begin"})
 
             predictor.fit(
