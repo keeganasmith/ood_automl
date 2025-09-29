@@ -9,19 +9,17 @@ This application can be run locally:
 ```
 git clone https://github.com/keeganasmith/ood_automl.git
 cd ood_automl
-cd backend
+cd frontend
+cd run-client
+npm install
+npm run build
+cd ../backend
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python3 app.py
 ```
-open a new terminal and run the frontend:  
-```
-cd ood_automl/frontend/run-client
-npm install
-npm run dev
-```
-you should be able to view the interface at http://localhost:5173/
+you should be able to view the interface at http://localhost:8000/
 # Developers
 File structure:  
 - /backend: contains files related to the backend websockets, all of this code runs on the server (compute nodes)
