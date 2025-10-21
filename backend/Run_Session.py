@@ -20,6 +20,7 @@ from autogluon.tabular import TabularPredictor
 from autogluon.multimodal import MultiModalPredictor
 import torch
 from autogluon.common.utils.log_utils import add_log_to_file
+import traceback
 
 NUM_GPUS = 0
 if torch.cuda.is_available():
@@ -183,24 +184,40 @@ class JobRunner:
                 )
             _setup_log_to_file(self._run_log_path)
             self._notify({"run_id": run_id, "type": "milestone", "stage": "fit_begin"})
-
-            predictor.fit(
-                train_data=train_data,
-                tuning_data=tuning_data,
-                hyperparameters=hyperparameters,
-                presets=presets,
-                time_limit=time_limit,
-                num_gpus=NUM_GPUS,
-                ag_args_fit={'num_gpus': NUM_GPUS}
-            )
+            if(data_type == "tabular"):
+                predictor.fit(
+                    train_data=train_data,
+                    tuning_data=tuning_data,
+                    hyperparameters=hyperparameters,
+                    presets=presets,
+                    time_limit=time_limit,
+                    num_gpus=NUM_GPUS,
+                    ag_args_fit={'num_gpus': NUM_GPUS}
+                )
+            else:
+                #predictor.set_num_gpus(NUM_GPUS)
+                predictor.fit(
+                    train_data=train_data,
+                    tuning_data=tuning_data,
+                    hyperparameters=hyperparameters,
+                    presets=presets,
+                    time_limit=time_limit,
+                )
+                
             self._result_path = predictor.path
             self._state = "finished"
             self._notify({"run_id": run_id, "type": "finished", "result_path": predictor.path})
             self.__init__()
         except Exception as e:
-            self._last_error = str(e)
+            tb = "".join(traceback.format_exception(e)) 
+            self._last_error = f"{e}\n{tb}"
             self._state = "error"
-            self._notify({"run_id": run_id, "type": "error", "error": str(e)})
+            self._notify({
+                "run_id": run_id,
+                "type": "error",
+                "error": str(e) + "\n" + tb,
+                "traceback": tb,                          # add it to your event payload
+            })
         finally:
             self._active = False
             # remove handler
