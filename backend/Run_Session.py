@@ -160,14 +160,7 @@ class JobRunner:
 
             tuning_data = cfg.get("tuning_data")  # optional
             
-            self._run_log_path = path + "/logs/predictor_log.txt"
-            if not os.path.exists(path + "/logs"):
-                os.makedirs(path + "/logs")
             
-            print("made it here")
-            self.write_to_mapping_file(path, cfg)
-
-            open(self._run_log_path, 'w').close()
             predictor = None
 
             if(data_type == "tabular"):
@@ -182,8 +175,18 @@ class JobRunner:
                     path=path,
                     problem_type=problem_type,
                 )
+            self._run_log_path = path + "/logs/predictor_log.txt"
+            if (not os.path.exists(path + "/logs")):
+                os.makedirs(path + "/logs")
+            
+            print("made it here")
+            self.write_to_mapping_file(path, cfg)
+
+            open(self._run_log_path, 'w').close()
             _setup_log_to_file(self._run_log_path)
             self._notify({"run_id": run_id, "type": "milestone", "stage": "fit_begin"})
+            print("predictor gpus: ", predictor.get_num_gpus())
+            print("learner config: ", predictor._learner)
             if(data_type == "tabular"):
                 predictor.fit(
                     train_data=train_data,
@@ -194,8 +197,8 @@ class JobRunner:
                     num_gpus=NUM_GPUS,
                     ag_args_fit={'num_gpus': NUM_GPUS}
                 )
-            else:
-                #predictor.set_num_gpus(NUM_GPUS)
+            elif(data_type == "mm"):
+                predictor.set_num_gpus(NUM_GPUS)
                 predictor.fit(
                     train_data=train_data,
                     tuning_data=tuning_data,
