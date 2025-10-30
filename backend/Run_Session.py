@@ -21,6 +21,7 @@ from autogluon.multimodal import MultiModalPredictor
 import torch
 from autogluon.common.utils.log_utils import add_log_to_file
 import traceback
+from autogluon.common.utils.resource_utils import ResourceManager
 
 NUM_GPUS = 0
 if torch.cuda.is_available():
