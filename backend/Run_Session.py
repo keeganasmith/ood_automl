@@ -199,7 +199,6 @@ class JobRunner:
                     ag_args_fit={'num_gpus': NUM_GPUS}
                 )
             elif(data_type == "mm"):
-                predictor.set_num_gpus(NUM_GPUS)
                 predictor.fit(
                     train_data=train_data,
                     tuning_data=tuning_data,
