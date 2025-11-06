@@ -14,6 +14,8 @@ import asyncio
 import anyio
 import pandas as pd
 from autogluon.tabular import TabularPredictor
+from tensorboard import program
+
 """
 def _setup_log_to_file(self, log_file_path: str):
         if log_file_path == "auto":
@@ -33,6 +35,9 @@ class InferenceRequest(BaseModel):
     output_path: str = Field(..., description="File path where predictions will be written (CSV)")
     proba: bool = Field(False, description="If true, write predict_proba instead of class labels")
 
+class TensorBoardRequest(BaseModel):
+    job_path: str = Field(..., description="Path to job directory")
+    
 BASE_URL = os.getenv("BASE_URL", "")
 
 app = FastAPI(title="Run Controller API")
@@ -170,6 +175,15 @@ def _predict_sync(predictor_dir: str, test_path: str, out_path: str, proba: bool
 
     return {"rows": n_rows, "columns": cols}
 
+@app.post(BASE_URL + "/start_tensorboard")
+async def start_tensorboard(req: TensorBoardRequest):
+    path = _expand(req.job_path)
+    tb = program.TensorBoard()
+    tb.configure(argv=[None, "--logdir", LOGDIR, "--port", "6006", "--host", "0.0.0.0"])  # host=0.0.0.0 if running on a remote box
+    url = tb.launch()
+    print("TensorBoard running at:", url)
+
+
 @app.post(BASE_URL + "/inference")
 async def run_inference(req: InferenceRequest):
     # Resolve paths
@@ -218,6 +232,7 @@ async def ws_file_stream(ws: WebSocket, job_id: str):
             await ws.close(code=1003)
             return
 
+        data_type = info["cfg"].get("data_type")
         job_dir = info["file_path"]
         log_path = os.path.join(job_dir, "logs", "predictor_log.txt")
 
@@ -263,12 +278,10 @@ async def index():
 @app.get(BASE_URL + "/{path:path}", response_class=HTMLResponse)
 async def spa_fallback(path: str):
   # Let API/websocket/static paths 404 normally
-  print(path)
   if path.startswith(("healthz", "create_run")):
     raise HTTPException(status_code=404)
   path = "/" + path
   dist_dir = DIST_DIR / path.lstrip("/")
-  print(dist_dir)
   return FileResponse(dist_dir)
 
 if __name__ == "__main__":

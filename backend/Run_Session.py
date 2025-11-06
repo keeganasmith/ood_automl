@@ -82,6 +82,7 @@ class JobRunner:
         self._result_path: Optional[str] = None
         self._last_error: Optional[str] = None
         self._run_log_path: str = None;
+        self._path: str = None;
 
     @property
     def is_running(self) -> bool:
@@ -149,6 +150,7 @@ class JobRunner:
 
             label = cfg["label"]
             path = cfg.get("path") or f"./autogluon_runs/{run_id}"
+            self._path = path;
             presets = cfg.get("presets", "medium_quality_faster_train")
             time_limit = cfg.get("time_limit")  # seconds
             hyperparameters = cfg.get("hyperparameters")  # optional dict
@@ -180,14 +182,12 @@ class JobRunner:
             if (not os.path.exists(path + "/logs")):
                 os.makedirs(path + "/logs")
             
-            print("made it here")
             self.write_to_mapping_file(path, cfg)
 
             open(self._run_log_path, 'w').close()
             _setup_log_to_file(self._run_log_path)
             self._notify({"run_id": run_id, "type": "milestone", "stage": "fit_begin"})
-            print("predictor gpus: ", predictor.get_num_gpus())
-            print("learner config: ", predictor._learner)
+            
             if(data_type == "tabular"):
                 predictor.fit(
                     train_data=train_data,
