@@ -1,4 +1,3 @@
-from training_process import _MPQueueLogHandler, _worker_train_entry
 from __future__ import annotations
 import copy
 from typing import Any, Dict, Awaitable, Callable, Optional, List
@@ -23,7 +22,7 @@ import torch
 from autogluon.common.utils.log_utils import add_log_to_file
 import traceback
 from autogluon.common.utils.resource_utils import ResourceManager
-
+import multiprocessing as mp
 NUM_GPUS = 0
 if torch.cuda.is_available():
     NUM_GPUS = torch.cuda.device_count()
@@ -66,6 +65,140 @@ class _AsyncQueueLogHandler(logging.Handler):
         # safe from non-async threads
         asyncio.run_coroutine_threadsafe(self.queue.put(payload), self.loop)
 
+class _MPQueueLogHandler(logging.Handler):
+    """Logging handler that pushes log records into a multiprocessing.Queue."""
+    def __init__(self, queue: mp.Queue, run_id: str):
+        super().__init__()
+        self.queue = queue
+        self.run_id = run_id
+
+    def emit(self, record: logging.LogRecord) -> None:
+        try:
+            msg = self.format(record)
+        except Exception:
+            msg = record.getMessage()
+        payload = {
+            "run_id": self.run_id,
+            "type": "log",
+            "logger": record.name,
+            "level": record.levelname.lower(),
+            "msg": msg,
+        }
+        try:
+            self.queue.put_nowait(payload)
+        except Exception:
+            # avoid crashing on queue issues
+            pass
+
+
+def _worker_train_entry(
+    cfg: Dict[str, Any],
+    run_id: str,
+    q: mp.Queue,
+) -> None:
+    """Runs inside the child process; does the AutoGluon fit."""
+    def notify(payload: Dict[str, Any]) -> None:
+        try:
+            q.put(payload)
+        except Exception:
+            pass
+
+    try:
+        # install logging bridge in worker
+        handler = _MPQueueLogHandler(q, run_id)
+        handler.setLevel(logging.INFO)
+        handler.setFormatter(logging.Formatter("%(asctime)s %(name)s: %(message)s"))
+
+        root = logging.getLogger()
+        root.addHandler(handler)
+        root.setLevel(min(root.level, logging.INFO) if root.level else logging.INFO)
+        logging.getLogger("autogluon").setLevel(logging.INFO)
+
+        notify({"run_id": run_id, "type": "milestone", "stage": "imported_autogluon"})
+
+        label = cfg["label"]
+        path = cfg.get("path") or f"./autogluon_runs/{run_id}"
+        cfg["path"] = path
+        presets = cfg.get("presets", "medium_quality_faster_train")
+        time_limit = cfg.get("time_limit")  # seconds
+        hyperparameters = cfg.get("hyperparameters")
+        problem_type = cfg.get("problem_type")
+        data_type = cfg.get("data_type")
+
+        train_data = cfg.get("train_df")
+        if cfg.get("train_path"):
+            train_data = load_table(cfg.get("train_path"))
+        tuning_data = cfg.get("tuning_data")
+
+        predictor = None
+        if data_type == "tabular":
+            predictor = TabularPredictor(
+                label=label,
+                path=path,
+                problem_type=problem_type,
+            )
+        elif data_type == "mm":
+            predictor = MultiModalPredictor(
+                label=label,
+                path=path,
+                problem_type=problem_type,
+            )
+
+        run_log_path = os.path.join(path, "logs", "predictor_log.txt")
+        os.makedirs(os.path.dirname(run_log_path), exist_ok=True)
+
+        # write to mapping file (inline, since no self here)
+        with open(HISTORIC_JOBS_FILE, "rb") as map_file:
+            current_job_id_mapping = pickle.load(map_file)
+        current_job_id_mapping[run_id] = {"file_path": path, "cfg": cfg}
+        with open(HISTORIC_JOBS_FILE, "wb") as map_file:
+            pickle.dump(current_job_id_mapping, map_file)
+
+        open(run_log_path, "w").close()
+        _setup_log_to_file(run_log_path)
+
+        notify({"run_id": run_id, "type": "milestone", "stage": "fit_begin"})
+
+        if data_type == "tabular":
+            predictor.fit(
+                train_data=train_data,
+                tuning_data=tuning_data,
+                hyperparameters=hyperparameters,
+                presets=presets,
+                time_limit=time_limit,
+                num_gpus=NUM_GPUS,
+                ag_args_fit={"num_gpus": NUM_GPUS},
+            )
+        elif data_type == "mm":
+            predictor.fit(
+                train_data=train_data,
+                tuning_data=tuning_data,
+                hyperparameters=hyperparameters,
+                presets=presets,
+                time_limit=time_limit,
+            )
+
+        notify({
+            "run_id": run_id,
+            "type": "finished",
+            "result_path": predictor.path,
+        })
+
+    except Exception as e:
+        tb = "".join(traceback.format_exception(e))
+        notify({
+            "run_id": run_id,
+            "type": "error",
+            "error": str(e) + "\n" + tb,
+            "traceback": tb,
+        })
+    finally:
+        # signal end of stream
+        try:
+            q.put({"run_id": run_id, "type": "eof"})
+        except Exception:
+            pass
+
 class JobRunner:
     
     """
@@ -103,6 +236,45 @@ class JobRunner:
         if not (("train_df" in cfg) or ("train_data" in cfg) or ("train_path" in cfg)):
             return False, "Provide training data via cfg.train_df/cfg.train_data/cfg.train_path"
         return True, None
+
+    def _forward_worker_events(self) -> None:
+        """Runs in a thread: read from mp.Queue and push to asyncio.Queue."""
+        if self._mp_q is None:
+            return
+
+        while True:
+            try:
+                item = self._mp_q.get()
+            except (EOFError, OSError):
+                break
+
+            if item is None:
+                continue
+
+            t = item.get("type")
+
+            # keep our internal state in sync for status()
+            if t == "finished":
+                self._state = "finished"
+                self._result_path = item.get("result_path")
+            elif t == "error":
+                self._state = "error"
+                self._last_error = item.get("error")
+            elif t == "eof":
+                self._active = False
+
+            # push every event to the asyncio queue
+            self._notify(item)
+
+            if t == "eof":
+                break
+
+        # Clean up process reference once queue is drained
+        if self._proc is not None:
+            if self._proc.is_alive():
+                self._proc.join(timeout=1.0)
+            self._proc = None
+        self._mp_q = None
 
     async def start(self, cfg: Dict[str, Any]) -> str:
         if self._active:
@@ -257,9 +429,15 @@ class JobRunner:
         raise NotImplementedError("resume not supported")
 
     async def cancel(self, run_id: str) -> None:
-        # Cooperative cancellation is not exposed by AutoGluon; for hard cancel,
-        # run training in a separate *process* and terminate it instead.
-        raise NotImplementedError("cancel not supported in-thread")
+        # hard-cancel via killing the worker process
+        if self._proc and self._proc.is_alive():
+            self._proc.terminate()
+            self._proc.join(timeout=5.0)
+
+        self._active = False
+        self._state = "cancelled"
+        # tell streamers to stop
+        self._notify({"run_id": run_id, "type": "eof"})
 
     async def restart(self, run_id: str) -> str:
         raise NotImplementedError("restart not supported")
