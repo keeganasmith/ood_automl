@@ -301,7 +301,7 @@ class JobRunner:
         self._proc = mp.Process(
             target=_worker_train_entry,
             args=(cfg, run_id, self._mp_q),
-            daemon=True,
+            daemon=False,
         )
         self._proc.start()
 
