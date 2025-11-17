@@ -7,13 +7,16 @@
         <span style="margin-left:8px">{{ connected ? 'connected' : 'disconnected' }}</span>
       </div>
       <pre ref="logEl" style="height:60vh; overflow:auto; background:#111; color:#ddd; padding:12px; border-radius:6px">{{ log.join('') }}</pre>
+      <button @click="launch_tensorboard">Launch Tensorboard</button>
+      <span v-if="tb_launched">public url: {{ public_url }}, private_url: {{ private_url }}</span>
+      <span>got here</span>
     </div>
   </template>
   
   <script setup>
   import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
   import { useRoute } from 'vue-router'
-  import { getWsURL } from '../main' // if your helper lives in main.js
+  import { getWsURL, postJSON } from '../main' // if your helper lives in main.js
   
   const route = useRoute()
   const id = route.params.id
@@ -22,14 +25,26 @@
   const connected = ref(false)
   const log = ref([])
   const logEl = ref(null)
-  
+  const tb_launched = ref(false)
+  const public_url = ref("")
+  const private_url = ref("")
+
   function getLogWsURL(jobId) {
     let path = `ws?job_id=${encodeURIComponent(jobId)}`
     let wsurl = getWsURL(path)
     console.log("wsurl is: ", wsurl)
     return wsurl
   }
-  
+
+  async function launch_tensorboard(){
+    let job_id = id;
+    let result = await postJSON("/launch_tensorboard", {"job_id": job_id})
+    tb_launched.value = true;
+    public_url.value = result["public_url"]
+    private_url.value = result["private_url"]
+    console.log("result was: ", result)
+  }
+
   function append(text) {
     log.value.push(text.endsWith('\n') ? text : text + '\n')
     nextTick(() => {

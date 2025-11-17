@@ -1,3 +1,4 @@
+from training_process import _MPQueueLogHandler, _worker_train_entry
 from __future__ import annotations
 import copy
 from typing import Any, Dict, Awaitable, Callable, Optional, List
@@ -66,6 +67,7 @@ class _AsyncQueueLogHandler(logging.Handler):
         asyncio.run_coroutine_threadsafe(self.queue.put(payload), self.loop)
 
 class JobRunner:
+    
     """
     Executes AutoGluon training and streams progress/logs via an asyncio.Queue.
     Single-run policy enforced (one run at a time).
@@ -75,14 +77,20 @@ class JobRunner:
         self._run_id: Optional[str] = None
         self._q: Optional[asyncio.Queue] = None
         self._loop: Optional[asyncio.AbstractEventLoop] = None
-        self._thread: Optional[threading.Thread] = None
+
+        # NEW: process + mp queue
+        self._proc: Optional[mp.Process] = None
+        self._mp_q: Optional[mp.Queue] = None
+
         self._stop_evt = threading.Event()
-        self._handler: Optional[_AsyncQueueLogHandler] = None
         self._state: str = "idle"
         self._result_path: Optional[str] = None
         self._last_error: Optional[str] = None
-        self._run_log_path: str = None;
-        self._path: str = None;
+        self._run_log_path: Optional[str] = None
+        self._path: Optional[str] = None
+
+        # optional: forwarder thread
+        self._forward_thread: Optional[threading.Thread] = None
 
     @property
     def is_running(self) -> bool:
@@ -106,29 +114,36 @@ class JobRunner:
         self._last_error = None
 
         self._run_id = uuid.uuid4().hex
+        run_id = self._run_id
+
         self._loop = asyncio.get_running_loop()
         self._q = asyncio.Queue()
 
-        # install logging bridge (root & autogluon)
-        self._handler = _AsyncQueueLogHandler(self._loop, self._q, self._run_id)
-        self._handler.setLevel(logging.INFO)
-        self._handler.setFormatter(logging.Formatter("%(asctime)s %(name)s: %(message)s"))
+        # compute and store log path for your existing log_stream
+        path = cfg.get("path") or f"./autogluon_runs/{run_id}"
+        self._path = path
+        self._run_log_path = os.path.join(path, "logs", "predictor_log.txt")
 
-        root = logging.getLogger()
-        root.addHandler(self._handler)
-        root.setLevel(min(root.level, logging.INFO) if root.level else logging.INFO)
-        logging.getLogger("autogluon").setLevel(logging.INFO)
-
-        self.logger = logging.getLogger("autogluon")
-        # kick off the training in a background thread
-        self._thread = threading.Thread(
-            target=self._train_entry, args=(cfg, self._run_id), daemon=True
+        # create process queue and process
+        self._mp_q = mp.Queue()
+        self._proc = mp.Process(
+            target=_worker_train_entry,
+            args=(cfg, run_id, self._mp_q),
+            daemon=True,
         )
-        self._thread.start()
+        self._proc.start()
+
+        # forward worker -> asyncio queue in a thread
+        self._forward_thread = threading.Thread(
+            target=self._forward_worker_events,
+            daemon=True,
+        )
+        self._forward_thread.start()
 
         # announce start
-        await self._q.put({"run_id": self._run_id, "type": "state", "state": "running"})
-        return self._run_id
+        await self._q.put({"run_id": run_id, "type": "state", "state": "running"})
+        return run_id
+
 
     def write_to_mapping_file(self, path, cfg):
         with open(HISTORIC_JOBS_FILE, "rb") as map_file:
@@ -142,14 +157,13 @@ class JobRunner:
 
     def _train_entry(self, cfg: Dict[str, Any], run_id: str) -> None:
         try:
-            
-
             self._state = "running"
             # let the UI know some structured milestones too
             self._notify({"run_id": run_id, "type": "milestone", "stage": "imported_autogluon"})
 
             label = cfg["label"]
             path = cfg.get("path") or f"./autogluon_runs/{run_id}"
+            cfg["path"] = path
             self._path = path;
             presets = cfg.get("presets", "medium_quality_faster_train")
             time_limit = cfg.get("time_limit")  # seconds

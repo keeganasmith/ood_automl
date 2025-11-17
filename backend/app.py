@@ -2,7 +2,7 @@ from __future__ import annotations
 from typing import Any, Awaitable, Callable, Dict, Iterable, List, Optional, Tuple, Union, Literal
 import os
 from pathlib import Path
-from fastapi import FastAPI, WebSocket, APIRouter, HTTPException,  WebSocketDisconnect
+from fastapi import FastAPI, WebSocket, APIRouter, HTTPException,  WebSocketDisconnect, Request
 from fastapi.responses import JSONResponse
 from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -36,7 +36,7 @@ class InferenceRequest(BaseModel):
     proba: bool = Field(False, description="If true, write predict_proba instead of class labels")
 
 class TensorBoardRequest(BaseModel):
-    job_path: str = Field(..., description="Path to job directory")
+    job_id: str = Field(..., description="job id")
     
 BASE_URL = os.getenv("BASE_URL", "")
 
@@ -89,14 +89,21 @@ async def get_historic_jobs():
       job_id_mapping = pickle.load(my_file)
     return JSONResponse({"ok": True, "job_ids": list(job_id_mapping.keys())})
 
-@app.get(BASE_URL + "/job/{job_id}")
-async def get_job(job_id: str):
+def _get_job(job_id: str):
     with open(HISTORIC_JOBS_FILE, "rb") as my_file:
       job_id_mapping = pickle.load(my_file)
     file_path = job_id_mapping[job_id]["file_path"]
     config = job_id_mapping[job_id]["cfg"]
+    
+    return {"file_path": file_path, "cfg": config}
+
+@app.get(BASE_URL + "/job/{job_id}")
+async def get_job(job_id: str):
+    job_result = _get_job(job_id)
+    file_path = job_result["file_path"]
+    config = job_result["cfg"]
     with open(file_path, "r") as my_file:
-      log_file_content = my_file.read()
+        log_file_content = my_file.read()
     return JSONResponse({"ok": True, "job_id": job_id, "log_content": log_file_content, "cfg": config})
 
 def _locate_predictor_dir(job_dir: str) -> Optional[str]:
@@ -175,13 +182,32 @@ def _predict_sync(predictor_dir: str, test_path: str, out_path: str, proba: bool
 
     return {"rows": n_rows, "columns": cols}
 
-@app.post(BASE_URL + "/start_tensorboard")
-async def start_tensorboard(req: TensorBoardRequest):
-    path = _expand(req.job_path)
+@app.post(BASE_URL + "/launch_tensorboard")
+async def launch_tensorboard(req: TensorBoardRequest, request: Request):
+    job_info = _get_job(req.job_id)
+    logdir = _expand(job_info["file_path"])
+    # choose a free ephemeral port (avoid conflicts)
+    import socket
+    s = socket.socket(); s.bind(("", 0))
+    port = s.getsockname()[1]; s.close()
+
+    mount = f"/tensorboard/{req.job_id}"  # unique per job
     tb = program.TensorBoard()
-    tb.configure(argv=[None, "--logdir", LOGDIR, "--port", "6006", "--host", "0.0.0.0"])  # host=0.0.0.0 if running on a remote box
-    url = tb.launch()
-    print("TensorBoard running at:", url)
+    tb.configure(argv=[
+        None,
+        "--logdir", logdir,
+        "--port", str(port),
+        "--host", "0.0.0.0",
+        "--path_prefix", BASE_URL
+    ])
+    url = tb.launch()  # likely http://127.0.0.1:<port>
+    print("TensorBoard running at (internal):", url)
+    host = request.url.netloc
+    colon_index = host.rfind(':')
+    host[colon_index+1:] =str(port) 
+    # Build the public URL your users can hit (same origin, proxied path)
+    public = f"{host}/{BASE_URL}"               # e.g. /tensorboard/<job_id>/
+    return {"public_url": public, "internal_url": url}
 
 
 @app.post(BASE_URL + "/inference")
