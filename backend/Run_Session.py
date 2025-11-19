@@ -18,6 +18,7 @@ import os
 import pickle
 from autogluon.tabular import TabularPredictor
 from autogluon.multimodal import MultiModalPredictor
+from autogluon.timeseries import TimeSeriesDataFrame, TimeSeriesPredictor
 import torch
 from autogluon.common.utils.log_utils import add_log_to_file
 import traceback
@@ -143,7 +144,35 @@ def _worker_train_entry(
                 path=path,
                 problem_type=problem_type,
             )
+        elif data_type == "series":
+            # --- Time series predictor setup ---
+            prediction_length = cfg["prediction_length"]
+            id_col = cfg.get("id_column", "item_id")
+            time_col = cfg.get("time_column", "timestamp")
+            freq = cfg.get("freq")  # optional, e.g. "D", "H", "5min"
 
+            # Ensure train_data is a TimeSeriesDataFrame
+            if not isinstance(train_data, TimeSeriesDataFrame):
+                train_data = TimeSeriesDataFrame.from_data_frame(
+                    train_data,
+                    id_column=id_col,
+                    timestamp_column=time_col,
+                )
+
+            # (Optional) do the same for tuning_data if provided
+            if tuning_data is not None and not isinstance(tuning_data, TimeSeriesDataFrame):
+                tuning_data = TimeSeriesDataFrame.from_data_frame(
+                    tuning_data,
+                    id_column=id_col,
+                    timestamp_column=time_col,
+                )
+
+            predictor = TimeSeriesPredictor(
+                prediction_length=prediction_length,
+                target=label,
+                path=path,
+                freq=freq,
+            )
         run_log_path = os.path.join(path, "logs", "predictor_log.txt")
         os.makedirs(os.path.dirname(run_log_path), exist_ok=True)
 
@@ -177,7 +206,14 @@ def _worker_train_entry(
                 presets=presets,
                 time_limit=time_limit,
             )
-
+        elif data_type == "series":
+            predictor.fit(
+                train_data=train_data,
+                tuning_data=tuning_data,
+                hyperparameters=hyperparameters,
+                presets=presets,
+                time_limit=time_limit
+            )
         notify({
             "run_id": run_id,
             "type": "finished",
@@ -326,95 +362,6 @@ class JobRunner:
         current_job_id_mapping[self._run_id]["cfg"] = cfg
         with open(HISTORIC_JOBS_FILE, "wb") as map_file:
             pickle.dump(current_job_id_mapping, map_file)
-
-    def _train_entry(self, cfg: Dict[str, Any], run_id: str) -> None:
-        try:
-            self._state = "running"
-            # let the UI know some structured milestones too
-            self._notify({"run_id": run_id, "type": "milestone", "stage": "imported_autogluon"})
-
-            label = cfg["label"]
-            path = cfg.get("path") or f"./autogluon_runs/{run_id}"
-            cfg["path"] = path
-            self._path = path;
-            presets = cfg.get("presets", "medium_quality_faster_train")
-            time_limit = cfg.get("time_limit")  # seconds
-            hyperparameters = cfg.get("hyperparameters")  # optional dict
-            problem_type = cfg.get("problem_type")  # optional
-            data_type = cfg.get("data_type") #tabular, mm, or series
-
-            train_data = cfg.get("train_df")
-            if(cfg.get("train_path")):
-                train_data = load_table(cfg.get("train_path"))
-
-            tuning_data = cfg.get("tuning_data")  # optional
-            
-            
-            predictor = None
-
-            if(data_type == "tabular"):
-                predictor = TabularPredictor(
-                    label=label,
-                    path=path,
-                    problem_type=problem_type,
-                )
-            elif(data_type == "mm"):
-                predictor = MultiModalPredictor(
-                    label=label,
-                    path=path,
-                    problem_type=problem_type,
-                )
-            self._run_log_path = path + "/logs/predictor_log.txt"
-            if (not os.path.exists(path + "/logs")):
-                os.makedirs(path + "/logs")
-            
-            self.write_to_mapping_file(path, cfg)
-
-            open(self._run_log_path, 'w').close()
-            _setup_log_to_file(self._run_log_path)
-            self._notify({"run_id": run_id, "type": "milestone", "stage": "fit_begin"})
-            
-            if(data_type == "tabular"):
-                predictor.fit(
-                    train_data=train_data,
-                    tuning_data=tuning_data,
-                    hyperparameters=hyperparameters,
-                    presets=presets,
-                    time_limit=time_limit,
-                    num_gpus=NUM_GPUS,
-                    ag_args_fit={'num_gpus': NUM_GPUS}
-                )
-            elif(data_type == "mm"):
-                predictor.fit(
-                    train_data=train_data,
-                    tuning_data=tuning_data,
-                    hyperparameters=hyperparameters,
-                    presets=presets,
-                    time_limit=time_limit,
-                )
-                
-            self._result_path = predictor.path
-            self._state = "finished"
-            self._notify({"run_id": run_id, "type": "finished", "result_path": predictor.path})
-            self.__init__()
-        except Exception as e:
-            tb = "".join(traceback.format_exception(e)) 
-            self._last_error = f"{e}\n{tb}"
-            self._state = "error"
-            self._notify({
-                "run_id": run_id,
-                "type": "error",
-                "error": str(e) + "\n" + tb,
-                "traceback": tb,                          # add it to your event payload
-            })
-        finally:
-            self._active = False
-            # remove handler
-            if self._handler:
-                with contextlib.suppress(Exception):
-                    logging.getLogger().removeHandler(self._handler)
-            # final sentinel for streamers
-            self._notify({"run_id": run_id, "type": "eof"})
 
     def _notify(self, payload: Dict[str, Any]) -> None:
         """Thread-safe push into the queue."""

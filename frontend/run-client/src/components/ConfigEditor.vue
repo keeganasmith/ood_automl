@@ -30,6 +30,7 @@
                         :options="dataTypeOptions"
                         placeholder="tabular"
                         clearable
+                        @update:value="onDataTypeChange"
                       />
                     </n-form-item>
                   </n-gi>
@@ -70,6 +71,46 @@
                         :options="problemTypeOptions"
                         placeholder="auto (omit)"
                         clearable
+                      />
+                    </n-form-item>
+                  </n-gi>
+
+                  <!-- Time series–specific fields -->
+                  <n-gi v-if="isSeries">
+                    <n-form-item label="prediction_length" :rule="{ required: true, message: 'Required for series' }">
+                      <n-input-number
+                        v-model:value="form.prediction_length"
+                        :min="1"
+                        :step="1"
+                        placeholder="e.g., 24"
+                        style="width: 100%;"
+                      />
+                    </n-form-item>
+                  </n-gi>
+
+                  <n-gi v-if="isSeries">
+                    <n-form-item label="id_column">
+                      <n-input
+                        v-model:value="form.id_column"
+                        placeholder='e.g., "item_id"'
+                      />
+                    </n-form-item>
+                  </n-gi>
+
+                  <n-gi v-if="isSeries">
+                    <n-form-item label="time_column">
+                      <n-input
+                        v-model:value="form.time_column"
+                        placeholder='e.g., "timestamp"'
+                      />
+                    </n-form-item>
+                  </n-gi>
+
+                  <n-gi v-if="isSeries">
+                    <n-form-item label="freq (pandas offset alias)">
+                      <n-input
+                        v-model:value="form.freq"
+                        placeholder='e.g., "D", "H", "5min"'
                       />
                     </n-form-item>
                   </n-gi>
@@ -139,7 +180,7 @@
 </template>
 
 <script setup>
-import { ref, watch, watchEffect, computed } from 'vue'
+import { ref, watch, watchEffect, computed, reactive } from 'vue'
 import {
   NCard, NInput, NButton, NTag, NSpace,
   NCollapse, NCollapseItem,
@@ -153,8 +194,8 @@ const props = defineProps({
   currentRunId: { type: [String, Number, null], default: null },
 })
 const emit = defineEmits(['update:modelValue', 'start', 'status', 'cancel', 'clear'])
-
-const form = ref({
+const isSeries = ref(false)
+const form = reactive({
   label: '',
   train_path: '',
   path: '',
@@ -164,8 +205,26 @@ const form = ref({
   hyperparametersText: '',
   tuningDataText: '',
   data_type: 'tabular',
-})
 
+  // time series only
+  prediction_length: null,
+  id_column: '',
+  time_column: '',
+  freq: '',
+})
+const onDataTypeChange = (value) => {
+  console.log('data_type changed to', value)
+
+  if (value !== 'series') {
+    form.prediction_length = null
+    form.id_column = ''
+    form.time_column = ''
+    form.freq = ''
+  }
+  else if(value === 'series'){
+    isSeries.value = true
+  }
+}
 const presetOptions = [
   { label: 'medium_quality', value: 'medium_quality' },
   { label: 'high_quality', value: 'high_quality' },
@@ -193,15 +252,16 @@ function safeParse (jsonText) {
   catch { return { ok: false, value: undefined } }
 }
 
-const hpValid = computed(() => safeParse(form.value.hyperparametersText).ok)
-const tdValid = computed(() => safeParse(form.value.tuningDataText).ok)
+const hpValid = computed(() => safeParse(form.hyperparametersText).ok)
+const tdValid = computed(() => safeParse(form.tuningDataText).ok)
 const isValid = computed(() => hpValid.value && tdValid.value) // used by Start button
-const hasLabel = computed(() => !!form.value.label)
+const hasLabel = computed(() => !!form.label)
+
 
 // Build cfg object from form (omit empty/undefined keys)
 function buildCfgFromForm () {
   const cfg = {}
-  const f = form.value
+  const f = form
 
   if (f.label) cfg.label = f.label
   if (f.train_path) cfg.train_path = f.train_path
@@ -218,6 +278,16 @@ function buildCfgFromForm () {
 
   const td = safeParse(f.tuningDataText)
   if (td.ok && td.value !== undefined) cfg.tuning_data = td.value
+
+  // Time series–specific options
+  if (f.data_type === 'series') {
+    if (Number.isFinite(f.prediction_length) && f.prediction_length > 0) {
+      cfg.prediction_length = f.prediction_length
+    }
+    if (f.id_column) cfg.id_column = f.id_column
+    if (f.time_column) cfg.time_column = f.time_column
+    if (f.freq) cfg.freq = f.freq
+  }
 
   return cfg
 }
