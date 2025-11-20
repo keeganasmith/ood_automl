@@ -23,6 +23,7 @@ import torch
 from autogluon.common.utils.log_utils import add_log_to_file
 import traceback
 from autogluon.common.utils.resource_utils import ResourceManager
+from datetime import datetime
 import multiprocessing as mp
 NUM_GPUS = 0
 if torch.cuda.is_available():
@@ -179,7 +180,7 @@ def _worker_train_entry(
         # write to mapping file (inline, since no self here)
         with open(HISTORIC_JOBS_FILE, "rb") as map_file:
             current_job_id_mapping = pickle.load(map_file)
-        current_job_id_mapping[run_id] = {"file_path": path, "cfg": cfg}
+        current_job_id_mapping[run_id] = {"file_path": path, "cfg": cfg, "start": datetime.now() }
         with open(HISTORIC_JOBS_FILE, "wb") as map_file:
             pickle.dump(current_job_id_mapping, map_file)
 
@@ -214,6 +215,11 @@ def _worker_train_entry(
                 presets=presets,
                 time_limit=time_limit
             )
+        with open(HISTORIC_JOBS_FILE, "rb") as map_file:
+            current_job_id_mapping = pickle.load(map_file)
+        current_job_id_mapping[run_id]["end"] = datetime.now()
+        with open(HISTORIC_JOBS_FILE, "wb") as map_file:
+            pickle.dump(current_job_id_mapping, map_file)
         notify({
             "run_id": run_id,
             "type": "finished",

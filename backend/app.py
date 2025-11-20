@@ -15,7 +15,7 @@ import anyio
 import pandas as pd
 from autogluon.tabular import TabularPredictor
 from tensorboard import program
-
+import json
 """
 def _setup_log_to_file(self, log_file_path: str):
         if log_file_path == "auto":
@@ -87,7 +87,7 @@ async def get_historic_jobs():
     print("got to historic jobs endpoint")
     with open(HISTORIC_JOBS_FILE, "rb") as my_file:
       job_id_mapping = pickle.load(my_file)
-    return JSONResponse({"ok": True, "job_ids": list(job_id_mapping.keys())})
+    return JSONResponse({"ok": True, "job_ids": list(job_id_mapping.keys()), "jobs": json.loads(json.dumps(job_id_mapping, indent=4, sort_keys=True, default=str))})
 
 def _get_job(job_id: str):
     with open(HISTORIC_JOBS_FILE, "rb") as my_file:
@@ -96,6 +96,7 @@ def _get_job(job_id: str):
     config = job_id_mapping[job_id]["cfg"]
     
     return {"file_path": file_path, "cfg": config}
+    
 
 @app.get(BASE_URL + "/job/{job_id}")
 async def get_job(job_id: str):
