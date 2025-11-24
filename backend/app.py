@@ -16,6 +16,7 @@ import pandas as pd
 from autogluon.tabular import TabularPredictor
 from tensorboard import program
 import json
+import shutil
 """
 def _setup_log_to_file(self, log_file_path: str):
         if log_file_path == "auto":
@@ -94,9 +95,9 @@ def _get_job(job_id: str):
       job_id_mapping = pickle.load(my_file)
     file_path = job_id_mapping[job_id]["file_path"]
     config = job_id_mapping[job_id]["cfg"]
-    
     return {"file_path": file_path, "cfg": config}
     
+
 
 @app.get(BASE_URL + "/job/{job_id}")
 async def get_job(job_id: str):
@@ -106,6 +107,30 @@ async def get_job(job_id: str):
     with open(file_path, "r") as my_file:
         log_file_content = my_file.read()
     return JSONResponse({"ok": True, "job_id": job_id, "log_content": log_file_content, "cfg": config})
+
+@app.delete(BASE_URL + "/job/delete/{job_id}")
+async def delete_job(job_id: str):
+    with open(HISTORIC_JOBS_FILE, "rb") as my_file:
+      job_id_mapping = pickle.load(my_file)
+      
+    if(not job_id_mapping.get(job_id, None)):
+        return JSONResponse({"ok": False})
+
+    job_directory = job_id_mapping[job_id].get("file_path", None)
+    if(job_directory):
+        print("deleting job directory ", job_directory)
+        try:
+            shutil.rmtree(job_directory)
+        except:
+            print("job directory ", job_directory, " doesn't exist, assuming already deleted")
+
+    del job_id_mapping[job_id]
+    with open(HISTORIC_JOBS_FILE, "wb") as my_file:
+        pickle.dump(job_id_mapping, my_file)
+    
+    return JSONResponse({"ok": True})
+
+    
 
 def _locate_predictor_dir(job_dir: str) -> Optional[str]:
     """

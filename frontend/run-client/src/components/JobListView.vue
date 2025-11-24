@@ -20,9 +20,10 @@
     </div>
 
     <table v-if="filteredJobs.length" class="jobs-table">
-    <thead>
-      <tr>
-        <th>Job ID</th>
+      <thead>
+        <tr>
+          <th>Job ID</th>
+
           <!-- Start: clickable, with icon & aria -->
           <th
             :class="['sortable', { 'sortable-active': sortBy === 'start' }]"
@@ -62,9 +63,10 @@
           <th>Train Path</th>
           <th>Quality</th>
           <th>Data Type</th>
-          <th></th>
+          <th>Actions</th>
         </tr>
       </thead>
+
       <tbody>
         <tr v-for="job in filteredJobs" :key="job.id">
           <td class="mono">{{ job.id }}</td>
@@ -74,7 +76,18 @@
           <td>{{ job.cfg?.presets || "—" }}</td>
           <td>{{ job.cfg?.data_type || "-" }}</td>
           <td>
-            <button class="btn" @click="$emit('select', job.id)">Select</button>
+            <div class="actions">
+              <button class="btn" @click="$emit('select', job.id)">
+                Select
+              </button>
+              <button
+                class="btn btn-danger"
+                @click="deleteJob(job.id)"
+                :disabled="isDeleting(job.id)"
+              >
+                {{ isDeleting(job.id) ? "Deleting…" : "Delete" }}
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>
@@ -98,6 +111,9 @@ const query = ref("");
 // sort state
 const sortBy = ref(null);      // 'start' | 'end' | null
 const sortDir = ref("desc");   // 'asc' | 'desc'
+
+// track which jobs are being deleted
+const deletingIds = ref([]);   // array of job ids currently deleting
 
 let abortCtrl = null;
 
@@ -183,6 +199,54 @@ const filteredJobs = computed(() => {
   });
 });
 
+// ---- delete job ----
+
+function isDeleting(jobId) {
+  return deletingIds.value.includes(jobId);
+}
+
+async function deleteJob(jobId) {
+  const confirmed = window.confirm(
+    `Delete job ${jobId}? This action cannot be undone.`
+  );
+  if (!confirmed) return;
+
+  // mark as deleting
+  deletingIds.value = [...deletingIds.value, jobId];
+  error.value = "";
+
+  try {
+    const url = getBaseURL(`job/delete/${jobId}`);
+    const res = await fetch(url, {
+      method: "DELETE", // change to 'POST' here if your backend expects POST
+    });
+
+    if (!res.ok) {
+      throw new Error(`Failed to delete job (HTTP ${res.status})`);
+    }
+
+    // if backend returns JSON with ok=false, handle that too
+    let data = null;
+    try {
+      data = await res.json();
+      if (data && data.ok === false) {
+        throw new Error(data.message || "Server reported delete failure");
+      }
+    } catch {
+      // response might be empty or not JSON; ignore
+    }
+
+    // remove from local list
+    jobs.value = jobs.value.filter((job) => job.id !== jobId);
+    emit("refresh", jobs.value);
+  } catch (e) {
+    error.value = e?.message || String(e);
+  } finally {
+    // unmark
+    deletingIds.value = deletingIds.value.filter((id) => id !== jobId);
+  }
+}
+
 function refresh() {
   fetchJobs();
 }
@@ -208,8 +272,26 @@ onBeforeUnmount(() => {
 }
 .btn:disabled { opacity: 0.6; cursor: default; }
 
+/* danger button variant */
+.btn-danger {
+  border-color: #e55;
+  background: #ffe9e9;
+  color: #a00;
+}
+
+.actions {
+  display: flex;
+  gap: 6px;
+}
+
 .error { color: #b00020; margin: 8px 0; }
 .empty { color: #666; margin-top: 12px; }
+
+.sort-hint {
+  font-size: 0.8rem;
+  color: #555;
+  margin-bottom: 4px;
+}
 
 .jobs-table {
   width: 100%;
