@@ -14,6 +14,8 @@ import asyncio
 import anyio
 import pandas as pd
 from autogluon.tabular import TabularPredictor
+from autogluon.multimodal import MultiModalPredictor
+
 from tensorboard import program
 import json
 import shutil
@@ -182,11 +184,15 @@ def _write_frame(df: pd.DataFrame, path: str) -> None:
     df.to_csv(path, index=False)
 
 
-def _predict_sync(predictor_dir: str, test_path: str, out_path: str, proba: bool) -> dict:
-    if TabularPredictor is None:
-        raise RuntimeError("AutoGluon not installed. pip install autogluon.tabular")
-
-    predictor = TabularPredictor.load(predictor_dir)
+def _predict_sync(predictor_dir: str, test_path: str, out_path: str, proba: bool, job_id: str) -> dict:
+    job_info =_get_job(job_id)
+    data_type = job_info["cfg"]["data_type"]
+    
+    if(data_type == "tabular"):
+        predictor = TabularPredictor.load(predictor_dir)
+    if(data_type == "mm"):
+        predictor = MultiModalPredictor.load(predictor_dir)
+        
     df = _read_frame(test_path)
 
     if proba:
@@ -253,7 +259,7 @@ async def run_inference(req: InferenceRequest):
     predictor_dir = job_map[job_id]["file_path"]
     try:
         result = await anyio.to_thread.run_sync(
-            _predict_sync, predictor_dir, test_path, out_path, req.proba
+            _predict_sync, predictor_dir, test_path, out_path, req.proba, job_id
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Inference failed: {e}")
