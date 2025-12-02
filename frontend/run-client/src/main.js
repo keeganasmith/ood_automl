@@ -5,7 +5,7 @@ import { router } from './router'
 
 createApp(App).use(router).mount('#app')
   
-function inferBasePath(pathname) {
+export default function inferBasePath(pathname) {
 // Detect OOD prefix like /node/<host>/<port>/
     const m = pathname.match(/^\/node\/[^/]+\/\d+\/?/);
     return m ? (m[0].endsWith("/") ? m[0] : m[0] + "/") : "/";
