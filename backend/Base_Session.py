@@ -66,6 +66,7 @@ class BaseSession:
     async def on_connect(self, ws: WebSocket):
         self._ws = ws
         await ws.accept()
+        print(f"OOD_AUTOML_READY {time.time()}", flush=True)
 
     async def on_close(self, ws: WebSocket, exc: Optional[BaseException]): ...
     async def dispatch(self, msg: Dict[str, Any]) -> Optional[Dict[str, Any]]: ...
