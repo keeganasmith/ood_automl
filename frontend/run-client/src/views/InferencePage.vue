@@ -74,6 +74,7 @@
   const error = ref('')
   const result = ref(null)
   const ok = ref(false)
+  const inferenceStartMs = ref(null)
   
   const canSubmit = computed(() => !!jobId.value && !!testPath.value && !!outputPath.value)
   
@@ -104,10 +105,18 @@
     ok.value = false
     result.value = null
   }
+
+  function logLatency(label, detail = {}) {
+    const now = performance.now()
+    const payload = { label, t: now, ...detail }
+    console.log(`[LATENCY] ${JSON.stringify(payload)}`)
+  }
   
   async function runInference() {
     clear()
     loading.value = true
+    inferenceStartMs.value = performance.now()
+    logLatency('inference_start_click')
     try {
       const payload = {
         test_path: testPath.value,
@@ -127,8 +136,19 @@
       }
       result.value = data
       ok.value = !!data.ok
+      if (inferenceStartMs.value !== null) {
+        logLatency('inference_finished', {
+          delta_ms: performance.now() - inferenceStartMs.value,
+          ok: !!data.ok,
+        })
+      }
     } catch (e) {
       error.value = e?.message || String(e)
+      if (inferenceStartMs.value !== null) {
+        logLatency('inference_failed', {
+          delta_ms: performance.now() - inferenceStartMs.value,
+        })
+      }
     } finally {
       loading.value = false
     }
