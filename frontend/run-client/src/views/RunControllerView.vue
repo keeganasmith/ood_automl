@@ -49,6 +49,9 @@
   const currentRunId = ref(null)
   const log = ref([])
   const logEl = ref(null)
+  const trainingStartMs = ref(null)
+  const firstLogMs = ref(null)
+  const finishedMs = ref(null)
   
   
   
@@ -76,6 +79,18 @@
       if (logEl.value) logEl.value.scrollTop = logEl.value.scrollHeight
     })
   }
+
+  function logLatency(label, detail = {}) {
+    const now = performance.now()
+    const payload = { label, t: now, ...detail }
+    console.log(`[LATENCY] ${JSON.stringify(payload)}`)
+  }
+
+  function resetTrainingLatency() {
+    trainingStartMs.value = null
+    firstLogMs.value = null
+    finishedMs.value = null
+  }
   
   function appendEvent(obj) {
     if (obj.type === 'event') {
@@ -83,10 +98,24 @@
       if (subtype === 'log') {
         console.log(obj.msg)
         appendLine(`[log] ${(obj.logger || '')} ${(obj.level || '')} — ${(obj.msg || '')}`)
+        if (trainingStartMs.value !== null && firstLogMs.value === null) {
+          firstLogMs.value = performance.now()
+          logLatency('training_first_log', {
+            delta_ms: firstLogMs.value - trainingStartMs.value,
+            run_id: obj.run_id || currentRunId.value || undefined,
+          })
+        }
       } else if (subtype === 'milestone') {
         appendLine(`[milestone] ${obj.stage || ''}`, 'ok')
       } else if (subtype === 'finished') {
         appendLine(`[finished] artifacts at ${obj.result_path || '(unknown path)'}`, 'ok')
+        if (trainingStartMs.value !== null && finishedMs.value === null) {
+          finishedMs.value = performance.now()
+          logLatency('training_finished', {
+            delta_ms: finishedMs.value - trainingStartMs.value,
+            run_id: obj.run_id || currentRunId.value || undefined,
+          })
+        }
       } else if (subtype === 'error') {
         appendLine(`[error] ${obj.error || '(no detail)'}`, 'err')
       } else {
@@ -222,6 +251,9 @@
       appendLine(`Config must be an object like {"action_type":"start","cfg":{...}}`, 'err')
       return
     }
+    resetTrainingLatency()
+    trainingStartMs.value = performance.now()
+    logLatency('training_start_click')
     ws.value.send(JSON.stringify(payload))
     appendLine('→ sent start')
   }
