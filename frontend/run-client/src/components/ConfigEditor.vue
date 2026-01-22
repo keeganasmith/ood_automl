@@ -13,13 +13,21 @@
                 <n-grid x-gap="12" y-gap="10" cols="1 s:2 m:2 l:3">
                   <n-gi>
                     <n-form-item label="label" :rule="{ required: true, message: 'Required' }">
-                      <n-input v-model:value="form.label" placeholder="e.g., Survived" />
+                      <n-input
+                        v-model:value="form.label"
+                        placeholder="e.g., Survived"
+                        :input-props="{ 'data-testid': 'label-input' }"
+                      />
                     </n-form-item>
                   </n-gi>
 
                   <n-gi>
                     <n-form-item label="train_path" :rule="{ required: true, message: 'Required' }">
-                      <n-input v-model:value="form.train_path" placeholder="./sample_datasets/train.csv" />
+                      <n-input
+                        v-model:value="form.train_path"
+                        placeholder="./sample_datasets/train.csv"
+                        :input-props="{ 'data-testid': 'train-path-input' }"
+                      />
                     </n-form-item>
                   </n-gi>
 
