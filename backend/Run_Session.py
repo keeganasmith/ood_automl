@@ -126,6 +126,11 @@ def _worker_train_entry(
         hyperparameters = cfg.get("hyperparameters")
         problem_type = cfg.get("problem_type")
         data_type = cfg.get("data_type")
+        if cfg.get("num_gpus") == 0 or cfg.get("enable_gpu") is False:
+            requested_num_gpus = 0
+        else:
+            requested_num_gpus = NUM_GPUS
+        cfg["num_gpus"] = requested_num_gpus
 
         train_data = cfg.get("train_df")
         if cfg.get("train_path"):
@@ -196,8 +201,8 @@ def _worker_train_entry(
                 hyperparameters=hyperparameters,
                 presets=presets,
                 time_limit=time_limit,
-                num_gpus=NUM_GPUS,
-                ag_args_fit={"num_gpus": NUM_GPUS},
+                num_gpus=requested_num_gpus,
+                ag_args_fit={"num_gpus": requested_num_gpus},
             )
         elif data_type == "mm":
             predictor.fit(

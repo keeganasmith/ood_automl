@@ -73,6 +73,14 @@
                   </n-gi>
 
                   <n-gi>
+                    <n-form-item label="Enable GPU">
+                      <n-checkbox v-model:checked="form.enable_gpu">
+                        Enable GPU
+                      </n-checkbox>
+                    </n-form-item>
+                  </n-gi>
+
+                  <n-gi>
                     <n-form-item label="problem_type">
                       <n-select
                         v-model:value="form.problem_type"
@@ -192,7 +200,7 @@ import { ref, watch, watchEffect, computed, reactive } from 'vue'
 import {
   NCard, NInput, NButton, NTag, NSpace,
   NCollapse, NCollapseItem,
-  NGrid, NGi, NForm, NFormItem, NSelect, NInputNumber,
+  NGrid, NGi, NForm, NFormItem, NSelect, NInputNumber, NCheckbox,
   NAlert, NText, NTabs, NTabPane
 } from 'naive-ui'
 
@@ -213,6 +221,7 @@ const form = reactive({
   hyperparametersText: '',
   tuningDataText: '',
   data_type: 'tabular',
+  enable_gpu: false,
 
   // time series only
   prediction_length: null,
@@ -280,6 +289,8 @@ function buildCfgFromForm () {
   }
   if (Number.isFinite(f.time_limit) && f.time_limit > 0) cfg.time_limit = f.time_limit
   if (f.problem_type) cfg.problem_type = f.problem_type
+  cfg.enable_gpu = !!f.enable_gpu
+  if (!f.enable_gpu) cfg.num_gpus = 0
 
   const hp = safeParse(f.hyperparametersText)
   if (hp.ok && hp.value !== undefined) cfg.hyperparameters = hp.value
