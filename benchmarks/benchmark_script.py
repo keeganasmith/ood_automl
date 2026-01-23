@@ -5,7 +5,7 @@ from autogluon.tabular import TabularPredictor
 
 
 def main() -> None:
-    train_data = pd.read_csv("./sample_datasets/train.csv")
+    train_data = pd.read_csv("./backend/sample_datasets/train.csv")
 
     start_time = time.perf_counter()
     TabularPredictor(label="Survived").fit(train_data)
