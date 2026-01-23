@@ -2,3 +2,4 @@ venv
 __pycache__
 autogluon_runs
 .DS_Store
+AutogluonModels

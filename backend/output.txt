@@ -1,0 +1,160 @@
+INFO:     Started server process [2260488]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+num_gpus:  2
+/home/u.ks124812/.ood_automl
+INFO:     127.0.0.1:34264 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34264 - "GET /assets/index-BX7r-oKD.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34270 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34264 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34274 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1769195310.2274508
+INFO:     connection open
+Verbosity: 2 (Standard Logging)
+=================== System Info ===================
+AutoGluon Version:  1.4.0
+Python Version:     3.10.8
+Operating System:   Linux
+Platform Machine:   x86_64
+Platform Version:   #1 SMP Sat Nov 29 00:49:18 EST 2025
+CPU Count:          24
+Memory Avail:       745.62 GB / 754.91 GB (98.8%)
+Disk Space Avail:   1678.47 GB / 5120.00 GB (32.8%)
+===================================================
+Presets specified: ['medium_quality']
+Using hyperparameters preset: hyperparameters='default'
+Beginning AutoGluon training ...
+AutoGluon will save models to "/ccstar/scratch/user/u.ks124812/ood_automl/backend/autogluon_runs/4ad513a6b8c6422abeff6e865ddfc6f7"
+Train Data Rows:    891
+Train Data Columns: 11
+Label Column:       Survived
+AutoGluon infers your prediction problem is: 'binary' (because only two unique label-values observed).
+	2 unique label values:  [np.int64(0), np.int64(1)]
+	If 'binary' is not the correct problem_type, please manually specify the problem_type parameter during Predictor init (You may specify problem_type as one of: ['binary', 'multiclass', 'regression', 'quantile'])
+Problem Type:       binary
+Preprocessing data ...
+Selected class <--> label mapping:  class 1 = 1, class 0 = 0
+Using Feature Generators to preprocess the data ...
+Fitting AutoMLPipelineFeatureGenerator...
+	Available Memory:                    763505.32 MB
+	Train Data (Original)  Memory Usage: 0.30 MB (0.0% of available memory)
+	Inferring data type of each feature based on column values. Set feature_metadata_in to manually specify special dtypes of the features.
+	Stage 1 Generators:
+		Fitting AsTypeFeatureGenerator...
+			Note: Converting 1 features to boolean dtype as they only contain 2 unique values.
+	Stage 2 Generators:
+		Fitting FillNaFeatureGenerator...
+	Stage 3 Generators:
+		Fitting IdentityFeatureGenerator...
+		Fitting CategoryFeatureGenerator...
+			Fitting CategoryMemoryMinimizeFeatureGenerator...
+		Fitting TextSpecialFeatureGenerator...
+			Fitting BinnedFeatureGenerator...
+			Fitting DropDuplicatesFeatureGenerator...
+		Fitting TextNgramFeatureGenerator...
+			Fitting CountVectorizer for text features: ['Name']
+			CountVectorizer fit with vocabulary size = 8
+	Stage 4 Generators:
+		Fitting DropUniqueFeatureGenerator...
+	Stage 5 Generators:
+		Fitting DropDuplicatesFeatureGenerator...
+	Types of features in original data (raw dtype, special dtypes):
+		('float', [])        : 2 | ['Age', 'Fare']
+		('int', [])          : 4 | ['PassengerId', 'Pclass', 'SibSp', 'Parch']
+		('object', [])       : 4 | ['Sex', 'Ticket', 'Cabin', 'Embarked']
+		('object', ['text']) : 1 | ['Name']
+	Types of features in processed data (raw dtype, special dtypes):
+		('category', [])                    : 3 | ['Ticket', 'Cabin', 'Embarked']
+		('float', [])                       : 2 | ['Age', 'Fare']
+		('int', [])                         : 4 | ['PassengerId', 'Pclass', 'SibSp', 'Parch']
+		('int', ['binned', 'text_special']) : 9 | ['Name.char_count', 'Name.word_count', 'Name.capital_ratio', 'Name.lower_ratio', 'Name.special_ratio', ...]
+		('int', ['bool'])                   : 1 | ['Sex']
+		('int', ['text_ngram'])             : 9 | ['__nlp__.henry', '__nlp__.john', '__nlp__.master', '__nlp__.miss', '__nlp__.mr', ...]
+	0.1s = Fit runtime
+	11 features in original data used to generate 28 features in processed data.
+	Train Data (Processed) Memory Usage: 0.07 MB (0.0% of available memory)
+Data preprocessing and feature engineering runtime = 0.16s ...
+AutoGluon will gauge predictive performance using evaluation metric: 'accuracy'
+	To change this, specify the eval_metric parameter of Predictor()
+Automatically generating train/validation split with holdout_frac=0.2, Train Rows: 712, Val Rows: 179
+User-specified model hyperparameters to be fit:
+{
+	'NN_TORCH': [{}],
+	'GBM': [{'extra_trees': True, 'ag_args': {'name_suffix': 'XT'}}, {}, {'learning_rate': 0.03, 'num_leaves': 128, 'feature_fraction': 0.9, 'min_data_in_leaf': 3, 'ag_args': {'name_suffix': 'Large', 'priority': 0, 'hyperparameter_tune_kwargs': None}}],
+	'CAT': [{}],
+	'XGB': [{}],
+	'FASTAI': [{}],
+	'RF': [{'criterion': 'gini', 'ag_args': {'name_suffix': 'Gini', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'entropy', 'ag_args': {'name_suffix': 'Entr', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'squared_error', 'ag_args': {'name_suffix': 'MSE', 'problem_types': ['regression', 'quantile']}}],
+	'XT': [{'criterion': 'gini', 'ag_args': {'name_suffix': 'Gini', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'entropy', 'ag_args': {'name_suffix': 'Entr', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'squared_error', 'ag_args': {'name_suffix': 'MSE', 'problem_types': ['regression', 'quantile']}}],
+}
+Fitting 11 L1 models, fit_strategy="sequential" ...
+Fitting model: LightGBMXT ...
+	Fitting with cpus=24, gpus=2, mem=0.0/745.6 GB
+	Training LightGBMXT with GPU, note that this may negatively impact model quality compared to CPU training.
+	0.8156	 = Validation score   (accuracy)
+	222.5s	 = Training   runtime
+	0.01s	 = Validation runtime
+Fitting model: LightGBM ...
+	Fitting with cpus=24, gpus=2, mem=0.0/745.3 GB
+	Training LightGBM with GPU, note that this may negatively impact model quality compared to CPU training.
+	0.8212	 = Validation score   (accuracy)
+	111.44s	 = Training   runtime
+	0.04s	 = Validation runtime
+Fitting model: RandomForestGini ...
+	Fitting with cpus=24, gpus=2
+	0.8156	 = Validation score   (accuracy)
+	0.44s	 = Training   runtime
+	0.03s	 = Validation runtime
+Fitting model: RandomForestEntr ...
+	Fitting with cpus=24, gpus=2
+	0.8156	 = Validation score   (accuracy)
+	0.28s	 = Training   runtime
+	0.03s	 = Validation runtime
+Fitting model: CatBoost ...
+	Fitting with cpus=24, gpus=2
+	Training CatBoost with GPU, note that this may negatively impact model quality compared to CPU training.
+	Warning: CatBoost on GPU is experimental. If you encounter issues, use CPU for training CatBoost instead.
+	0.8268	 = Validation score   (accuracy)
+	2.15s	 = Training   runtime
+	0.01s	 = Validation runtime
+Fitting model: ExtraTreesGini ...
+	Fitting with cpus=24, gpus=2
+	0.8156	 = Validation score   (accuracy)
+	0.34s	 = Training   runtime
+	0.03s	 = Validation runtime
+Fitting model: ExtraTreesEntr ...
+	Fitting with cpus=24, gpus=2
+	0.8101	 = Validation score   (accuracy)
+	0.29s	 = Training   runtime
+	0.03s	 = Validation runtime
+Fitting model: NeuralNetFastAI ...
+	Fitting with cpus=24, gpus=2, mem=0.0/744.4 GB
+	0.8324	 = Validation score   (accuracy)
+	2.2s	 = Training   runtime
+	0.02s	 = Validation runtime
+Fitting model: XGBoost ...
+	Fitting with cpus=24, gpus=2
+/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/xgboost/core.py:729: UserWarning: [13:14:11] WARNING: /workspace/src/common/error_msg.cc:58: Falling back to prediction using DMatrix due to mismatched devices. This might lead to higher memory usage and slower performance. XGBoost is running on: cuda:0, while the input data is on: cpu.
+Potential solutions:
+- Use a data structure that matches the device ordinal in the booster.
+- Set the device for booster before call to inplace_predict.
+
+This warning will only be shown once.
+
+  return func(**kwargs)
+	0.8156	 = Validation score   (accuracy)
+	0.93s	 = Training   runtime
+	0.04s	 = Validation runtime
+Fitting model: NeuralNetTorch ...
+	Fitting with cpus=24, gpus=2, mem=0.0/744.0 GB
+/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/sklearn/compose/_column_transformer.py:975: FutureWarning: The parameter `force_int_remainder_cols` is deprecated and will be removed in 1.9. It has no effect. Leave it to its default value to avoid this warning.
+  warnings.warn(
+TabularNeuralNetTorchModel not yet able to use more than 1 GPU. 'num_gpus' is set to >1, but we will be using only 1 GPU.
+	0.8436	 = Validation score   (accuracy)
+	1.56s	 = Training   runtime
+	0.01s	 = Validation runtime
+Fitting model: LightGBMLarge ...
+	Fitting with cpus=24, gpus=2, mem=0.0/743.9 GB
+	Training LightGBMLarge with GPU, note that this may negatively impact model quality compared to CPU training.
+INFO:     connection closed
