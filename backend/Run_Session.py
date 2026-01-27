@@ -121,7 +121,7 @@ def _worker_train_entry(
         label = cfg["label"]
         path = cfg.get("path") or f"./autogluon_runs/{run_id}"
         cfg["path"] = path
-        presets = cfg.get("presets", "medium_quality_faster_train")
+        presets = cfg.get("presets", "medium_quality")
         time_limit = cfg.get("time_limit")  # seconds
         hyperparameters = cfg.get("hyperparameters")
         problem_type = cfg.get("problem_type")
