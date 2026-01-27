@@ -5,10 +5,10 @@ from autogluon.tabular import TabularPredictor
 
 
 def main() -> None:
-    train_data = pd.read_csv("./backend/sample_datasets/train.csv")
+    train_data = pd.read_csv("./backend/sample_datasets/adult.tsv", sep="\t")
 
     start_time = time.perf_counter()
-    TabularPredictor(label="Survived").fit(train_data)
+    TabularPredictor(label="target").fit(train_data)
     end_time = time.perf_counter()
 
     elapsed = end_time - start_time

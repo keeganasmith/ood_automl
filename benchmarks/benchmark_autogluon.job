@@ -1,0 +1,20 @@
+#!/bin/bash
+#SBATCH --job-name=benchmark_ood_automl
+#SBATCH --time=24:0:00 --mem=300G
+#SBATCH --ntasks=192 --nodes=1 --cpus-per-task=1
+#SBATCH --output=autogluon_out --error=autogluon_error
+#SBATCH --partition=cpu 
+
+
+module purge
+cd /scratch/user/u.ks124812/ood_automl/
+# ADD YOUR COMMANDS BELOW
+source modules.sh
+cd backend
+source venv/bin/activate
+cd ..
+for((i=0;i<40;i++)){
+  python3 benchmarks/benchmark_script.py
+}
+
+

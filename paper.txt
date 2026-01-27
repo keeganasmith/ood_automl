@@ -1,0 +1,53 @@
+Abstract
+We present OOD AutoML, a web-based Open OnDemand (OOD) application that exposes AutoGluon training and inference workflows to HPC users through an interactive, browser-first interface. The system bridges user-driven configuration with server-side execution using FastAPI/WebSockets, enabling live job control, log streaming, and post-run inference without requiring users to manage complex job scripts or environment details. A multiprocessing job runner captures run metadata and persists artifacts for later inspection. The frontend provides a lightweight Vue-based UI for launching experiments, tracking jobs, and running inference on saved models. This work demonstrates how a modern, interactive AI workflow can be integrated into shared HPC resources, reducing time-to-solution and lowering barriers for non-expert users. We describe the architecture, implementation details, and operational considerations (resource management, log capture, data handling), and outline an evaluation plan focusing on usability, responsiveness, and throughput under realistic HPC constraints.
+
+Introduction
+AutoML (Auto Machine Learning) is a powerful tool for creating state of the art machine learning models without machine learning expertise. AutoML can be especially useful for sciences like biology, chemistry, and physics where machine learning is in high demand, but the supply of machine learning expertise is low. This is where AutoML can fill the gaps and provide researchers with quality models without the need for machine learning expertise.
+
+Related Work
+The OOD AutoML application is built around AutoGluon which is an AutoML library developed and maintained by a team at Amazon Web Services (AWS) [2]. We chose to use AutoGluon on our backend because it is still being maintained and improved upon. AutoGluon is also a state of the art AutoML framework, it has been used to great effect for research [1]. We build upon the work of AutoGluon by providing a Graphical User Interface (GUI) which allows users to train models without programming. 
+
+System Overview
+Users interact with the application via an interactive application on Open OnDemand. Like other interactive applications on Open OnDemand, users start by filling out a form with the resources they want: number of nodes, number of cores, number of gpus, amount of memory, etc. Users then launch the job. Once the job is ready, the user can click “Connect to Session” which loads the client application in the web browser, which is in turn connected to the backend via the reverse web proxy provided by Open OnDemand. 
+Users can train a model by selecting a dataset they have on the cluster’s file system. They then select the dataset type (tabular, multi-modal, or timeseries). There are then some optional presets like quality, time limit, and problem type. After filling these out, the user can click “start” to train a model to fit their dataset. Training uses AutoGluon. During training, users can view a live stream of the logs produced by AutoGluon. Users can also view their job history which contains logs for all of their historical jobs. After training has finished, users can perform inference using the model that was just trained. They can navigate to the “inference” page, select the job that was just completed, select the inference input, and select “run”, which will produce a file containing all of the predictions for the provided input. 
+
+Architecture
+The web client is connected to the backend running on the cluster via a reverse web proxy. This reverse web proxy is provided by the Open OnDemand installation. 
+Log streams are communicated to the web client via web sockets. This approach minimizes latency. If we were to use a protocol like HTTPS for this instead, the web client would have to poll the server every few seconds for new log information. This approach would drastically increase latency for the log stream and thus make the user experience worse. 
+Historical logs for each job as well as the best models for each job are stored on the cluster's filesystem where the user specifies. A mapping of the job ids to the directories where the job artifacts are stored is kept in a file in the user’s $HOME directory. This file should never be large - even if a user runs thousands of jobs, the size of this file will never exceed Mega Bytes (MB). 
+
+HPC Integration
+The application is deployed as an Open OnDemand interactive app. Users request resources through the standard OOD form, which is mapped to a batch job on the cluster. Once the job starts, the backend is launched on the allocated compute node and exposed through the OOD reverse proxy. This keeps the service inside the cluster network while still reachable from the browser.
+AutoGluon is currently deployed on the Launch cluster at Texas A and M. The job runs inside the user allocation, so data access respects the user’s filesystem permissions. Inputs and outputs are stored under paths selected by the user. This model avoids moving data off the cluster and fits the standard security model used by HPC systems.
+
+Implementation Details
+The backend uses FastAPI for request handling and a WebSocket endpoint for streaming logs to the browser. A multiprocessing job runner starts AutoGluon training in a child process to keep the web server responsive. Run metadata includes dataset path, presets, job id, start time, and output directory. Each run writes logs to a file and also pushes new lines over the socket.
+The frontend is a Vue app served by the same backend through OOD. It provides a start form, a live log viewer, a history table, and an inference panel. The inference workflow loads the trained model artifacts and applies them to a user-selected input file, then writes predictions to a new file in the job directory.
+
+Performance Evaluation
+Include metrics like: 
+Number of clicks needed to train a model
+Latency measurements
+Time from clicking “start” button to seeing first log
+Time it takes for the client to receive a log when sent from the backend (basically testing the latency of a web socket)
+Time that training takes when trained from the UI vs when trained with a script (should be the same)
+
+Case Studies
+We will include two example workflows: 
+
+Tabular classification: a CSV dataset with a few thousand rows and mixed feature types. The user selects the quality preset and a time limit, trains a model, and runs inference on a holdout file. We report training time and prediction file size.
+
+Multimodal example: a dataset that includes images and text and/or numeric fields. The user chooses the multimodal type, trains the model, and produces predictions for a small batch input. This demonstrates the end to end flow without manual scripting. 
+
+Lessons Learned
+Don’t 
+
+
+Future Work
+We plan to add job templates for common datasets, improved dataset validation, and smarter defaults for time limit and presets. Another target is multi user dashboards so users can share models or hand off inference runs to lab mates. We also plan to add more AutoGluon features like model explainability and leaderboard export in the UI.
+
+Bibliography
+[1] Qi, Wenwen, Chong Xu, and Xiwei Xu. "AutoGluon: A revolutionary framework x landslide hazard analysis." Natural Hazards Research 1.3 (2021): 103-108.
+
+[2] Erickson, Nick, et al. "Autogluon-tabular: Robust and accurate automl for structured data." arXiv preprint arXiv:2003.06505 (2020).
+

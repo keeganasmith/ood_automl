@@ -1,9 +1,0 @@
-METRICS NEEDED
-
-- system performance: 
-    - training time when using the application from the GUI vs from a script
-    - gpu benchmarks
-
-- user experience
-    - Likert scale questions about the UI
-    - Number of clicks needed to train a model

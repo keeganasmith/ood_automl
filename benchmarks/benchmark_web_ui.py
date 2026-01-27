@@ -23,13 +23,13 @@ def main() -> None:
             EC.presence_of_element_located((By.CSS_SELECTOR, "[data-testid='label-input']"))
         )
         label_input.clear()
-        label_input.send_keys("Survived")
+        label_input.send_keys("target")
 
         train_input = wait.until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "[data-testid='train-path-input']"))
         )
         train_input.clear()
-        train_input.send_keys("./sample_datasets/train.csv")
+        train_input.send_keys("./sample_datasets/adult.tsv")
 
         start_button = wait.until(EC.element_to_be_clickable((By.ID, "startBtn")))
 
