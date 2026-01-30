@@ -1,0 +1,1560 @@
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x563b5cae1f1a <unknown>
+#1 0x563b5c4f6922 <unknown>
+#2 0x563b5c4ed6aa <unknown>
+#3 0x563b5c4de351 <unknown>
+#4 0x563b5c4e014c <unknown>
+#5 0x563b5c4de849 <unknown>
+#6 0x563b5c4ddf35 <unknown>
+#7 0x563b5c4ddae6 <unknown>
+#8 0x563b5c4db60b <unknown>
+#9 0x563b5c4dbe50 <unknown>
+#10 0x563b5c4fa30d <unknown>
+#11 0x563b5c594ebb <unknown>
+#12 0x563b5c59423b <unknown>
+#13 0x563b5c53dadf <unknown>
+#14 0x563b5c53e8a1 <unknown>
+#15 0x563b5caa7119 <unknown>
+#16 0x563b5caaa021 <unknown>
+#17 0x563b5ca94069 <unknown>
+#18 0x563b5caaabde <unknown>
+#19 0x563b5ca7a4f0 <unknown>
+#20 0x563b5caceaa8 <unknown>
+#21 0x563b5cacec78 <unknown>
+#22 0x563b5cae0563 <unknown>
+#23 0x14ff39a7f1ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x55c4ce2b1f1a <unknown>
+#1 0x55c4cdcc6922 <unknown>
+#2 0x55c4cdcbd6aa <unknown>
+#3 0x55c4cdcae351 <unknown>
+#4 0x55c4cdcb014c <unknown>
+#5 0x55c4cdcae849 <unknown>
+#6 0x55c4cdcadf35 <unknown>
+#7 0x55c4cdcadae6 <unknown>
+#8 0x55c4cdcab60b <unknown>
+#9 0x55c4cdcabe50 <unknown>
+#10 0x55c4cdcca30d <unknown>
+#11 0x55c4cdd64ebb <unknown>
+#12 0x55c4cdd6423b <unknown>
+#13 0x55c4cdd0dadf <unknown>
+#14 0x55c4cdd0e8a1 <unknown>
+#15 0x55c4ce277119 <unknown>
+#16 0x55c4ce27a021 <unknown>
+#17 0x55c4ce264069 <unknown>
+#18 0x55c4ce27abde <unknown>
+#19 0x55c4ce24a4f0 <unknown>
+#20 0x55c4ce29eaa8 <unknown>
+#21 0x55c4ce29ec78 <unknown>
+#22 0x55c4ce2b0563 <unknown>
+#23 0x14e23a1011ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x560cb54f1f1a <unknown>
+#1 0x560cb4f06922 <unknown>
+#2 0x560cb4efd6aa <unknown>
+#3 0x560cb4eee351 <unknown>
+#4 0x560cb4ef014c <unknown>
+#5 0x560cb4eee849 <unknown>
+#6 0x560cb4eedf35 <unknown>
+#7 0x560cb4eedae6 <unknown>
+#8 0x560cb4eeb60b <unknown>
+#9 0x560cb4eebe50 <unknown>
+#10 0x560cb4f0a30d <unknown>
+#11 0x560cb4fa4ebb <unknown>
+#12 0x560cb4fa423b <unknown>
+#13 0x560cb4f4dadf <unknown>
+#14 0x560cb4f4e8a1 <unknown>
+#15 0x560cb54b7119 <unknown>
+#16 0x560cb54ba021 <unknown>
+#17 0x560cb54a4069 <unknown>
+#18 0x560cb54babde <unknown>
+#19 0x560cb548a4f0 <unknown>
+#20 0x560cb54deaa8 <unknown>
+#21 0x560cb54dec78 <unknown>
+#22 0x560cb54f0563 <unknown>
+#23 0x147d8a5bb1ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x55e29ab77f1a <unknown>
+#1 0x55e29a58c922 <unknown>
+#2 0x55e29a5836aa <unknown>
+#3 0x55e29a574351 <unknown>
+#4 0x55e29a57614c <unknown>
+#5 0x55e29a574849 <unknown>
+#6 0x55e29a573f35 <unknown>
+#7 0x55e29a573ae6 <unknown>
+#8 0x55e29a57160b <unknown>
+#9 0x55e29a571e50 <unknown>
+#10 0x55e29a59030d <unknown>
+#11 0x55e29a62aebb <unknown>
+#12 0x55e29a62a23b <unknown>
+#13 0x55e29a5d3adf <unknown>
+#14 0x55e29a5d48a1 <unknown>
+#15 0x55e29ab3d119 <unknown>
+#16 0x55e29ab40021 <unknown>
+#17 0x55e29ab2a069 <unknown>
+#18 0x55e29ab40bde <unknown>
+#19 0x55e29ab104f0 <unknown>
+#20 0x55e29ab64aa8 <unknown>
+#21 0x55e29ab64c78 <unknown>
+#22 0x55e29ab76563 <unknown>
+#23 0x1522feb7f1ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x55f006618f1a <unknown>
+#1 0x55f00602d922 <unknown>
+#2 0x55f0060246aa <unknown>
+#3 0x55f006015351 <unknown>
+#4 0x55f00601714c <unknown>
+#5 0x55f006015849 <unknown>
+#6 0x55f006014f35 <unknown>
+#7 0x55f006014ae6 <unknown>
+#8 0x55f00601260b <unknown>
+#9 0x55f006012e50 <unknown>
+#10 0x55f00603130d <unknown>
+#11 0x55f0060cbebb <unknown>
+#12 0x55f0060cb23b <unknown>
+#13 0x55f006074adf <unknown>
+#14 0x55f0060758a1 <unknown>
+#15 0x55f0065de119 <unknown>
+#16 0x55f0065e1021 <unknown>
+#17 0x55f0065cb069 <unknown>
+#18 0x55f0065e1bde <unknown>
+#19 0x55f0065b14f0 <unknown>
+#20 0x55f006605aa8 <unknown>
+#21 0x55f006605c78 <unknown>
+#22 0x55f006617563 <unknown>
+#23 0x1469c2ca61ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x563e9c835f1a <unknown>
+#1 0x563e9c24a922 <unknown>
+#2 0x563e9c2416aa <unknown>
+#3 0x563e9c232351 <unknown>
+#4 0x563e9c23414c <unknown>
+#5 0x563e9c232849 <unknown>
+#6 0x563e9c231f35 <unknown>
+#7 0x563e9c231ae6 <unknown>
+#8 0x563e9c22f60b <unknown>
+#9 0x563e9c22fe50 <unknown>
+#10 0x563e9c24e30d <unknown>
+#11 0x563e9c2e8ebb <unknown>
+#12 0x563e9c2e823b <unknown>
+#13 0x563e9c291adf <unknown>
+#14 0x563e9c2928a1 <unknown>
+#15 0x563e9c7fb119 <unknown>
+#16 0x563e9c7fe021 <unknown>
+#17 0x563e9c7e8069 <unknown>
+#18 0x563e9c7febde <unknown>
+#19 0x563e9c7ce4f0 <unknown>
+#20 0x563e9c822aa8 <unknown>
+#21 0x563e9c822c78 <unknown>
+#22 0x563e9c834563 <unknown>
+#23 0x14962df141ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x5611ceba4f1a <unknown>
+#1 0x5611ce5b9922 <unknown>
+#2 0x5611ce5b06aa <unknown>
+#3 0x5611ce5a1351 <unknown>
+#4 0x5611ce5a314c <unknown>
+#5 0x5611ce5a1849 <unknown>
+#6 0x5611ce5a0f35 <unknown>
+#7 0x5611ce5a0ae6 <unknown>
+#8 0x5611ce59e60b <unknown>
+#9 0x5611ce59ee50 <unknown>
+#10 0x5611ce5bd30d <unknown>
+#11 0x5611ce657ebb <unknown>
+#12 0x5611ce65723b <unknown>
+#13 0x5611ce600adf <unknown>
+#14 0x5611ce6018a1 <unknown>
+#15 0x5611ceb6a119 <unknown>
+#16 0x5611ceb6d021 <unknown>
+#17 0x5611ceb57069 <unknown>
+#18 0x5611ceb6dbde <unknown>
+#19 0x5611ceb3d4f0 <unknown>
+#20 0x5611ceb91aa8 <unknown>
+#21 0x5611ceb91c78 <unknown>
+#22 0x5611ceba3563 <unknown>
+#23 0x1528616111ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x55851d643f1a <unknown>
+#1 0x55851d058922 <unknown>
+#2 0x55851d04f6aa <unknown>
+#3 0x55851d040351 <unknown>
+#4 0x55851d04214c <unknown>
+#5 0x55851d040849 <unknown>
+#6 0x55851d03ff35 <unknown>
+#7 0x55851d03fae6 <unknown>
+#8 0x55851d03d60b <unknown>
+#9 0x55851d03de50 <unknown>
+#10 0x55851d05c30d <unknown>
+#11 0x55851d0f6ebb <unknown>
+#12 0x55851d0f623b <unknown>
+#13 0x55851d09fadf <unknown>
+#14 0x55851d0a08a1 <unknown>
+#15 0x55851d609119 <unknown>
+#16 0x55851d60c021 <unknown>
+#17 0x55851d5f6069 <unknown>
+#18 0x55851d60cbde <unknown>
+#19 0x55851d5dc4f0 <unknown>
+#20 0x55851d630aa8 <unknown>
+#21 0x55851d630c78 <unknown>
+#22 0x55851d642563 <unknown>
+#23 0x14c2de11e1ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x55baccc01f1a <unknown>
+#1 0x55bacc616922 <unknown>
+#2 0x55bacc60d6aa <unknown>
+#3 0x55bacc5fe351 <unknown>
+#4 0x55bacc60014c <unknown>
+#5 0x55bacc5fe849 <unknown>
+#6 0x55bacc5fdf35 <unknown>
+#7 0x55bacc5fdae6 <unknown>
+#8 0x55bacc5fb60b <unknown>
+#9 0x55bacc5fbe50 <unknown>
+#10 0x55bacc61a30d <unknown>
+#11 0x55bacc6b4ebb <unknown>
+#12 0x55bacc6b423b <unknown>
+#13 0x55bacc65dadf <unknown>
+#14 0x55bacc65e8a1 <unknown>
+#15 0x55baccbc7119 <unknown>
+#16 0x55baccbca021 <unknown>
+#17 0x55baccbb4069 <unknown>
+#18 0x55baccbcabde <unknown>
+#19 0x55baccb9a4f0 <unknown>
+#20 0x55baccbeeaa8 <unknown>
+#21 0x55baccbeec78 <unknown>
+#22 0x55baccc00563 <unknown>
+#23 0x145a862bc1ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x559f04b77f1a <unknown>
+#1 0x559f0458c922 <unknown>
+#2 0x559f045836aa <unknown>
+#3 0x559f04574351 <unknown>
+#4 0x559f0457614c <unknown>
+#5 0x559f04574849 <unknown>
+#6 0x559f04573f35 <unknown>
+#7 0x559f04573ae6 <unknown>
+#8 0x559f0457160b <unknown>
+#9 0x559f04571e50 <unknown>
+#10 0x559f0459030d <unknown>
+#11 0x559f0462aebb <unknown>
+#12 0x559f0462a23b <unknown>
+#13 0x559f045d3adf <unknown>
+#14 0x559f045d48a1 <unknown>
+#15 0x559f04b3d119 <unknown>
+#16 0x559f04b40021 <unknown>
+#17 0x559f04b2a069 <unknown>
+#18 0x559f04b40bde <unknown>
+#19 0x559f04b104f0 <unknown>
+#20 0x559f04b64aa8 <unknown>
+#21 0x559f04b64c78 <unknown>
+#22 0x559f04b76563 <unknown>
+#23 0x14cd86e591ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x55a260c0df1a <unknown>
+#1 0x55a260622922 <unknown>
+#2 0x55a2606196aa <unknown>
+#3 0x55a26060a351 <unknown>
+#4 0x55a26060c14c <unknown>
+#5 0x55a26060a849 <unknown>
+#6 0x55a260609f35 <unknown>
+#7 0x55a260609ae6 <unknown>
+#8 0x55a26060760b <unknown>
+#9 0x55a260607e50 <unknown>
+#10 0x55a26062630d <unknown>
+#11 0x55a2606c0ebb <unknown>
+#12 0x55a2606c023b <unknown>
+#13 0x55a260669adf <unknown>
+#14 0x55a26066a8a1 <unknown>
+#15 0x55a260bd3119 <unknown>
+#16 0x55a260bd6021 <unknown>
+#17 0x55a260bc0069 <unknown>
+#18 0x55a260bd6bde <unknown>
+#19 0x55a260ba64f0 <unknown>
+#20 0x55a260bfaaa8 <unknown>
+#21 0x55a260bfac78 <unknown>
+#22 0x55a260c0c563 <unknown>
+#23 0x153f97a341ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x55c397de2f1a <unknown>
+#1 0x55c3977f7922 <unknown>
+#2 0x55c3977ee6aa <unknown>
+#3 0x55c3977df351 <unknown>
+#4 0x55c3977e114c <unknown>
+#5 0x55c3977df849 <unknown>
+#6 0x55c3977def35 <unknown>
+#7 0x55c3977deae6 <unknown>
+#8 0x55c3977dc60b <unknown>
+#9 0x55c3977dce50 <unknown>
+#10 0x55c3977fb30d <unknown>
+#11 0x55c397895ebb <unknown>
+#12 0x55c39789523b <unknown>
+#13 0x55c39783eadf <unknown>
+#14 0x55c39783f8a1 <unknown>
+#15 0x55c397da8119 <unknown>
+#16 0x55c397dab021 <unknown>
+#17 0x55c397d95069 <unknown>
+#18 0x55c397dabbde <unknown>
+#19 0x55c397d7b4f0 <unknown>
+#20 0x55c397dcfaa8 <unknown>
+#21 0x55c397dcfc78 <unknown>
+#22 0x55c397de1563 <unknown>
+#23 0x14ef244091ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x563928766f1a <unknown>
+#1 0x56392817b922 <unknown>
+#2 0x5639281726aa <unknown>
+#3 0x563928163351 <unknown>
+#4 0x56392816514c <unknown>
+#5 0x563928163849 <unknown>
+#6 0x563928162f35 <unknown>
+#7 0x563928162ae6 <unknown>
+#8 0x56392816060b <unknown>
+#9 0x563928160e50 <unknown>
+#10 0x56392817f30d <unknown>
+#11 0x563928219ebb <unknown>
+#12 0x56392821923b <unknown>
+#13 0x5639281c2adf <unknown>
+#14 0x5639281c38a1 <unknown>
+#15 0x56392872c119 <unknown>
+#16 0x56392872f021 <unknown>
+#17 0x563928719069 <unknown>
+#18 0x56392872fbde <unknown>
+#19 0x5639286ff4f0 <unknown>
+#20 0x563928753aa8 <unknown>
+#21 0x563928753c78 <unknown>
+#22 0x563928765563 <unknown>
+#23 0x14e8fa0641ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x555642b98f1a <unknown>
+#1 0x5556425ad922 <unknown>
+#2 0x5556425a46aa <unknown>
+#3 0x555642595351 <unknown>
+#4 0x55564259714c <unknown>
+#5 0x555642595849 <unknown>
+#6 0x555642594f35 <unknown>
+#7 0x555642594ae6 <unknown>
+#8 0x55564259260b <unknown>
+#9 0x555642592e50 <unknown>
+#10 0x5556425b130d <unknown>
+#11 0x55564264bebb <unknown>
+#12 0x55564264b23b <unknown>
+#13 0x5556425f4adf <unknown>
+#14 0x5556425f58a1 <unknown>
+#15 0x555642b5e119 <unknown>
+#16 0x555642b61021 <unknown>
+#17 0x555642b4b069 <unknown>
+#18 0x555642b61bde <unknown>
+#19 0x555642b314f0 <unknown>
+#20 0x555642b85aa8 <unknown>
+#21 0x555642b85c78 <unknown>
+#22 0x555642b97563 <unknown>
+#23 0x14ce276311ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x563f5ae1df1a <unknown>
+#1 0x563f5a832922 <unknown>
+#2 0x563f5a8296aa <unknown>
+#3 0x563f5a81a351 <unknown>
+#4 0x563f5a81c14c <unknown>
+#5 0x563f5a81a849 <unknown>
+#6 0x563f5a819f35 <unknown>
+#7 0x563f5a819ae6 <unknown>
+#8 0x563f5a81760b <unknown>
+#9 0x563f5a817e50 <unknown>
+#10 0x563f5a83630d <unknown>
+#11 0x563f5a8d0ebb <unknown>
+#12 0x563f5a8d023b <unknown>
+#13 0x563f5a879adf <unknown>
+#14 0x563f5a87a8a1 <unknown>
+#15 0x563f5ade3119 <unknown>
+#16 0x563f5ade6021 <unknown>
+#17 0x563f5add0069 <unknown>
+#18 0x563f5ade6bde <unknown>
+#19 0x563f5adb64f0 <unknown>
+#20 0x563f5ae0aaa8 <unknown>
+#21 0x563f5ae0ac78 <unknown>
+#22 0x563f5ae1c563 <unknown>
+#23 0x1521aaf311ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x559c7691ef1a <unknown>
+#1 0x559c76333922 <unknown>
+#2 0x559c7632a6aa <unknown>
+#3 0x559c7631b351 <unknown>
+#4 0x559c7631d14c <unknown>
+#5 0x559c7631b849 <unknown>
+#6 0x559c7631af35 <unknown>
+#7 0x559c7631aae6 <unknown>
+#8 0x559c7631860b <unknown>
+#9 0x559c76318e50 <unknown>
+#10 0x559c7633730d <unknown>
+#11 0x559c763d1ebb <unknown>
+#12 0x559c763d123b <unknown>
+#13 0x559c7637aadf <unknown>
+#14 0x559c7637b8a1 <unknown>
+#15 0x559c768e4119 <unknown>
+#16 0x559c768e7021 <unknown>
+#17 0x559c768d1069 <unknown>
+#18 0x559c768e7bde <unknown>
+#19 0x559c768b74f0 <unknown>
+#20 0x559c7690baa8 <unknown>
+#21 0x559c7690bc78 <unknown>
+#22 0x559c7691d563 <unknown>
+#23 0x1458159a91ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x561e2a192f1a <unknown>
+#1 0x561e29ba7922 <unknown>
+#2 0x561e29b9e6aa <unknown>
+#3 0x561e29b8f351 <unknown>
+#4 0x561e29b9114c <unknown>
+#5 0x561e29b8f849 <unknown>
+#6 0x561e29b8ef35 <unknown>
+#7 0x561e29b8eae6 <unknown>
+#8 0x561e29b8c60b <unknown>
+#9 0x561e29b8ce50 <unknown>
+#10 0x561e29bab30d <unknown>
+#11 0x561e29c45ebb <unknown>
+#12 0x561e29c4523b <unknown>
+#13 0x561e29beeadf <unknown>
+#14 0x561e29bef8a1 <unknown>
+#15 0x561e2a158119 <unknown>
+#16 0x561e2a15b021 <unknown>
+#17 0x561e2a145069 <unknown>
+#18 0x561e2a15bbde <unknown>
+#19 0x561e2a12b4f0 <unknown>
+#20 0x561e2a17faa8 <unknown>
+#21 0x561e2a17fc78 <unknown>
+#22 0x561e2a191563 <unknown>
+#23 0x151996d321ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x55eadaf78f1a <unknown>
+#1 0x55eada98d922 <unknown>
+#2 0x55eada9846aa <unknown>
+#3 0x55eada975351 <unknown>
+#4 0x55eada97714c <unknown>
+#5 0x55eada975849 <unknown>
+#6 0x55eada974f35 <unknown>
+#7 0x55eada974ae6 <unknown>
+#8 0x55eada97260b <unknown>
+#9 0x55eada972e50 <unknown>
+#10 0x55eada99130d <unknown>
+#11 0x55eadaa2bebb <unknown>
+#12 0x55eadaa2b23b <unknown>
+#13 0x55eada9d4adf <unknown>
+#14 0x55eada9d58a1 <unknown>
+#15 0x55eadaf3e119 <unknown>
+#16 0x55eadaf41021 <unknown>
+#17 0x55eadaf2b069 <unknown>
+#18 0x55eadaf41bde <unknown>
+#19 0x55eadaf114f0 <unknown>
+#20 0x55eadaf65aa8 <unknown>
+#21 0x55eadaf65c78 <unknown>
+#22 0x55eadaf77563 <unknown>
+#23 0x154ab573b1ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x555a3b895f1a <unknown>
+#1 0x555a3b2aa922 <unknown>
+#2 0x555a3b2a16aa <unknown>
+#3 0x555a3b292351 <unknown>
+#4 0x555a3b29414c <unknown>
+#5 0x555a3b292849 <unknown>
+#6 0x555a3b291f35 <unknown>
+#7 0x555a3b291ae6 <unknown>
+#8 0x555a3b28f60b <unknown>
+#9 0x555a3b28fe50 <unknown>
+#10 0x555a3b2ae30d <unknown>
+#11 0x555a3b348ebb <unknown>
+#12 0x555a3b34823b <unknown>
+#13 0x555a3b2f1adf <unknown>
+#14 0x555a3b2f28a1 <unknown>
+#15 0x555a3b85b119 <unknown>
+#16 0x555a3b85e021 <unknown>
+#17 0x555a3b848069 <unknown>
+#18 0x555a3b85ebde <unknown>
+#19 0x555a3b82e4f0 <unknown>
+#20 0x555a3b882aa8 <unknown>
+#21 0x555a3b882c78 <unknown>
+#22 0x555a3b894563 <unknown>
+#23 0x145e5f43b1ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x55b7225bcf1a <unknown>
+#1 0x55b721fd1922 <unknown>
+#2 0x55b721fc86aa <unknown>
+#3 0x55b721fb9351 <unknown>
+#4 0x55b721fbb14c <unknown>
+#5 0x55b721fb9849 <unknown>
+#6 0x55b721fb8f35 <unknown>
+#7 0x55b721fb8ae6 <unknown>
+#8 0x55b721fb660b <unknown>
+#9 0x55b721fb6e50 <unknown>
+#10 0x55b721fd530d <unknown>
+#11 0x55b72206febb <unknown>
+#12 0x55b72206f23b <unknown>
+#13 0x55b722018adf <unknown>
+#14 0x55b7220198a1 <unknown>
+#15 0x55b722582119 <unknown>
+#16 0x55b722585021 <unknown>
+#17 0x55b72256f069 <unknown>
+#18 0x55b722585bde <unknown>
+#19 0x55b7225554f0 <unknown>
+#20 0x55b7225a9aa8 <unknown>
+#21 0x55b7225a9c78 <unknown>
+#22 0x55b7225bb563 <unknown>
+#23 0x14bde2eba1ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x55db37f4ef1a <unknown>
+#1 0x55db37963922 <unknown>
+#2 0x55db3795a6aa <unknown>
+#3 0x55db3794b351 <unknown>
+#4 0x55db3794d14c <unknown>
+#5 0x55db3794b849 <unknown>
+#6 0x55db3794af35 <unknown>
+#7 0x55db3794aae6 <unknown>
+#8 0x55db3794860b <unknown>
+#9 0x55db37948e50 <unknown>
+#10 0x55db3796730d <unknown>
+#11 0x55db37a01ebb <unknown>
+#12 0x55db37a0123b <unknown>
+#13 0x55db379aaadf <unknown>
+#14 0x55db379ab8a1 <unknown>
+#15 0x55db37f14119 <unknown>
+#16 0x55db37f17021 <unknown>
+#17 0x55db37f01069 <unknown>
+#18 0x55db37f17bde <unknown>
+#19 0x55db37ee74f0 <unknown>
+#20 0x55db37f3baa8 <unknown>
+#21 0x55db37f3bc78 <unknown>
+#22 0x55db37f4d563 <unknown>
+#23 0x148b4472f1ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x5609272a3f1a <unknown>
+#1 0x560926cb8922 <unknown>
+#2 0x560926caf6aa <unknown>
+#3 0x560926ca0351 <unknown>
+#4 0x560926ca214c <unknown>
+#5 0x560926ca0849 <unknown>
+#6 0x560926c9ff35 <unknown>
+#7 0x560926c9fae6 <unknown>
+#8 0x560926c9d60b <unknown>
+#9 0x560926c9de50 <unknown>
+#10 0x560926cbc30d <unknown>
+#11 0x560926d56ebb <unknown>
+#12 0x560926d5623b <unknown>
+#13 0x560926cffadf <unknown>
+#14 0x560926d008a1 <unknown>
+#15 0x560927269119 <unknown>
+#16 0x56092726c021 <unknown>
+#17 0x560927256069 <unknown>
+#18 0x56092726cbde <unknown>
+#19 0x56092723c4f0 <unknown>
+#20 0x560927290aa8 <unknown>
+#21 0x560927290c78 <unknown>
+#22 0x5609272a2563 <unknown>
+#23 0x1505284561ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x564a728b4f1a <unknown>
+#1 0x564a722c9922 <unknown>
+#2 0x564a722c06aa <unknown>
+#3 0x564a722b1351 <unknown>
+#4 0x564a722b314c <unknown>
+#5 0x564a722b1849 <unknown>
+#6 0x564a722b0f35 <unknown>
+#7 0x564a722b0ae6 <unknown>
+#8 0x564a722ae60b <unknown>
+#9 0x564a722aee50 <unknown>
+#10 0x564a722cd30d <unknown>
+#11 0x564a72367ebb <unknown>
+#12 0x564a7236723b <unknown>
+#13 0x564a72310adf <unknown>
+#14 0x564a723118a1 <unknown>
+#15 0x564a7287a119 <unknown>
+#16 0x564a7287d021 <unknown>
+#17 0x564a72867069 <unknown>
+#18 0x564a7287dbde <unknown>
+#19 0x564a7284d4f0 <unknown>
+#20 0x564a728a1aa8 <unknown>
+#21 0x564a728a1c78 <unknown>
+#22 0x564a728b3563 <unknown>
+#23 0x14ac857dd1ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x564418c47f1a <unknown>
+#1 0x56441865c922 <unknown>
+#2 0x5644186536aa <unknown>
+#3 0x564418644351 <unknown>
+#4 0x56441864614c <unknown>
+#5 0x564418644849 <unknown>
+#6 0x564418643f35 <unknown>
+#7 0x564418643ae6 <unknown>
+#8 0x56441864160b <unknown>
+#9 0x564418641e50 <unknown>
+#10 0x56441866030d <unknown>
+#11 0x5644186faebb <unknown>
+#12 0x5644186fa23b <unknown>
+#13 0x5644186a3adf <unknown>
+#14 0x5644186a48a1 <unknown>
+#15 0x564418c0d119 <unknown>
+#16 0x564418c10021 <unknown>
+#17 0x564418bfa069 <unknown>
+#18 0x564418c10bde <unknown>
+#19 0x564418be04f0 <unknown>
+#20 0x564418c34aa8 <unknown>
+#21 0x564418c34c78 <unknown>
+#22 0x564418c46563 <unknown>
+#23 0x14f12f6fd1ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x557ed5ce7f1a <unknown>
+#1 0x557ed56fc922 <unknown>
+#2 0x557ed56f36aa <unknown>
+#3 0x557ed56e4351 <unknown>
+#4 0x557ed56e614c <unknown>
+#5 0x557ed56e4849 <unknown>
+#6 0x557ed56e3f35 <unknown>
+#7 0x557ed56e3ae6 <unknown>
+#8 0x557ed56e160b <unknown>
+#9 0x557ed56e1e50 <unknown>
+#10 0x557ed570030d <unknown>
+#11 0x557ed579aebb <unknown>
+#12 0x557ed579a23b <unknown>
+#13 0x557ed5743adf <unknown>
+#14 0x557ed57448a1 <unknown>
+#15 0x557ed5cad119 <unknown>
+#16 0x557ed5cb0021 <unknown>
+#17 0x557ed5c9a069 <unknown>
+#18 0x557ed5cb0bde <unknown>
+#19 0x557ed5c804f0 <unknown>
+#20 0x557ed5cd4aa8 <unknown>
+#21 0x557ed5cd4c78 <unknown>
+#22 0x557ed5ce6563 <unknown>
+#23 0x1464f11a81ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x561d3eedcf1a <unknown>
+#1 0x561d3e8f1922 <unknown>
+#2 0x561d3e8e86aa <unknown>
+#3 0x561d3e8d9351 <unknown>
+#4 0x561d3e8db14c <unknown>
+#5 0x561d3e8d9849 <unknown>
+#6 0x561d3e8d8f35 <unknown>
+#7 0x561d3e8d8ae6 <unknown>
+#8 0x561d3e8d660b <unknown>
+#9 0x561d3e8d6e50 <unknown>
+#10 0x561d3e8f530d <unknown>
+#11 0x561d3e98febb <unknown>
+#12 0x561d3e98f23b <unknown>
+#13 0x561d3e938adf <unknown>
+#14 0x561d3e9398a1 <unknown>
+#15 0x561d3eea2119 <unknown>
+#16 0x561d3eea5021 <unknown>
+#17 0x561d3ee8f069 <unknown>
+#18 0x561d3eea5bde <unknown>
+#19 0x561d3ee754f0 <unknown>
+#20 0x561d3eec9aa8 <unknown>
+#21 0x561d3eec9c78 <unknown>
+#22 0x561d3eedb563 <unknown>
+#23 0x150444b051ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x55fb20e9df1a <unknown>
+#1 0x55fb208b2922 <unknown>
+#2 0x55fb208a96aa <unknown>
+#3 0x55fb2089a351 <unknown>
+#4 0x55fb2089c14c <unknown>
+#5 0x55fb2089a849 <unknown>
+#6 0x55fb20899f35 <unknown>
+#7 0x55fb20899ae6 <unknown>
+#8 0x55fb2089760b <unknown>
+#9 0x55fb20897e50 <unknown>
+#10 0x55fb208b630d <unknown>
+#11 0x55fb20950ebb <unknown>
+#12 0x55fb2095023b <unknown>
+#13 0x55fb208f9adf <unknown>
+#14 0x55fb208fa8a1 <unknown>
+#15 0x55fb20e63119 <unknown>
+#16 0x55fb20e66021 <unknown>
+#17 0x55fb20e50069 <unknown>
+#18 0x55fb20e66bde <unknown>
+#19 0x55fb20e364f0 <unknown>
+#20 0x55fb20e8aaa8 <unknown>
+#21 0x55fb20e8ac78 <unknown>
+#22 0x55fb20e9c563 <unknown>
+#23 0x14e1495d51ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x55fd6eb4cf1a <unknown>
+#1 0x55fd6e561922 <unknown>
+#2 0x55fd6e5586aa <unknown>
+#3 0x55fd6e549351 <unknown>
+#4 0x55fd6e54b14c <unknown>
+#5 0x55fd6e549849 <unknown>
+#6 0x55fd6e548f35 <unknown>
+#7 0x55fd6e548ae6 <unknown>
+#8 0x55fd6e54660b <unknown>
+#9 0x55fd6e546e50 <unknown>
+#10 0x55fd6e56530d <unknown>
+#11 0x55fd6e5ffebb <unknown>
+#12 0x55fd6e5ff23b <unknown>
+#13 0x55fd6e5a8adf <unknown>
+#14 0x55fd6e5a98a1 <unknown>
+#15 0x55fd6eb12119 <unknown>
+#16 0x55fd6eb15021 <unknown>
+#17 0x55fd6eaff069 <unknown>
+#18 0x55fd6eb15bde <unknown>
+#19 0x55fd6eae54f0 <unknown>
+#20 0x55fd6eb39aa8 <unknown>
+#21 0x55fd6eb39c78 <unknown>
+#22 0x55fd6eb4b563 <unknown>
+#23 0x14cc3a5ee1ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x55a78773bf1a <unknown>
+#1 0x55a787150922 <unknown>
+#2 0x55a7871476aa <unknown>
+#3 0x55a787138351 <unknown>
+#4 0x55a78713a14c <unknown>
+#5 0x55a787138849 <unknown>
+#6 0x55a787137f35 <unknown>
+#7 0x55a787137ae6 <unknown>
+#8 0x55a78713560b <unknown>
+#9 0x55a787135e50 <unknown>
+#10 0x55a78715430d <unknown>
+#11 0x55a7871eeebb <unknown>
+#12 0x55a7871ee23b <unknown>
+#13 0x55a787197adf <unknown>
+#14 0x55a7871988a1 <unknown>
+#15 0x55a787701119 <unknown>
+#16 0x55a787704021 <unknown>
+#17 0x55a7876ee069 <unknown>
+#18 0x55a787704bde <unknown>
+#19 0x55a7876d44f0 <unknown>
+#20 0x55a787728aa8 <unknown>
+#21 0x55a787728c78 <unknown>
+#22 0x55a78773a563 <unknown>
+#23 0x154ab97101ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x55d1d3dc6f1a <unknown>
+#1 0x55d1d37db922 <unknown>
+#2 0x55d1d37d26aa <unknown>
+#3 0x55d1d37c3351 <unknown>
+#4 0x55d1d37c514c <unknown>
+#5 0x55d1d37c3849 <unknown>
+#6 0x55d1d37c2f35 <unknown>
+#7 0x55d1d37c2ae6 <unknown>
+#8 0x55d1d37c060b <unknown>
+#9 0x55d1d37c0e50 <unknown>
+#10 0x55d1d37df30d <unknown>
+#11 0x55d1d3879ebb <unknown>
+#12 0x55d1d387923b <unknown>
+#13 0x55d1d3822adf <unknown>
+#14 0x55d1d38238a1 <unknown>
+#15 0x55d1d3d8c119 <unknown>
+#16 0x55d1d3d8f021 <unknown>
+#17 0x55d1d3d79069 <unknown>
+#18 0x55d1d3d8fbde <unknown>
+#19 0x55d1d3d5f4f0 <unknown>
+#20 0x55d1d3db3aa8 <unknown>
+#21 0x55d1d3db3c78 <unknown>
+#22 0x55d1d3dc5563 <unknown>
+#23 0x147d201fb1ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x556306872f1a <unknown>
+#1 0x556306287922 <unknown>
+#2 0x55630627e6aa <unknown>
+#3 0x55630626f351 <unknown>
+#4 0x55630627114c <unknown>
+#5 0x55630626f849 <unknown>
+#6 0x55630626ef35 <unknown>
+#7 0x55630626eae6 <unknown>
+#8 0x55630626c60b <unknown>
+#9 0x55630626ce50 <unknown>
+#10 0x55630628b30d <unknown>
+#11 0x556306325ebb <unknown>
+#12 0x55630632523b <unknown>
+#13 0x5563062ceadf <unknown>
+#14 0x5563062cf8a1 <unknown>
+#15 0x556306838119 <unknown>
+#16 0x55630683b021 <unknown>
+#17 0x556306825069 <unknown>
+#18 0x55630683bbde <unknown>
+#19 0x55630680b4f0 <unknown>
+#20 0x55630685faa8 <unknown>
+#21 0x55630685fc78 <unknown>
+#22 0x556306871563 <unknown>
+#23 0x145c76d631ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x55ab7bb90f1a <unknown>
+#1 0x55ab7b5a5922 <unknown>
+#2 0x55ab7b59c6aa <unknown>
+#3 0x55ab7b58d351 <unknown>
+#4 0x55ab7b58f14c <unknown>
+#5 0x55ab7b58d849 <unknown>
+#6 0x55ab7b58cf35 <unknown>
+#7 0x55ab7b58cae6 <unknown>
+#8 0x55ab7b58a60b <unknown>
+#9 0x55ab7b58ae50 <unknown>
+#10 0x55ab7b5a930d <unknown>
+#11 0x55ab7b643ebb <unknown>
+#12 0x55ab7b64323b <unknown>
+#13 0x55ab7b5ecadf <unknown>
+#14 0x55ab7b5ed8a1 <unknown>
+#15 0x55ab7bb56119 <unknown>
+#16 0x55ab7bb59021 <unknown>
+#17 0x55ab7bb43069 <unknown>
+#18 0x55ab7bb59bde <unknown>
+#19 0x55ab7bb294f0 <unknown>
+#20 0x55ab7bb7daa8 <unknown>
+#21 0x55ab7bb7dc78 <unknown>
+#22 0x55ab7bb8f563 <unknown>
+#23 0x14adb60161ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x56488f37cf1a <unknown>
+#1 0x56488ed91922 <unknown>
+#2 0x56488ed886aa <unknown>
+#3 0x56488ed79351 <unknown>
+#4 0x56488ed7b14c <unknown>
+#5 0x56488ed79849 <unknown>
+#6 0x56488ed78f35 <unknown>
+#7 0x56488ed78ae6 <unknown>
+#8 0x56488ed7660b <unknown>
+#9 0x56488ed76e50 <unknown>
+#10 0x56488ed9530d <unknown>
+#11 0x56488ee2febb <unknown>
+#12 0x56488ee2f23b <unknown>
+#13 0x56488edd8adf <unknown>
+#14 0x56488edd98a1 <unknown>
+#15 0x56488f342119 <unknown>
+#16 0x56488f345021 <unknown>
+#17 0x56488f32f069 <unknown>
+#18 0x56488f345bde <unknown>
+#19 0x56488f3154f0 <unknown>
+#20 0x56488f369aa8 <unknown>
+#21 0x56488f369c78 <unknown>
+#22 0x56488f37b563 <unknown>
+#23 0x15406d8751ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x55988a3d3f1a <unknown>
+#1 0x559889de8922 <unknown>
+#2 0x559889ddf6aa <unknown>
+#3 0x559889dd0351 <unknown>
+#4 0x559889dd214c <unknown>
+#5 0x559889dd0849 <unknown>
+#6 0x559889dcff35 <unknown>
+#7 0x559889dcfae6 <unknown>
+#8 0x559889dcd60b <unknown>
+#9 0x559889dcde50 <unknown>
+#10 0x559889dec30d <unknown>
+#11 0x559889e86ebb <unknown>
+#12 0x559889e8623b <unknown>
+#13 0x559889e2fadf <unknown>
+#14 0x559889e308a1 <unknown>
+#15 0x55988a399119 <unknown>
+#16 0x55988a39c021 <unknown>
+#17 0x55988a386069 <unknown>
+#18 0x55988a39cbde <unknown>
+#19 0x55988a36c4f0 <unknown>
+#20 0x55988a3c0aa8 <unknown>
+#21 0x55988a3c0c78 <unknown>
+#22 0x55988a3d2563 <unknown>
+#23 0x148a4a7761ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x565522e7df1a <unknown>
+#1 0x565522892922 <unknown>
+#2 0x5655228896aa <unknown>
+#3 0x56552287a351 <unknown>
+#4 0x56552287c14c <unknown>
+#5 0x56552287a849 <unknown>
+#6 0x565522879f35 <unknown>
+#7 0x565522879ae6 <unknown>
+#8 0x56552287760b <unknown>
+#9 0x565522877e50 <unknown>
+#10 0x56552289630d <unknown>
+#11 0x565522930ebb <unknown>
+#12 0x56552293023b <unknown>
+#13 0x5655228d9adf <unknown>
+#14 0x5655228da8a1 <unknown>
+#15 0x565522e43119 <unknown>
+#16 0x565522e46021 <unknown>
+#17 0x565522e30069 <unknown>
+#18 0x565522e46bde <unknown>
+#19 0x565522e164f0 <unknown>
+#20 0x565522e6aaa8 <unknown>
+#21 0x565522e6ac78 <unknown>
+#22 0x565522e7c563 <unknown>
+#23 0x154e6907e1ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x5600a4a07f1a <unknown>
+#1 0x5600a441c922 <unknown>
+#2 0x5600a44136aa <unknown>
+#3 0x5600a4404351 <unknown>
+#4 0x5600a440614c <unknown>
+#5 0x5600a4404849 <unknown>
+#6 0x5600a4403f35 <unknown>
+#7 0x5600a4403ae6 <unknown>
+#8 0x5600a440160b <unknown>
+#9 0x5600a4401e50 <unknown>
+#10 0x5600a442030d <unknown>
+#11 0x5600a44baebb <unknown>
+#12 0x5600a44ba23b <unknown>
+#13 0x5600a4463adf <unknown>
+#14 0x5600a44648a1 <unknown>
+#15 0x5600a49cd119 <unknown>
+#16 0x5600a49d0021 <unknown>
+#17 0x5600a49ba069 <unknown>
+#18 0x5600a49d0bde <unknown>
+#19 0x5600a49a04f0 <unknown>
+#20 0x5600a49f4aa8 <unknown>
+#21 0x5600a49f4c78 <unknown>
+#22 0x5600a4a06563 <unknown>
+#23 0x14e95fdd81ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x55a24fb39f1a <unknown>
+#1 0x55a24f54e922 <unknown>
+#2 0x55a24f5456aa <unknown>
+#3 0x55a24f536351 <unknown>
+#4 0x55a24f53814c <unknown>
+#5 0x55a24f536849 <unknown>
+#6 0x55a24f535f35 <unknown>
+#7 0x55a24f535ae6 <unknown>
+#8 0x55a24f53360b <unknown>
+#9 0x55a24f533e50 <unknown>
+#10 0x55a24f55230d <unknown>
+#11 0x55a24f5ecebb <unknown>
+#12 0x55a24f5ec23b <unknown>
+#13 0x55a24f595adf <unknown>
+#14 0x55a24f5968a1 <unknown>
+#15 0x55a24faff119 <unknown>
+#16 0x55a24fb02021 <unknown>
+#17 0x55a24faec069 <unknown>
+#18 0x55a24fb02bde <unknown>
+#19 0x55a24fad24f0 <unknown>
+#20 0x55a24fb26aa8 <unknown>
+#21 0x55a24fb26c78 <unknown>
+#22 0x55a24fb38563 <unknown>
+#23 0x147a397f61ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x564356206f1a <unknown>
+#1 0x564355c1b922 <unknown>
+#2 0x564355c126aa <unknown>
+#3 0x564355c03351 <unknown>
+#4 0x564355c0514c <unknown>
+#5 0x564355c03849 <unknown>
+#6 0x564355c02f35 <unknown>
+#7 0x564355c02ae6 <unknown>
+#8 0x564355c0060b <unknown>
+#9 0x564355c00e50 <unknown>
+#10 0x564355c1f30d <unknown>
+#11 0x564355cb9ebb <unknown>
+#12 0x564355cb923b <unknown>
+#13 0x564355c62adf <unknown>
+#14 0x564355c638a1 <unknown>
+#15 0x5643561cc119 <unknown>
+#16 0x5643561cf021 <unknown>
+#17 0x5643561b9069 <unknown>
+#18 0x5643561cfbde <unknown>
+#19 0x56435619f4f0 <unknown>
+#20 0x5643561f3aa8 <unknown>
+#21 0x5643561f3c78 <unknown>
+#22 0x564356205563 <unknown>
+#23 0x14b42b36e1ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x563e810edf1a <unknown>
+#1 0x563e80b02922 <unknown>
+#2 0x563e80af96aa <unknown>
+#3 0x563e80aea351 <unknown>
+#4 0x563e80aec14c <unknown>
+#5 0x563e80aea849 <unknown>
+#6 0x563e80ae9f35 <unknown>
+#7 0x563e80ae9ae6 <unknown>
+#8 0x563e80ae760b <unknown>
+#9 0x563e80ae7e50 <unknown>
+#10 0x563e80b0630d <unknown>
+#11 0x563e80ba0ebb <unknown>
+#12 0x563e80ba023b <unknown>
+#13 0x563e80b49adf <unknown>
+#14 0x563e80b4a8a1 <unknown>
+#15 0x563e810b3119 <unknown>
+#16 0x563e810b6021 <unknown>
+#17 0x563e810a0069 <unknown>
+#18 0x563e810b6bde <unknown>
+#19 0x563e810864f0 <unknown>
+#20 0x563e810daaa8 <unknown>
+#21 0x563e810dac78 <unknown>
+#22 0x563e810ec563 <unknown>
+#23 0x14fa6e7501ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 19, in main
+    driver.get("http://localhost:8000")
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 452, in get
+    self.execute(Command.GET, {"url": url})
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=145.0.7632.26)
+Stacktrace:
+#0 0x563291eb5f1a <unknown>
+#1 0x5632918ca922 <unknown>
+#2 0x5632918c16aa <unknown>
+#3 0x5632918b2351 <unknown>
+#4 0x5632918b414c <unknown>
+#5 0x5632918b2849 <unknown>
+#6 0x5632918b1f35 <unknown>
+#7 0x5632918b1ae6 <unknown>
+#8 0x5632918af60b <unknown>
+#9 0x5632918afe50 <unknown>
+#10 0x5632918ce30d <unknown>
+#11 0x563291968ebb <unknown>
+#12 0x56329196823b <unknown>
+#13 0x563291911adf <unknown>
+#14 0x5632919128a1 <unknown>
+#15 0x563291e7b119 <unknown>
+#16 0x563291e7e021 <unknown>
+#17 0x563291e68069 <unknown>
+#18 0x563291e7ebde <unknown>
+#19 0x563291e4e4f0 <unknown>
+#20 0x563291ea2aa8 <unknown>
+#21 0x563291ea2c78 <unknown>
+#22 0x563291eb4563 <unknown>
+#23 0x151acd8c01ca start_thread
+
