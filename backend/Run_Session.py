@@ -134,6 +134,36 @@ def _worker_train_entry(
 
         notify({"run_id": run_id, "type": "milestone", "stage": "imported_autogluon"})
 
+        def _normalize_drop_columns(raw: Any) -> list[str]:
+            if raw is None:
+                return []
+            if isinstance(raw, str):
+                raw = [part.strip() for part in raw.split(",")]
+            if not isinstance(raw, list):
+                return []
+            return [str(item).strip() for item in raw if str(item).strip()]
+
+        def _apply_drop_columns(
+            df: Any,
+            drop_columns: list[str],
+            label_col: str,
+            data_type: str,
+            id_col: Optional[str],
+            time_col: Optional[str],
+        ) -> Any:
+            if not drop_columns:
+                return df
+            reserved = {label_col}
+            if data_type == "series":
+                if id_col:
+                    reserved.add(id_col)
+                if time_col:
+                    reserved.add(time_col)
+            forbidden = reserved.intersection(drop_columns)
+            if forbidden:
+                raise ValueError(f"Cannot drop required columns: {sorted(forbidden)}")
+            return df.drop(columns=drop_columns, errors="ignore")
+
         label = cfg["label"]
         path = cfg.get("path") or f"./autogluon_runs/{run_id}"
         cfg["path"] = path
@@ -152,6 +182,7 @@ def _worker_train_entry(
         if cfg.get("train_path"):
             train_data = load_table(cfg.get("train_path"))
         tuning_data = cfg.get("tuning_data")
+        drop_columns = _normalize_drop_columns(cfg.get("drop_columns"))
 
         predictor = None
         if data_type == "tabular":
@@ -172,6 +203,24 @@ def _worker_train_entry(
             id_col = cfg.get("id_column", "item_id")
             time_col = cfg.get("time_column", "timestamp")
             freq = cfg.get("freq")  # optional, e.g. "D", "H", "5min"
+
+            train_data = _apply_drop_columns(
+                train_data,
+                drop_columns,
+                label,
+                data_type,
+                id_col,
+                time_col,
+            )
+            if tuning_data is not None:
+                tuning_data = _apply_drop_columns(
+                    tuning_data,
+                    drop_columns,
+                    label,
+                    data_type,
+                    id_col,
+                    time_col,
+                )
 
             # Ensure train_data is a TimeSeriesDataFrame
             if not isinstance(train_data, TimeSeriesDataFrame):
@@ -195,6 +244,24 @@ def _worker_train_entry(
                 path=path,
                 freq=freq,
             )
+        else:
+            train_data = _apply_drop_columns(
+                train_data,
+                drop_columns,
+                label,
+                data_type,
+                None,
+                None,
+            )
+            if tuning_data is not None:
+                tuning_data = _apply_drop_columns(
+                    tuning_data,
+                    drop_columns,
+                    label,
+                    data_type,
+                    None,
+                    None,
+                )
         run_log_path = os.path.join(path, "logs", "predictor_log.txt")
         os.makedirs(os.path.dirname(run_log_path), exist_ok=True)
 
@@ -298,6 +365,18 @@ class JobRunner:
             return False, "cfg.label is required"
         if not (("train_df" in cfg) or ("train_data" in cfg) or ("train_path" in cfg)):
             return False, "Provide training data via cfg.train_df/cfg.train_data/cfg.train_path"
+        drop_columns = cfg.get("drop_columns") or []
+        if isinstance(drop_columns, str):
+            drop_columns = [part.strip() for part in drop_columns.split(",") if part.strip()]
+        if drop_columns:
+            label = cfg.get("label")
+            reserved = {label}
+            if cfg.get("data_type") == "series":
+                reserved.add(cfg.get("id_column", "item_id"))
+                reserved.add(cfg.get("time_column", "timestamp"))
+            forbidden = reserved.intersection(drop_columns)
+            if forbidden:
+                return False, f"Cannot drop required columns: {sorted(forbidden)}"
         return True, None
 
     def _forward_worker_events(self) -> None:

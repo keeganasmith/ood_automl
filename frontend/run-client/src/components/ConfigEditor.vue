@@ -91,6 +91,15 @@
                     </n-form-item>
                   </n-gi>
 
+                  <n-gi>
+                    <n-form-item label="drop_columns (comma-separated)">
+                      <n-input
+                        v-model:value="form.dropColumnsText"
+                        placeholder="e.g., PassengerId, Cabin"
+                      />
+                    </n-form-item>
+                  </n-gi>
+
                   <!-- Time series–specific fields -->
                   <n-gi v-if="isSeries">
                     <n-form-item label="prediction_length" :rule="{ required: true, message: 'Required for series' }">
@@ -222,6 +231,7 @@ const form = reactive({
   tuningDataText: '',
   data_type: 'tabular',
   enable_gpu: false,
+  dropColumnsText: '',
 
   // time series only
   prediction_length: null,
@@ -291,6 +301,13 @@ function buildCfgFromForm () {
   if (f.problem_type) cfg.problem_type = f.problem_type
   cfg.enable_gpu = !!f.enable_gpu
   if (!f.enable_gpu) cfg.num_gpus = 0
+  if (f.dropColumnsText && f.dropColumnsText.trim()) {
+    const cols = f.dropColumnsText
+      .split(',')
+      .map((col) => col.trim())
+      .filter(Boolean)
+    if (cols.length) cfg.drop_columns = cols
+  }
 
   const hp = safeParse(f.hyperparametersText)
   if (hp.ok && hp.value !== undefined) cfg.hyperparameters = hp.value
