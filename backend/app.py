@@ -1,24 +1,31 @@
 from __future__ import annotations
 from typing import Any, Awaitable, Callable, Dict, Iterable, List, Optional, Tuple, Union, Literal
+print("imported typing things")
 import os
 from pathlib import Path
 from fastapi import FastAPI, WebSocket, APIRouter, HTTPException,  WebSocketDisconnect, Request
 from fastapi.responses import JSONResponse
 from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
+
+print("imported fastapi things")
 # Import your sessions + runner
 from Modify_Session import ModifyDatasetSession
+print("imported modify session")
 from Run_Session import JobRunner, RunControlSession, HISTORIC_JOBS_FILE
+print("imported run session and whatnot")
 import pickle
 import asyncio
 import anyio
 import pandas as pd
 from autogluon.tabular import TabularPredictor
 from autogluon.multimodal import MultiModalPredictor
-
+print("imported autogluon things")
 from tensorboard import program
+print("imported tensorboard")
 import json
 import shutil
+
 """
 def _setup_log_to_file(self, log_file_path: str):
         if log_file_path == "auto":
@@ -29,6 +36,7 @@ def _setup_log_to_file(self, log_file_path: str):
 """
 
 from pydantic import BaseModel, Field
+print("finished importing everything")
 def _expand(p: str) -> str:
     return os.path.abspath(os.path.expanduser(p))
 

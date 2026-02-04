@@ -13,7 +13,7 @@ def main() -> None:
     end_time = time.perf_counter()
 
     elapsed = end_time - start_time
-    print(f"SCRIPT_TRAIN_TIME_SECONDS={elapsed}")
+    print(f"SCRIPT_TRAIN_TIME_SECONDS={elapsed}", flush=True)
 
 
 if __name__ == "__main__":

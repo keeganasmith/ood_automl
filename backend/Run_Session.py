@@ -1,30 +1,46 @@
 from __future__ import annotations
+print("RUN session importing now")
 import copy
+print("importing typing stuff")
 from typing import Any, Dict, Awaitable, Callable, Optional, List
+print("importing fastapi stuff")
 from fastapi import WebSocket, WebSocketDisconnect
+print("importing async stuff")
 import asyncio
 import json
 import uuid
 import logging
 import threading
 import contextlib
+print("importing from helper")
 from helper import load_table
 from contextlib import redirect_stdout, redirect_stderr
+print("importing from autogluon parser")
 from autogluon_log_parser import parse_autogluon_log
 import sys
 import time
+print("importing base session")
 from Base_Session import BaseSession
 import os
 import pickle
+print("importing autgluon tabular")
 from autogluon.tabular import TabularPredictor
+print("importing autogluon multimodal")
 from autogluon.multimodal import MultiModalPredictor
+print("importing autogluon timeseries")
 from autogluon.timeseries import TimeSeriesDataFrame, TimeSeriesPredictor
-import torch
+print("importing add_log_to_file")
 from autogluon.common.utils.log_utils import add_log_to_file
-import traceback
+print("importing resource manager")
 from autogluon.common.utils.resource_utils import ResourceManager
+print("importing torch")
+import torch
+print("importing traceback")
+import traceback
 from datetime import datetime
+print("importing mp")
 import multiprocessing as mp
+print("RUN session finished importing")
 NUM_GPUS = 0
 if torch.cuda.is_available():
     NUM_GPUS = torch.cuda.device_count()

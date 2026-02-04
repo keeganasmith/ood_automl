@@ -1,0 +1,595 @@
+INFO:     Started server process [2583960]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+imported typing things
+imported fastapi things
+imported modify session
+RUN session importing now
+importing typing stuff
+importing fastapi stuff
+importing async stuff
+importing from helper
+importing from autogluon parser
+importing base session
+importing autgluon tabular
+importing autogluon multimodal
+importing autogluon timeseries
+importing add_log_to_file
+importing resource manager
+importing torch
+importing traceback
+importing mp
+RUN session finished importing
+num_gpus:  0
+/home/u.ks124812/.ood_automl
+imported run session and whatnot
+imported autogluon things
+imported tensorboard
+finished importing everything
+INFO:     127.0.0.1:50196 - "GET /healthz HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59278 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59288 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59292 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59292 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59298 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770159150.9797165
+INFO:     connection open
+Verbosity: 2 (Standard Logging)
+=================== System Info ===================
+AutoGluon Version:  1.4.0
+Python Version:     3.10.8
+Operating System:   Linux
+Platform Machine:   x86_64
+Platform Version:   #1 SMP Sat Nov 29 00:49:18 EST 2025
+CPU Count:          192
+Memory Avail:       368.95 GB / 376.91 GB (97.9%)
+Disk Space Avail:   144.07 GB / 5120.00 GB (2.8%)
+===================================================
+Presets specified: ['medium_quality']
+Using hyperparameters preset: hyperparameters='default'
+Beginning AutoGluon training ...
+AutoGluon will save models to "/ccstar/scratch/user/u.ks124812/ood_automl/autogluon_runs/696868d80e0e420bb73e1aeb985edc0e"
+Train Data Rows:    48842
+Train Data Columns: 14
+Label Column:       target
+AutoGluon infers your prediction problem is: 'binary' (because only two unique label-values observed).
+	2 unique label values:  [np.int64(1), np.int64(0)]
+	If 'binary' is not the correct problem_type, please manually specify the problem_type parameter during Predictor init (You may specify problem_type as one of: ['binary', 'multiclass', 'regression', 'quantile'])
+Problem Type:       binary
+Preprocessing data ...
+Selected class <--> label mapping:  class 1 = 1, class 0 = 0
+Using Feature Generators to preprocess the data ...
+Fitting AutoMLPipelineFeatureGenerator...
+	Available Memory:                    377788.70 MB
+	Train Data (Original)  Memory Usage: 5.22 MB (0.0% of available memory)
+	Inferring data type of each feature based on column values. Set feature_metadata_in to manually specify special dtypes of the features.
+	Stage 1 Generators:
+		Fitting AsTypeFeatureGenerator...
+			Note: Converting 1 features to boolean dtype as they only contain 2 unique values.
+	Stage 2 Generators:
+		Fitting FillNaFeatureGenerator...
+	Stage 3 Generators:
+		Fitting IdentityFeatureGenerator...
+	Stage 4 Generators:
+		Fitting DropUniqueFeatureGenerator...
+	Stage 5 Generators:
+		Fitting DropDuplicatesFeatureGenerator...
+	Types of features in original data (raw dtype, special dtypes):
+		('float', []) : 6 | ['age', 'fnlwgt', 'education-num', 'capital-gain', 'capital-loss', ...]
+		('int', [])   : 8 | ['workclass', 'education', 'marital-status', 'occupation', 'relationship', ...]
+	Types of features in processed data (raw dtype, special dtypes):
+		('float', [])     : 6 | ['age', 'fnlwgt', 'education-num', 'capital-gain', 'capital-loss', ...]
+		('int', [])       : 7 | ['workclass', 'education', 'marital-status', 'occupation', 'relationship', ...]
+		('int', ['bool']) : 1 | ['sex']
+	0.1s = Fit runtime
+	14 features in original data used to generate 14 features in processed data.
+	Train Data (Processed) Memory Usage: 4.89 MB (0.0% of available memory)
+Data preprocessing and feature engineering runtime = 0.18s ...
+AutoGluon will gauge predictive performance using evaluation metric: 'accuracy'
+	To change this, specify the eval_metric parameter of Predictor()
+Automatically generating train/validation split with holdout_frac=0.051185455141067114, Train Rows: 46342, Val Rows: 2500
+User-specified model hyperparameters to be fit:
+{
+	'NN_TORCH': [{}],
+	'GBM': [{'extra_trees': True, 'ag_args': {'name_suffix': 'XT'}}, {}, {'learning_rate': 0.03, 'num_leaves': 128, 'feature_fraction': 0.9, 'min_data_in_leaf': 3, 'ag_args': {'name_suffix': 'Large', 'priority': 0, 'hyperparameter_tune_kwargs': None}}],
+	'CAT': [{}],
+	'XGB': [{}],
+	'FASTAI': [{}],
+	'RF': [{'criterion': 'gini', 'ag_args': {'name_suffix': 'Gini', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'entropy', 'ag_args': {'name_suffix': 'Entr', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'squared_error', 'ag_args': {'name_suffix': 'MSE', 'problem_types': ['regression', 'quantile']}}],
+	'XT': [{'criterion': 'gini', 'ag_args': {'name_suffix': 'Gini', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'entropy', 'ag_args': {'name_suffix': 'Entr', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'squared_error', 'ag_args': {'name_suffix': 'MSE', 'problem_types': ['regression', 'quantile']}}],
+}
+Fitting 11 L1 models, fit_strategy="sequential" ...
+Fitting model: LightGBMXT ...
+	Fitting with cpus=192, gpus=0, mem=0.0/368.9 GB
+INFO:     connection closed
+INFO:     127.0.0.1:42128 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42136 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42142 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42142 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42146 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770159753.7578251
+INFO:     connection open
+	0.8688	 = Validation score   (accuracy)
+	941.24s	 = Training   runtime
+	0.07s	 = Validation runtime
+Fitting model: LightGBM ...
+	Fitting with cpus=192, gpus=0, mem=0.0/368.8 GB
+INFO:     connection closed
+INFO:     127.0.0.1:32960 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32966 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32960 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32960 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32970 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770160355.5265954
+INFO:     connection open
+	0.8728	 = Validation score   (accuracy)
+	446.02s	 = Training   runtime
+	0.04s	 = Validation runtime
+Fitting model: RandomForestGini ...
+	Fitting with cpus=192, gpus=0, mem=0.0/368.8 GB
+	0.8632	 = Validation score   (accuracy)
+	1.42s	 = Training   runtime
+	0.08s	 = Validation runtime
+Fitting model: RandomForestEntr ...
+	Fitting with cpus=192, gpus=0, mem=0.0/367.9 GB
+	0.8648	 = Validation score   (accuracy)
+	0.63s	 = Training   runtime
+	0.08s	 = Validation runtime
+Fitting model: CatBoost ...
+	Fitting with cpus=192, gpus=0
+	0.8756	 = Validation score   (accuracy)
+	4.95s	 = Training   runtime
+	0.01s	 = Validation runtime
+Fitting model: ExtraTreesGini ...
+	Fitting with cpus=192, gpus=0, mem=0.0/366.0 GB
+	0.858	 = Validation score   (accuracy)
+	0.65s	 = Training   runtime
+	0.08s	 = Validation runtime
+Fitting model: ExtraTreesEntr ...
+	Fitting with cpus=192, gpus=0, mem=0.0/365.4 GB
+	0.8552	 = Validation score   (accuracy)
+	0.6s	 = Training   runtime
+	0.08s	 = Validation runtime
+Fitting model: NeuralNetFastAI ...
+	Fitting with cpus=192, gpus=0, mem=0.0/365.2 GB
+INFO:     connection closed
+INFO:     127.0.0.1:46284 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46290 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46284 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46284 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46304 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770160957.4178102
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:37938 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37938 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37950 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37938 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37964 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770161560.5417588
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:41766 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41766 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41772 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41772 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41780 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770162163.6418705
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:44740 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44740 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44754 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44754 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44762 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770162766.981065
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:55816 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55816 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55820 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55820 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55830 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770163370.149444
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:58104 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58104 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58108 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58104 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58124 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770163972.7146811
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:33834 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33834 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33842 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33844 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33854 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770164575.754553
+INFO:     connection open
+	0.8528	 = Validation score   (accuracy)
+	4052.94s	 = Training   runtime
+	1.36s	 = Validation runtime
+Fitting model: XGBoost ...
+	Fitting with cpus=192, gpus=0
+	0.8752	 = Validation score   (accuracy)
+	82.41s	 = Training   runtime
+	0.03s	 = Validation runtime
+Fitting model: NeuralNetTorch ...
+	Fitting with cpus=192, gpus=0, mem=0.0/365.1 GB
+/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/sklearn/compose/_column_transformer.py:975: FutureWarning: The parameter `force_int_remainder_cols` is deprecated and will be removed in 1.9. It has no effect. Leave it to its default value to avoid this warning.
+  warnings.warn(
+INFO:     connection closed
+INFO:     127.0.0.1:49234 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49240 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49234 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49234 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49246 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770165179.5012374
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:54912 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54912 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54926 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54926 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54930 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770165782.3317735
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:44854 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44870 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44854 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44854 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44876 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770166385.7794824
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:57158 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57168 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57158 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57158 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57172 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770166988.3890188
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:37676 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37692 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37676 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37676 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37696 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770167591.1188462
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:56468 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56468 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56476 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56468 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56492 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770168193.4446182
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:48844 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48844 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48852 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48844 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48866 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770168795.7222989
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:39746 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39746 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39756 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39746 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39762 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770169398.0236359
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:43218 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43218 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43220 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43218 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43236 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770170001.7806008
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:52732 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52732 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52740 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52732 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52752 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770170604.5618198
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:34100 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34112 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34100 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34100 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34124 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770171206.928597
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:37440 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37440 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37456 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37456 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37468 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770171809.918743
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:53908 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53908 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53920 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53920 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53924 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770172413.5846848
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:35864 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35864 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35872 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35872 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55678 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770173016.1509085
+INFO:     connection open
+	0.8512	 = Validation score   (accuracy)
+	8503.39s	 = Training   runtime
+	0.92s	 = Validation runtime
+Fitting model: LightGBMLarge ...
+	Fitting with cpus=192, gpus=0, mem=0.0/365.1 GB
+INFO:     connection closed
+INFO:     127.0.0.1:54872 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54872 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54884 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54872 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54888 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770173618.7305388
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:36194 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36194 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36198 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36194 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36206 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770174221.0502117
+INFO:     connection open
+	0.8744	 = Validation score   (accuracy)
+	1128.97s	 = Training   runtime
+	0.03s	 = Validation runtime
+Fitting model: WeightedEnsemble_L2 ...
+	Ensemble Weights: {'CatBoost': 1.0}
+	0.8756	 = Validation score   (accuracy)
+	0.08s	 = Training   runtime
+	0.0s	 = Validation runtime
+AutoGluon training complete, total runtime = 15168.71s ... Best model: WeightedEnsemble_L2 | Estimated inference throughput: 325250.8 rows/s (2500 batch size)
+Disabling decision threshold calibration for metric `accuracy` due to having fewer than 10000 rows of validation data for calibration, to avoid overfitting (2500 rows).
+	`accuracy` is generally not improved through threshold calibration. Force calibration via specifying `calibrate_decision_threshold=True`.
+TabularPredictor saved. To load, use: predictor = TabularPredictor.load("/ccstar/scratch/user/u.ks124812/ood_automl/autogluon_runs/696868d80e0e420bb73e1aeb985edc0e")
+INFO:     connection closed
+INFO:     127.0.0.1:36638 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36642 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36638 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36638 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36650 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770174822.424356
+INFO:     connection open
+Verbosity: 2 (Standard Logging)
+=================== System Info ===================
+AutoGluon Version:  1.4.0
+Python Version:     3.10.8
+Operating System:   Linux
+Platform Machine:   x86_64
+Platform Version:   #1 SMP Sat Nov 29 00:49:18 EST 2025
+CPU Count:          192
+Memory Avail:       369.02 GB / 376.91 GB (97.9%)
+Disk Space Avail:   1086.19 GB / 5120.00 GB (21.2%)
+===================================================
+Presets specified: ['medium_quality']
+Using hyperparameters preset: hyperparameters='default'
+Beginning AutoGluon training ...
+AutoGluon will save models to "/ccstar/scratch/user/u.ks124812/ood_automl/autogluon_runs/0b0985b52f0342ea97d6a2bde574b24a"
+Train Data Rows:    48842
+Train Data Columns: 14
+Label Column:       target
+AutoGluon infers your prediction problem is: 'binary' (because only two unique label-values observed).
+	2 unique label values:  [np.int64(1), np.int64(0)]
+	If 'binary' is not the correct problem_type, please manually specify the problem_type parameter during Predictor init (You may specify problem_type as one of: ['binary', 'multiclass', 'regression', 'quantile'])
+Problem Type:       binary
+Preprocessing data ...
+Selected class <--> label mapping:  class 1 = 1, class 0 = 0
+Using Feature Generators to preprocess the data ...
+Fitting AutoMLPipelineFeatureGenerator...
+	Available Memory:                    377873.89 MB
+	Train Data (Original)  Memory Usage: 5.22 MB (0.0% of available memory)
+	Inferring data type of each feature based on column values. Set feature_metadata_in to manually specify special dtypes of the features.
+	Stage 1 Generators:
+		Fitting AsTypeFeatureGenerator...
+			Note: Converting 1 features to boolean dtype as they only contain 2 unique values.
+	Stage 2 Generators:
+		Fitting FillNaFeatureGenerator...
+	Stage 3 Generators:
+		Fitting IdentityFeatureGenerator...
+	Stage 4 Generators:
+		Fitting DropUniqueFeatureGenerator...
+	Stage 5 Generators:
+		Fitting DropDuplicatesFeatureGenerator...
+	Types of features in original data (raw dtype, special dtypes):
+		('float', []) : 6 | ['age', 'fnlwgt', 'education-num', 'capital-gain', 'capital-loss', ...]
+		('int', [])   : 8 | ['workclass', 'education', 'marital-status', 'occupation', 'relationship', ...]
+	Types of features in processed data (raw dtype, special dtypes):
+		('float', [])     : 6 | ['age', 'fnlwgt', 'education-num', 'capital-gain', 'capital-loss', ...]
+		('int', [])       : 7 | ['workclass', 'education', 'marital-status', 'occupation', 'relationship', ...]
+		('int', ['bool']) : 1 | ['sex']
+	0.1s = Fit runtime
+	14 features in original data used to generate 14 features in processed data.
+	Train Data (Processed) Memory Usage: 4.89 MB (0.0% of available memory)
+Data preprocessing and feature engineering runtime = 0.1s ...
+AutoGluon will gauge predictive performance using evaluation metric: 'accuracy'
+	To change this, specify the eval_metric parameter of Predictor()
+Automatically generating train/validation split with holdout_frac=0.051185455141067114, Train Rows: 46342, Val Rows: 2500
+User-specified model hyperparameters to be fit:
+{
+	'NN_TORCH': [{}],
+	'GBM': [{'extra_trees': True, 'ag_args': {'name_suffix': 'XT'}}, {}, {'learning_rate': 0.03, 'num_leaves': 128, 'feature_fraction': 0.9, 'min_data_in_leaf': 3, 'ag_args': {'name_suffix': 'Large', 'priority': 0, 'hyperparameter_tune_kwargs': None}}],
+	'CAT': [{}],
+	'XGB': [{}],
+	'FASTAI': [{}],
+	'RF': [{'criterion': 'gini', 'ag_args': {'name_suffix': 'Gini', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'entropy', 'ag_args': {'name_suffix': 'Entr', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'squared_error', 'ag_args': {'name_suffix': 'MSE', 'problem_types': ['regression', 'quantile']}}],
+	'XT': [{'criterion': 'gini', 'ag_args': {'name_suffix': 'Gini', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'entropy', 'ag_args': {'name_suffix': 'Entr', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'squared_error', 'ag_args': {'name_suffix': 'MSE', 'problem_types': ['regression', 'quantile']}}],
+}
+Fitting 11 L1 models, fit_strategy="sequential" ...
+Fitting model: LightGBMXT ...
+	Fitting with cpus=192, gpus=0, mem=0.0/369.0 GB
+INFO:     connection closed
+INFO:     127.0.0.1:45254 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45254 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45264 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45264 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45266 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770175425.892038
+INFO:     connection open
+	0.8688	 = Validation score   (accuracy)
+	988.01s	 = Training   runtime
+	0.08s	 = Validation runtime
+Fitting model: LightGBM ...
+	Fitting with cpus=192, gpus=0, mem=0.0/368.7 GB
+INFO:     connection closed
+INFO:     127.0.0.1:46106 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46106 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46114 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46114 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46122 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770176028.1416624
+INFO:     connection open
+	0.8728	 = Validation score   (accuracy)
+	472.24s	 = Training   runtime
+	0.04s	 = Validation runtime
+Fitting model: RandomForestGini ...
+	Fitting with cpus=192, gpus=0, mem=0.0/368.6 GB
+	0.8632	 = Validation score   (accuracy)
+	0.8s	 = Training   runtime
+	0.08s	 = Validation runtime
+Fitting model: RandomForestEntr ...
+	Fitting with cpus=192, gpus=0, mem=0.0/367.7 GB
+	0.8648	 = Validation score   (accuracy)
+	0.64s	 = Training   runtime
+	0.08s	 = Validation runtime
+Fitting model: CatBoost ...
+	Fitting with cpus=192, gpus=0
+	0.8756	 = Validation score   (accuracy)
+	4.94s	 = Training   runtime
+	0.0s	 = Validation runtime
+Fitting model: ExtraTreesGini ...
+	Fitting with cpus=192, gpus=0, mem=0.0/365.7 GB
+	0.858	 = Validation score   (accuracy)
+	0.63s	 = Training   runtime
+	0.08s	 = Validation runtime
+Fitting model: ExtraTreesEntr ...
+	Fitting with cpus=192, gpus=0, mem=0.0/365.1 GB
+	0.8552	 = Validation score   (accuracy)
+	0.61s	 = Training   runtime
+	0.07s	 = Validation runtime
+Fitting model: NeuralNetFastAI ...
+	Fitting with cpus=192, gpus=0, mem=0.0/364.9 GB
+INFO:     connection closed
+INFO:     127.0.0.1:41328 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41342 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41328 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41328 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41350 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770176631.8061159
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:56124 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56124 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56126 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56124 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56134 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770177234.4534402
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:53822 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53832 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53822 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53822 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53846 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770177836.9804468
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:53530 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53530 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53546 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53530 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53550 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770178439.7533658
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:49426 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49426 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49442 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49426 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49456 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770179042.3481088
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:53460 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53460 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53462 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53460 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53472 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770179644.9169767
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:53572 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53582 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53572 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53572 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53596 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770180247.609167
+INFO:     connection open
+	0.8528	 = Validation score   (accuracy)
+	4294.8s	 = Training   runtime
+	1.1s	 = Validation runtime
+Fitting model: XGBoost ...
+	Fitting with cpus=192, gpus=0
+	0.8752	 = Validation score   (accuracy)
+	85.12s	 = Training   runtime
+	0.05s	 = Validation runtime
+Fitting model: NeuralNetTorch ...
+	Fitting with cpus=192, gpus=0, mem=0.0/364.9 GB
+/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/sklearn/compose/_column_transformer.py:975: FutureWarning: The parameter `force_int_remainder_cols` is deprecated and will be removed in 1.9. It has no effect. Leave it to its default value to avoid this warning.
+  warnings.warn(
+INFO:     connection closed
+INFO:     127.0.0.1:50718 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50734 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50718 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50718 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50750 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770180849.6160297
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:42934 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42940 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42934 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42940 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42956 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770181452.10499
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:35196 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35204 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35196 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35196 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35220 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770182054.896021
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:50908 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50908 - "GET /assets/index-Bi_J3Ww5.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50916 - "GET /assets/index-CDzOVQxN.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50916 - "GET /vite.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50926 - "WebSocket /create_run" [accepted]
+OOD_AUTOML_READY 1770182657.1116843
+INFO:     connection open
+INFO:     connection closed

@@ -45,18 +45,363 @@ curl: (7) Failed to connect to localhost port 8000: Connection refused
 curl: (7) Failed to connect to localhost port 8000: Connection refused
 curl: (7) Failed to connect to localhost port 8000: Connection refused
 curl: (7) Failed to connect to localhost port 8000: Connection refused
-curl: (7) Failed to connect to localhost port 8000: Connection refused
-curl: (7) Failed to connect to localhost port 8000: Connection refused
-curl: (7) Failed to connect to localhost port 8000: Connection refused
-curl: (7) Failed to connect to localhost port 8000: Connection refused
-curl: (7) Failed to connect to localhost port 8000: Connection refused
-curl: (7) Failed to connect to localhost port 8000: Connection refused
-curl: (7) Failed to connect to localhost port 8000: Connection refused
-curl: (7) Failed to connect to localhost port 8000: Connection refused
-curl: (7) Failed to connect to localhost port 8000: Connection refused
-curl: (7) Failed to connect to localhost port 8000: Connection refused
-curl: (7) Failed to connect to localhost port 8000: Connection refused
-curl: (7) Failed to connect to localhost port 8000: Connection refused
-curl: (7) Failed to connect to localhost port 8000: Connection refused
-curl: (7) Failed to connect to localhost port 8000: Connection refused
-ERROR: Server at http://localhost:8000/healthz did not become ready within 300s.
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 61, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 49, in main
+    wait_long.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
