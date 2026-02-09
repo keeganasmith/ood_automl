@@ -44,6 +44,13 @@ def main() -> None:
         )
         multimodal_option.click()
 
+        enable_gpu_checkbox = wait.until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "//label[contains(@class,'n-checkbox')][.//span[normalize-space()='Enable GPU']]")
+            )
+        )
+        enable_gpu_checkbox.click()
+
         start_button = wait.until(EC.element_to_be_clickable((By.ID, "startBtn")))
 
         start_time = time.perf_counter()
