@@ -23,13 +23,14 @@ def main() -> None:
             EC.presence_of_element_located((By.CSS_SELECTOR, "[data-testid='label-input']"))
         )
         label_input.clear()
-        label_input.send_keys("target")
+        label_input.send_keys("label")
 
         train_input = wait.until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "[data-testid='train-path-input']"))
         )
         train_input.clear()
-        train_input.send_keys("./backend/sample_datasets/adult.tsv")
+        train_input.send_keys("/scratch/user/u.ks124812/datasets/human-face-emotions/2/Data/train.csv")
+
 
         start_button = wait.until(EC.element_to_be_clickable((By.ID, "startBtn")))
 
@@ -37,11 +38,10 @@ def main() -> None:
         start_button.click()
         print("clicked start button")
 
-        wait_long = WebDriverWait(driver, 600)
-        def wait_long_condition(driver):
-            
+        wait_long = WebDriverWait(driver, 60000)
+        def wait_long_condition(driver):    
             if("[error]" in driver.find_element(By.ID, "log").text.lower()):
-                print("there was an error retard")
+                print("error: ")
                 print(driver.find_element(By.ID, "log").text)
                 return True
         

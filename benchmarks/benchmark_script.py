@@ -3,13 +3,14 @@ import sys
 
 import pandas as pd
 from autogluon.tabular import TabularPredictor
+from autogluon.multimodal import MultiModalPredictor
 
 
 def main() -> None:
-    train_data = pd.read_csv("./backend/sample_datasets/adult.tsv", sep="\t")
+    train_data = pd.read_csv("/scratch/user/u.ks124812/datasets/human-face-emotions/2/Data/train.csv")
 
     start_time = time.perf_counter()
-    TabularPredictor(label="target").fit(train_data=train_data, presets="medium_quality", num_gpus=0, ag_args_fit={'num_gpus': 0})
+    MultiModalPredictor(label="label").fit(train_data=train_data, presets="medium_quality")
     end_time = time.perf_counter()
 
     elapsed = end_time - start_time
