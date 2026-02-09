@@ -31,6 +31,18 @@ def main() -> None:
         train_input.clear()
         train_input.send_keys("/scratch/user/u.ks124812/datasets/human-face-emotions/2/Data/train.csv")
 
+        data_type_select = wait.until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "//label[normalize-space()='data_type']/following::div[contains(@class,'n-base-selection')][1]")
+            )
+        )
+        data_type_select.click()
+        multimodal_option = wait.until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "//div[contains(@class,'n-base-select-option')][.//div[normalize-space()='multi-modal']]")
+            )
+        )
+        multimodal_option.click()
 
         start_button = wait.until(EC.element_to_be_clickable((By.ID, "startBtn")))
 
