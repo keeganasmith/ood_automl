@@ -1,10 +1,10 @@
 #!/bin/bash
 #SBATCH --job-name=benchmark_ood_automl
-#SBATCH --time=24:0:00 --mem=300G
+#SBATCH --time=24:0:00 --mem=371G
 #SBATCH --ntasks=1 --nodes=1 --cpus-per-task=192
 #SBATCH --output=out --error=error
-#SBATCH --partition=cpu 
-#SBATCH --exclusive
+#SBATCH --gres=gpu:a30:1
+#SBATCH --partition=gpu 
 
 
 module purge
