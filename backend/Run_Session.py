@@ -419,7 +419,8 @@ class JobRunner:
         self._q = asyncio.Queue()
 
         # compute and store log path for your existing log_stream
-        path = cfg.get("path") or f"./autogluon_runs/{run_id}"
+        path = cfg.get("path") or f"$SCRATCH/autogluon_runs/{run_id}"
+        path = os.path.expandvars(path)
         self._path = path
         self._run_log_path = os.path.join(path, "logs", "predictor_log.txt")
 
