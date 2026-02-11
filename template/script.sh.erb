@@ -17,7 +17,7 @@ cd "${SCRATCH}"
 #source /etc/profile.d/hprc_profile.sh
 module purge
 module load WebProxy
-export CODE_PATH="${SCRATCH}/ood_automl"
+export CODE_PATH="/sw/hprc/sw/ood_automl"
 source "${CODE_PATH}/modules.sh"
 source "${CODE_PATH}/backend/venv/bin/activate"
 module list
@@ -36,7 +36,6 @@ python3 -m uvicorn app:app \
   --host 0.0.0.0 \
   --port "${port}" \
   #--root-path "${BASE_PATH}" \
-  --forwarded-allow-ips="*" \
   --timeout-keep-alive 3600 \
   > server.log 2>&1 &
 wait
