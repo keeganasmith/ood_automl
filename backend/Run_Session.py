@@ -1,46 +1,30 @@
 from __future__ import annotations
-print("RUN session importing now")
 import copy
-print("importing typing stuff")
 from typing import Any, Dict, Awaitable, Callable, Optional, List
-print("importing fastapi stuff")
 from fastapi import WebSocket, WebSocketDisconnect
-print("importing async stuff")
 import asyncio
 import json
 import uuid
 import logging
 import threading
 import contextlib
-print("importing from helper")
 from helper import load_table
 from contextlib import redirect_stdout, redirect_stderr
-print("importing from autogluon parser")
 from autogluon_log_parser import parse_autogluon_log
 import sys
 import time
-print("importing base session")
 from Base_Session import BaseSession
 import os
 import pickle
-print("importing autgluon tabular")
 from autogluon.tabular import TabularPredictor
-print("importing autogluon multimodal")
 from autogluon.multimodal import MultiModalPredictor
-print("importing autogluon timeseries")
 from autogluon.timeseries import TimeSeriesDataFrame, TimeSeriesPredictor
-print("importing add_log_to_file")
 from autogluon.common.utils.log_utils import add_log_to_file
-print("importing resource manager")
 from autogluon.common.utils.resource_utils import ResourceManager
-print("importing torch")
 import torch
-print("importing traceback")
 import traceback
 from datetime import datetime
-print("importing mp")
 import multiprocessing as mp
-print("RUN session finished importing")
 NUM_GPUS = 0
 if torch.cuda.is_available():
     NUM_GPUS = torch.cuda.device_count()
@@ -165,7 +149,8 @@ def _worker_train_entry(
             return df.drop(columns=drop_columns, errors="ignore")
 
         label = cfg["label"]
-        path = cfg.get("path") or f"./autogluon_runs/{run_id}"
+        path = cfg.get("path") or f"$SCRATCH/autogluon_runs/{run_id}"
+        path = os.path.expandvars(path)
         cfg["path"] = path
         presets = cfg.get("presets", "medium_quality")
         time_limit = cfg.get("time_limit")  # seconds
@@ -434,7 +419,8 @@ class JobRunner:
         self._q = asyncio.Queue()
 
         # compute and store log path for your existing log_stream
-        path = cfg.get("path") or f"./autogluon_runs/{run_id}"
+        path = cfg.get("path") or f"$SCRATCH/autogluon_runs/{run_id}"
+        path = os.path.expandvars(path)
         self._path = path
         self._run_log_path = os.path.join(path, "logs", "predictor_log.txt")
 
