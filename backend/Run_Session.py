@@ -149,7 +149,8 @@ def _worker_train_entry(
             return df.drop(columns=drop_columns, errors="ignore")
 
         label = cfg["label"]
-        path = cfg.get("path") or f"./autogluon_runs/{run_id}"
+        path = cfg.get("path") or f"$SCRATCH/autogluon_runs/{run_id}"
+        path = os.path.expandvars(path)
         cfg["path"] = path
         presets = cfg.get("presets", "medium_quality")
         time_limit = cfg.get("time_limit")  # seconds
