@@ -100,6 +100,37 @@ async def get_historic_jobs():
       job_id_mapping = pickle.load(my_file)
     return JSONResponse({"ok": True, "job_ids": list(job_id_mapping.keys()), "jobs": json.loads(json.dumps(job_id_mapping, indent=4, sort_keys=True, default=str))})
 
+
+@app.get(BASE_URL + "/server_files")
+async def list_server_files(path: str = "~"):
+    """List files from the backend server for UI-side path picking."""
+    requested_path = os.path.abspath(os.path.expanduser(path))
+    if not os.path.exists(requested_path):
+        raise HTTPException(status_code=404, detail=f"Path not found: {requested_path}")
+    if os.path.isfile(requested_path):
+        requested_path = os.path.dirname(requested_path) or "/"
+    if not os.path.isdir(requested_path):
+        raise HTTPException(status_code=400, detail=f"Path is not a directory: {requested_path}")
+
+    try:
+        entries = []
+        for item in sorted(os.scandir(requested_path), key=lambda entry: (not entry.is_dir(), entry.name.lower())):
+            entries.append({
+                "name": item.name,
+                "path": item.path,
+                "is_dir": item.is_dir(),
+            })
+    except PermissionError as exc:
+        raise HTTPException(status_code=403, detail=f"Permission denied: {requested_path}") from exc
+
+    parent = os.path.dirname(requested_path) if requested_path != "/" else "/"
+    return JSONResponse({
+        "ok": True,
+        "path": requested_path,
+        "parent": parent,
+        "entries": entries,
+    })
+
 def _get_job(job_id: str):
     with open(HISTORIC_JOBS_FILE, "rb") as my_file:
       job_id_mapping = pickle.load(my_file)

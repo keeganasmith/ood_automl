@@ -23,11 +23,14 @@
 
                   <n-gi>
                     <n-form-item label="train_path" :rule="{ required: true, message: 'Required' }">
-                      <n-input
-                        v-model:value="form.train_path"
-                        placeholder="./sample_datasets/train.csv"
-                        :input-props="{ 'data-testid': 'train-path-input' }"
-                      />
+                      <div class="path-picker-row">
+                        <n-input
+                          v-model:value="form.train_path"
+                          placeholder="./sample_datasets/train.csv"
+                          :input-props="{ 'data-testid': 'train-path-input' }"
+                        />
+                        <n-button secondary @click="openDatasetPicker">Browse server</n-button>
+                      </div>
                     </n-form-item>
                   </n-gi>
 
@@ -200,12 +203,22 @@
           Run ID: <code>{{ currentRunId ?? '(none)' }}</code>
         </n-text>
       </n-space>
+
+
+      <ServerFilePicker
+        :open="pickerOpen"
+        :start-path="pickerStartPath"
+        title="Dataset Picker"
+        @select="selectDataset"
+        @close="closeDatasetPicker"
+      />
     </n-space>
   </n-card>
 </template>
 
 <script setup>
 import { ref, watch, watchEffect, computed, reactive } from 'vue'
+import ServerFilePicker from './ServerFilePicker.vue'
 import {
   NCard, NInput, NButton, NTag, NSpace,
   NCollapse, NCollapseItem,
@@ -272,6 +285,22 @@ const problemTypeOptions = [
   { label: 'regression', value: 'regression' },
 ]
 
+const pickerOpen = ref(false)
+const pickerStartPath = ref('~')
+function openDatasetPicker() {
+  pickerStartPath.value = form.train_path || '~'
+  pickerOpen.value = true
+}
+
+function closeDatasetPicker() {
+  pickerOpen.value = false
+}
+
+function selectDataset(path) {
+  form.train_path = path
+  closeDatasetPicker()
+}
+
 // Helpers
 function safeParse (jsonText) {
   if (!jsonText || !jsonText.trim()) return { ok: true, value: undefined }
@@ -335,3 +364,11 @@ function clickStart(){
   emit('start')
 }
 </script>
+
+
+<style scoped>
+.path-picker-row {
+  display: flex;
+  gap: 8px;
+}
+</style>
