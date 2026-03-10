@@ -22,7 +22,7 @@
             placeholder="/path/to/test.csv (server path)"
             :disabled="loading"
           />
-          <button type="button" class="btn" @click="openPicker('test')" :disabled="loading">Browse server</button>
+          <button type="button" class="btn" @click="openPicker('test')" :disabled="loading">Choose File</button>
         </div>
 
         <div class="row">
@@ -34,7 +34,7 @@
             placeholder="/path/to/preds.csv (server path)"
             :disabled="loading"
           />
-          <button type="button" class="btn" @click="openPicker('output')" :disabled="loading">Browse server</button>
+          <button type="button" class="btn" @click="openPicker('output')" :disabled="loading">Choose File</button>
         </div>
 
         <div class="row">

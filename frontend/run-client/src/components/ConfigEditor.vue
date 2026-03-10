@@ -29,7 +29,7 @@
                           placeholder="./sample_datasets/train.csv"
                           :input-props="{ 'data-testid': 'train-path-input' }"
                         />
-                        <n-button secondary @click="openDatasetPicker">Browse server</n-button>
+                        <n-button secondary @click="openDatasetPicker">Choose File</n-button>
                       </div>
                     </n-form-item>
                   </n-gi>
