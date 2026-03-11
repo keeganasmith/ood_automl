@@ -55,6 +55,29 @@
         <p v-if="ok" class="ok">Success: wrote {{ result?.result?.rows ?? '?' }} rows to {{ result?.output_path }}</p>
       </form>
 
+      <section v-if="previewError" class="card">
+        <p class="error">Preview error: {{ previewError }}</p>
+      </section>
+
+      <section v-if="previewColumns.length" class="card">
+        <h2 class="preview-title">Output preview</h2>
+        <p class="preview-meta">Showing {{ previewRows.length }} row(s) from {{ result?.output_path }}</p>
+        <div class="preview-table-wrap">
+          <table class="preview-table">
+            <thead>
+              <tr>
+                <th v-for="column in previewColumns" :key="column">{{ column }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(row, idx) in previewRows" :key="idx">
+                <td v-for="column in previewColumns" :key="`${idx}-${column}`">{{ row[column] }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
       <ServerFilePicker
         :open="pickerOpen"
         :start-path="pickerStartPath"
@@ -86,6 +109,9 @@
   const result = ref(null)
   const ok = ref(false)
   const inferenceStartMs = ref(null)
+  const previewColumns = ref([])
+  const previewRows = ref([])
+  const previewError = ref('')
 
   const pickerOpen = ref(false)
   const pickerTarget = ref('test')
@@ -141,6 +167,29 @@
     error.value = ''
     ok.value = false
     result.value = null
+    previewColumns.value = []
+    previewRows.value = []
+    previewError.value = ''
+  }
+
+
+
+  async function loadPreview(path) {
+    previewColumns.value = []
+    previewRows.value = []
+    previewError.value = ''
+    try {
+      const query = new URLSearchParams({ path, max_rows: '20' }).toString()
+      const res = await fetch(`${api('file_preview')}?${query}`)
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok || !data.ok) {
+        throw new Error(data?.detail || `HTTP ${res.status}`)
+      }
+      previewColumns.value = Array.isArray(data.columns) ? data.columns : []
+      previewRows.value = Array.isArray(data.rows) ? data.rows : []
+    } catch (e) {
+      previewError.value = e?.message || String(e)
+    }
   }
 
   function logLatency(label, detail = {}) {
@@ -172,6 +221,9 @@
       }
       result.value = data
       ok.value = !!data.ok
+      if (ok.value && data.output_path) {
+        await loadPreview(data.output_path)
+      }
       if (inferenceStartMs.value !== null) {
         logLatency('inference_finished', {
           delta_ms: performance.now() - inferenceStartMs.value,
@@ -207,4 +259,10 @@
   .error { color: #b00020; margin-top: 8px; }
   .ok { color: #0b7a0b; margin-top: 8px; }
   .pre { white-space: pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+  .preview-title { margin: 0 0 8px; }
+  .preview-meta { margin: 0 0 8px; color: #555; }
+  .preview-table-wrap { overflow: auto; }
+  .preview-table { width: 100%; border-collapse: collapse; }
+  .preview-table th, .preview-table td { border: 1px solid #ddd; padding: 6px 8px; text-align: left; white-space: nowrap; }
+  .preview-table th { background: #f4f6f8; }
   </style>
