@@ -7,9 +7,8 @@
         <span style="margin-left:8px">{{ connected ? 'connected' : 'disconnected' }}</span>
       </div>
       <pre ref="logEl" style="height:60vh; overflow:auto; background:#111; color:#ddd; padding:12px; border-radius:6px">{{ log.join('') }}</pre>
-      <button @click="launch_tensorboard">Launch Tensorboard</button>
+      <!-- <button @click="launch_tensorboard">Launch Tensorboard</button> -->
       <span v-if="tb_launched">public url: {{ public_url }}, private_url: {{ private_url }}</span>
-      <span>got here</span>
     </div>
   </template>
   
