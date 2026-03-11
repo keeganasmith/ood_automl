@@ -12,6 +12,15 @@
               <n-form :model="form" label-placement="top" size="small">
                 <n-grid x-gap="12" y-gap="10" cols="1 s:2 m:2 l:3">
                   <n-gi>
+                    <n-form-item label="job_id (optional)">
+                      <n-input
+                        v-model:value="form.job_id"
+                        placeholder="Optional custom job id"
+                      />
+                    </n-form-item>
+                  </n-gi>
+
+                  <n-gi>
                     <n-form-item label="label" :rule="{ required: true, message: 'Required' }">
                       <n-input
                         v-model:value="form.label"
@@ -46,15 +55,7 @@
                     </n-form-item>
                   </n-gi>
 
-                  <n-gi>
-                    <n-form-item label="job_id (optional)">
-                      <n-input
-                        v-model:value="form.job_id"
-                        placeholder="Optional custom job id"
-                      />
-                    </n-form-item>
-                  </n-gi>
-
+                  
                   <n-gi>
                     <n-form-item label="path (output dir)">
                       <n-input v-model:value="form.path" placeholder="./autogluon_runs/{run_id}" />
