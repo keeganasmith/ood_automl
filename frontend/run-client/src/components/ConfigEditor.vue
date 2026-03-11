@@ -47,6 +47,15 @@
                   </n-gi>
 
                   <n-gi>
+                    <n-form-item label="job_id (optional)">
+                      <n-input
+                        v-model:value="form.job_id"
+                        placeholder="Optional custom job id"
+                      />
+                    </n-form-item>
+                  </n-gi>
+
+                  <n-gi>
                     <n-form-item label="path (output dir)">
                       <n-input v-model:value="form.path" placeholder="./autogluon_runs/{run_id}" />
                     </n-form-item>
@@ -236,6 +245,7 @@ const isSeries = ref(false)
 const form = reactive({
   label: '',
   train_path: '',
+  job_id: '',
   path: '',
   presets: 'medium_quality',
   time_limit: null,
@@ -321,6 +331,7 @@ function buildCfgFromForm () {
 
   if (f.label) cfg.label = f.label
   if (f.train_path) cfg.train_path = f.train_path
+  if (f.job_id && f.job_id.trim()) cfg.job_id = f.job_id.trim()
   if (f.path) cfg.path = f.path
   if (f.data_type) cfg.data_type = f.data_type
   if (f.presets ?? '' ) { // treat null as ''

@@ -350,6 +350,18 @@ class JobRunner:
             return False, "cfg.label is required"
         if not (("train_df" in cfg) or ("train_data" in cfg) or ("train_path" in cfg)):
             return False, "Provide training data via cfg.train_df/cfg.train_data/cfg.train_path"
+        job_id = cfg.get("job_id")
+        if job_id is not None:
+            if not isinstance(job_id, str):
+                return False, "cfg.job_id must be a string"
+            job_id = job_id.strip()
+            if not job_id:
+                return False, "cfg.job_id cannot be empty"
+            with open(HISTORIC_JOBS_FILE, "rb") as map_file:
+                current_job_id_mapping = pickle.load(map_file)
+            if job_id in current_job_id_mapping:
+                return False, f"cfg.job_id '{job_id}' already exists"
+            cfg["job_id"] = job_id
         drop_columns = cfg.get("drop_columns") or []
         if isinstance(drop_columns, str):
             drop_columns = [part.strip() for part in drop_columns.split(",") if part.strip()]
@@ -412,7 +424,8 @@ class JobRunner:
         self._result_path = None
         self._last_error = None
 
-        self._run_id = uuid.uuid4().hex
+        requested_job_id = cfg.get("job_id")
+        self._run_id = requested_job_id or uuid.uuid4().hex
         run_id = self._run_id
 
         self._loop = asyncio.get_running_loop()
