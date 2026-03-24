@@ -4,4 +4,295 @@ curl: (7) Failed to connect to localhost port 8000: Connection refused
 curl: (7) Failed to connect to localhost port 8000: Connection refused
 curl: (7) Failed to connect to localhost port 8000: Connection refused
 curl: (7) Failed to connect to localhost port 8000: Connection refused
-[2026-02-09T12:58:59.452] error: *** JOB 289034 ON lc15 CANCELLED AT 2026-02-09T12:58:59 DUE to SIGNAL Terminated ***
+curl: (7) Failed to connect to localhost port 8000: Connection refused
+curl: (7) Failed to connect to localhost port 8000: Connection refused
+curl: (7) Failed to connect to localhost port 8000: Connection refused
+curl: (7) Failed to connect to localhost port 8000: Connection refused
+curl: (7) Failed to connect to localhost port 8000: Connection refused
+curl: (7) Failed to connect to localhost port 8000: Connection refused
+curl: (7) Failed to connect to localhost port 8000: Connection refused
+curl: (7) Failed to connect to localhost port 8000: Connection refused
+curl: (7) Failed to connect to localhost port 8000: Connection refused
+curl: (7) Failed to connect to localhost port 8000: Connection refused
+curl: (7) Failed to connect to localhost port 8000: Connection refused
+curl: (7) Failed to connect to localhost port 8000: Connection refused
+curl: (7) Failed to connect to localhost port 8000: Connection refused
+curl: (7) Failed to connect to localhost port 8000: Connection refused
+curl: (7) Failed to connect to localhost port 8000: Connection refused
+curl: (7) Failed to connect to localhost port 8000: Connection refused
+curl: (7) Failed to connect to localhost port 8000: Connection refused
+curl: (7) Failed to connect to localhost port 8000: Connection refused
+curl: (7) Failed to connect to localhost port 8000: Connection refused
+curl: (7) Failed to connect to localhost port 8000: Connection refused
+curl: (7) Failed to connect to localhost port 8000: Connection refused
+curl: (7) Failed to connect to localhost port 8000: Connection refused
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 80, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 47, in main
+    enable_gpu_checkbox = wait.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+#0 0x561090f36a9a <unknown>
+#1 0x561090947ea5 <unknown>
+#2 0x56109099aa6d <unknown>
+#3 0x56109099acb1 <unknown>
+#4 0x5610909e5a24 <unknown>
+#5 0x5610909e2bc0 <unknown>
+#6 0x56109098e0af <unknown>
+#7 0x56109098ee71 <unknown>
+#8 0x561090efb914 <unknown>
+#9 0x561090efe811 <unknown>
+#10 0x561090ee7f9a <unknown>
+#11 0x561090eff3de <unknown>
+#12 0x561090ecea00 <unknown>
+#13 0x561090f23988 <unknown>
+#14 0x561090f23b58 <unknown>
+#15 0x561090f354de <unknown>
+#16 0x14c8fa45b1ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 80, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 47, in main
+    enable_gpu_checkbox = wait.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+#0 0x564929aa6a9a <unknown>
+#1 0x5649294b7ea5 <unknown>
+#2 0x56492950aa6d <unknown>
+#3 0x56492950acb1 <unknown>
+#4 0x564929555a24 <unknown>
+#5 0x564929552bc0 <unknown>
+#6 0x5649294fe0af <unknown>
+#7 0x5649294fee71 <unknown>
+#8 0x564929a6b914 <unknown>
+#9 0x564929a6e811 <unknown>
+#10 0x564929a57f9a <unknown>
+#11 0x564929a6f3de <unknown>
+#12 0x564929a3ea00 <unknown>
+#13 0x564929a93988 <unknown>
+#14 0x564929a93b58 <unknown>
+#15 0x564929aa54de <unknown>
+#16 0x14640a8611ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 80, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 47, in main
+    enable_gpu_checkbox = wait.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+#0 0x55a708d7ea9a <unknown>
+#1 0x55a70878fea5 <unknown>
+#2 0x55a7087e2a6d <unknown>
+#3 0x55a7087e2cb1 <unknown>
+#4 0x55a70882da24 <unknown>
+#5 0x55a70882abc0 <unknown>
+#6 0x55a7087d60af <unknown>
+#7 0x55a7087d6e71 <unknown>
+#8 0x55a708d43914 <unknown>
+#9 0x55a708d46811 <unknown>
+#10 0x55a708d2ff9a <unknown>
+#11 0x55a708d473de <unknown>
+#12 0x55a708d16a00 <unknown>
+#13 0x55a708d6b988 <unknown>
+#14 0x55a708d6bb58 <unknown>
+#15 0x55a708d7d4de <unknown>
+#16 0x15173bcb51ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 80, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 47, in main
+    enable_gpu_checkbox = wait.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+#0 0x5563d3967a9a <unknown>
+#1 0x5563d3378ea5 <unknown>
+#2 0x5563d33cba6d <unknown>
+#3 0x5563d33cbcb1 <unknown>
+#4 0x5563d3416a24 <unknown>
+#5 0x5563d3413bc0 <unknown>
+#6 0x5563d33bf0af <unknown>
+#7 0x5563d33bfe71 <unknown>
+#8 0x5563d392c914 <unknown>
+#9 0x5563d392f811 <unknown>
+#10 0x5563d3918f9a <unknown>
+#11 0x5563d39303de <unknown>
+#12 0x5563d38ffa00 <unknown>
+#13 0x5563d3954988 <unknown>
+#14 0x5563d3954b58 <unknown>
+#15 0x5563d39664de <unknown>
+#16 0x14f9f4b931ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 80, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 47, in main
+    enable_gpu_checkbox = wait.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+#0 0x55c35aa23a9a <unknown>
+#1 0x55c35a434ea5 <unknown>
+#2 0x55c35a487a6d <unknown>
+#3 0x55c35a487cb1 <unknown>
+#4 0x55c35a4d2a24 <unknown>
+#5 0x55c35a4cfbc0 <unknown>
+#6 0x55c35a47b0af <unknown>
+#7 0x55c35a47be71 <unknown>
+#8 0x55c35a9e8914 <unknown>
+#9 0x55c35a9eb811 <unknown>
+#10 0x55c35a9d4f9a <unknown>
+#11 0x55c35a9ec3de <unknown>
+#12 0x55c35a9bba00 <unknown>
+#13 0x55c35aa10988 <unknown>
+#14 0x55c35aa10b58 <unknown>
+#15 0x55c35aa224de <unknown>
+#16 0x14666f35b1ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 80, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 47, in main
+    enable_gpu_checkbox = wait.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+#0 0x563cb310da9a <unknown>
+#1 0x563cb2b1eea5 <unknown>
+#2 0x563cb2b71a6d <unknown>
+#3 0x563cb2b71cb1 <unknown>
+#4 0x563cb2bbca24 <unknown>
+#5 0x563cb2bb9bc0 <unknown>
+#6 0x563cb2b650af <unknown>
+#7 0x563cb2b65e71 <unknown>
+#8 0x563cb30d2914 <unknown>
+#9 0x563cb30d5811 <unknown>
+#10 0x563cb30bef9a <unknown>
+#11 0x563cb30d63de <unknown>
+#12 0x563cb30a5a00 <unknown>
+#13 0x563cb30fa988 <unknown>
+#14 0x563cb30fab58 <unknown>
+#15 0x563cb310c4de <unknown>
+#16 0x1518e44131ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 80, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 47, in main
+    enable_gpu_checkbox = wait.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+#0 0x55e61bf6ba9a <unknown>
+#1 0x55e61b97cea5 <unknown>
+#2 0x55e61b9cfa6d <unknown>
+#3 0x55e61b9cfcb1 <unknown>
+#4 0x55e61ba1aa24 <unknown>
+#5 0x55e61ba17bc0 <unknown>
+#6 0x55e61b9c30af <unknown>
+#7 0x55e61b9c3e71 <unknown>
+#8 0x55e61bf30914 <unknown>
+#9 0x55e61bf33811 <unknown>
+#10 0x55e61bf1cf9a <unknown>
+#11 0x55e61bf343de <unknown>
+#12 0x55e61bf03a00 <unknown>
+#13 0x55e61bf58988 <unknown>
+#14 0x55e61bf58b58 <unknown>
+#15 0x55e61bf6a4de <unknown>
+#16 0x153aac9601ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 80, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 47, in main
+    enable_gpu_checkbox = wait.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+#0 0x555645fa0a9a <unknown>
+#1 0x5556459b1ea5 <unknown>
+#2 0x555645a04a6d <unknown>
+#3 0x555645a04cb1 <unknown>
+#4 0x555645a4fa24 <unknown>
+#5 0x555645a4cbc0 <unknown>
+#6 0x5556459f80af <unknown>
+#7 0x5556459f8e71 <unknown>
+#8 0x555645f65914 <unknown>
+#9 0x555645f68811 <unknown>
+#10 0x555645f51f9a <unknown>
+#11 0x555645f693de <unknown>
+#12 0x555645f38a00 <unknown>
+#13 0x555645f8d988 <unknown>
+#14 0x555645f8db58 <unknown>
+#15 0x555645f9f4de <unknown>
+#16 0x1499ca8ff1ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 80, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 47, in main
+    enable_gpu_checkbox = wait.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+#0 0x55ef81598a9a <unknown>
+#1 0x55ef80fa9ea5 <unknown>
+#2 0x55ef80ffca6d <unknown>
+#3 0x55ef80ffccb1 <unknown>
+#4 0x55ef81047a24 <unknown>
+#5 0x55ef81044bc0 <unknown>
+#6 0x55ef80ff00af <unknown>
+#7 0x55ef80ff0e71 <unknown>
+#8 0x55ef8155d914 <unknown>
+#9 0x55ef81560811 <unknown>
+#10 0x55ef81549f9a <unknown>
+#11 0x55ef815613de <unknown>
+#12 0x55ef81530a00 <unknown>
+#13 0x55ef81585988 <unknown>
+#14 0x55ef81585b58 <unknown>
+#15 0x55ef815974de <unknown>
+#16 0x14d6182351ca start_thread
+
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 80, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/benchmark_web_ui.py", line 47, in main
+    enable_gpu_checkbox = wait.until(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 121, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+#0 0x561fb7b31a9a <unknown>
+#1 0x561fb7542ea5 <unknown>
+#2 0x561fb7595a6d <unknown>
+#3 0x561fb7595cb1 <unknown>
+#4 0x561fb75e0a24 <unknown>
+#5 0x561fb75ddbc0 <unknown>
+#6 0x561fb75890af <unknown>
+#7 0x561fb7589e71 <unknown>
+#8 0x561fb7af6914 <unknown>
+#9 0x561fb7af9811 <unknown>
+#10 0x561fb7ae2f9a <unknown>
+#11 0x561fb7afa3de <unknown>
+#12 0x561fb7ac9a00 <unknown>
+#13 0x561fb7b1e988 <unknown>
+#14 0x561fb7b1eb58 <unknown>
+#15 0x561fb7b304de <unknown>
+#16 0x14fde138f1ca start_thread
+

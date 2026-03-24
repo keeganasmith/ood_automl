@@ -12,6 +12,15 @@
               <n-form :model="form" label-placement="top" size="small">
                 <n-grid x-gap="12" y-gap="10" cols="1 s:2 m:2 l:3">
                   <n-gi>
+                    <n-form-item label="job_id (optional)">
+                      <n-input
+                        v-model:value="form.job_id"
+                        placeholder="Optional custom job id"
+                      />
+                    </n-form-item>
+                  </n-gi>
+
+                  <n-gi>
                     <n-form-item label="label" :rule="{ required: true, message: 'Required' }">
                       <n-input
                         v-model:value="form.label"
@@ -23,11 +32,14 @@
 
                   <n-gi>
                     <n-form-item label="train_path" :rule="{ required: true, message: 'Required' }">
-                      <n-input
-                        v-model:value="form.train_path"
-                        placeholder="./sample_datasets/train.csv"
-                        :input-props="{ 'data-testid': 'train-path-input' }"
-                      />
+                      <div class="path-picker-row">
+                        <n-input
+                          v-model:value="form.train_path"
+                          placeholder="./sample_datasets/train.csv"
+                          :input-props="{ 'data-testid': 'train-path-input' }"
+                        />
+                        <n-button secondary @click="openDatasetPicker">Choose File</n-button>
+                      </div>
                     </n-form-item>
                   </n-gi>
 
@@ -43,6 +55,7 @@
                     </n-form-item>
                   </n-gi>
 
+                  
                   <n-gi>
                     <n-form-item label="path (output dir)">
                       <n-input v-model:value="form.path" placeholder="./autogluon_runs/{run_id}" />
@@ -200,12 +213,22 @@
           Run ID: <code>{{ currentRunId ?? '(none)' }}</code>
         </n-text>
       </n-space>
+
+
+      <ServerFilePicker
+        :open="pickerOpen"
+        :start-path="pickerStartPath"
+        title="Dataset Picker"
+        @select="selectDataset"
+        @close="closeDatasetPicker"
+      />
     </n-space>
   </n-card>
 </template>
 
 <script setup>
 import { ref, watch, watchEffect, computed, reactive } from 'vue'
+import ServerFilePicker from './ServerFilePicker.vue'
 import {
   NCard, NInput, NButton, NTag, NSpace,
   NCollapse, NCollapseItem,
@@ -223,6 +246,7 @@ const isSeries = ref(false)
 const form = reactive({
   label: '',
   train_path: '',
+  job_id: '',
   path: '',
   presets: 'medium_quality',
   time_limit: null,
@@ -272,6 +296,22 @@ const problemTypeOptions = [
   { label: 'regression', value: 'regression' },
 ]
 
+const pickerOpen = ref(false)
+const pickerStartPath = ref('~')
+function openDatasetPicker() {
+  pickerStartPath.value = form.train_path || '~'
+  pickerOpen.value = true
+}
+
+function closeDatasetPicker() {
+  pickerOpen.value = false
+}
+
+function selectDataset(path) {
+  form.train_path = path
+  closeDatasetPicker()
+}
+
 // Helpers
 function safeParse (jsonText) {
   if (!jsonText || !jsonText.trim()) return { ok: true, value: undefined }
@@ -292,6 +332,7 @@ function buildCfgFromForm () {
 
   if (f.label) cfg.label = f.label
   if (f.train_path) cfg.train_path = f.train_path
+  if (f.job_id && f.job_id.trim()) cfg.job_id = f.job_id.trim()
   if (f.path) cfg.path = f.path
   if (f.data_type) cfg.data_type = f.data_type
   if (f.presets ?? '' ) { // treat null as ''
@@ -335,3 +376,11 @@ function clickStart(){
   emit('start')
 }
 </script>
+
+
+<style scoped>
+.path-picker-row {
+  display: flex;
+  gap: 8px;
+}
+</style>

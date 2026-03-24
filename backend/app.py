@@ -100,6 +100,62 @@ async def get_historic_jobs():
       job_id_mapping = pickle.load(my_file)
     return JSONResponse({"ok": True, "job_ids": list(job_id_mapping.keys()), "jobs": json.loads(json.dumps(job_id_mapping, indent=4, sort_keys=True, default=str))})
 
+
+@app.get(BASE_URL + "/server_files")
+async def list_server_files(path: str = "~"):
+    """List files from the backend server for UI-side path picking."""
+    requested_path = os.path.abspath(os.path.expanduser(path))
+    if not os.path.exists(requested_path):
+        raise HTTPException(status_code=404, detail=f"Path not found: {requested_path}")
+    if os.path.isfile(requested_path):
+        requested_path = os.path.dirname(requested_path) or "/"
+    if not os.path.isdir(requested_path):
+        raise HTTPException(status_code=400, detail=f"Path is not a directory: {requested_path}")
+
+    try:
+        entries = []
+        for item in sorted(os.scandir(requested_path), key=lambda entry: (not entry.is_dir(), entry.name.lower())):
+            entries.append({
+                "name": item.name,
+                "path": item.path,
+                "is_dir": item.is_dir(),
+            })
+    except PermissionError as exc:
+        raise HTTPException(status_code=403, detail=f"Permission denied: {requested_path}") from exc
+
+    parent = os.path.dirname(requested_path) if requested_path != "/" else "/"
+    return JSONResponse({
+        "ok": True,
+        "path": requested_path,
+        "parent": parent,
+        "entries": entries,
+    })
+
+
+@app.get(BASE_URL + "/file_preview")
+async def file_preview(path: str, max_rows: int = 20):
+    """Return a small preview of a tabular file for frontend display."""
+    preview_path = os.path.abspath(os.path.expanduser(path))
+    if not os.path.exists(preview_path):
+        raise HTTPException(status_code=404, detail=f"Path not found: {preview_path}")
+    if not os.path.isfile(preview_path):
+        raise HTTPException(status_code=400, detail=f"Path is not a file: {preview_path}")
+
+    safe_max_rows = max(1, min(max_rows, 200))
+    try:
+        frame = _read_frame(preview_path).head(safe_max_rows)
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"Unable to preview file: {exc}") from exc
+
+    rows = frame.to_dict(orient="records")
+    return JSONResponse({
+        "ok": True,
+        "path": preview_path,
+        "columns": list(frame.columns),
+        "rows": rows,
+        "shown_rows": len(rows),
+    })
+
 def _get_job(job_id: str):
     with open(HISTORIC_JOBS_FILE, "rb") as my_file:
       job_id_mapping = pickle.load(my_file)
