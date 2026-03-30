@@ -108,6 +108,16 @@
                   </n-gi>
 
                   <n-gi>
+                    <n-form-item label="eval_metric">
+                      <n-input
+                        v-model:value="form.eval_metric"
+                        placeholder="e.g., accuracy, roc_auc, rmse"
+                      />
+                      <n-text depth="3">Maps to AutoGluon predictor <code>eval_metric</code>. Leave blank for default inference.</n-text>
+                    </n-form-item>
+                  </n-gi>
+
+                  <n-gi>
                     <n-form-item label="drop_columns (comma-separated)">
                       <n-input
                         v-model:value="form.dropColumnsText"
@@ -254,6 +264,7 @@ const form = reactive({
   presets: 'medium_quality',
   time_limit: null,
   problem_type: '',
+  eval_metric: '',
   hyperparametersText: '',
   tuningDataText: '',
   data_type: 'tabular',
@@ -343,6 +354,7 @@ function buildCfgFromForm () {
   }
   if (Number.isFinite(f.time_limit) && f.time_limit > 0) cfg.time_limit = f.time_limit
   if (f.problem_type) cfg.problem_type = f.problem_type
+  if (f.eval_metric && f.eval_metric.trim()) cfg.eval_metric = f.eval_metric.trim()
   cfg.enable_gpu = !!f.enable_gpu
   if (!f.enable_gpu) cfg.num_gpus = 0
   if (f.dropColumnsText && f.dropColumnsText.trim()) {
