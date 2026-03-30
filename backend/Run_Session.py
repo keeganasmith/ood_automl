@@ -157,6 +157,9 @@ def _worker_train_entry(
         hyperparameters = cfg.get("hyperparameters")
         problem_type = cfg.get("problem_type")
         data_type = cfg.get("data_type")
+        eval_metric = cfg.get("eval_metric")
+        # NOTE: eval_metric compatibility depends on problem_type / data type;
+        # AutoGluon will raise if an invalid metric is provided.
         if cfg.get("num_gpus") == 0 or cfg.get("enable_gpu") is False:
             requested_num_gpus = 0
         else:
@@ -175,12 +178,14 @@ def _worker_train_entry(
                 label=label,
                 path=path,
                 problem_type=problem_type,
+                eval_metric=eval_metric,
             )
         elif data_type == "mm":
             predictor = MultiModalPredictor(
                 label=label,
                 path=path,
                 problem_type=problem_type,
+                eval_metric=eval_metric,
             )
         elif data_type == "series":
             # --- Time series predictor setup ---
@@ -228,6 +233,7 @@ def _worker_train_entry(
                 target=label,
                 path=path,
                 freq=freq,
+                eval_metric=eval_metric,
             )
         else:
             train_data = _apply_drop_columns(
