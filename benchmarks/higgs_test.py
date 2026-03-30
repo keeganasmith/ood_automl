@@ -9,16 +9,14 @@ from autogluon.multimodal import MultiModalPredictor
 
 
 def main() -> None:
-    train_data = pd.read_csv("/scratch/user/u.ks124812/datasets/human-face-emotions/2/Data/train.csv")
+    train_data = pd.read_csv("/scratch/user/u.ks124812/datasets/HIGGS.csv")
 
     start_time = time.perf_counter()
 
-    with open(os.devnull, "w") as fnull:
-        with contextlib.redirect_stdout(fnull), contextlib.redirect_stderr(fnull):
-            MultiModalPredictor(label="label").fit(
-                train_data=train_data,
-                presets="medium_quality"
-            )
+    TabularPredictor(label="label").fit(
+        train_data=train_data,
+        presets="medium_quality"
+    )
 
     end_time = time.perf_counter()
 

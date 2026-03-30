@@ -1,0 +1,1121 @@
+No path specified. Models will be saved in: "AutogluonModels/ag-20260316_201354"
+=================== System Info ===================
+AutoGluon Version:  1.4.0
+Python Version:     3.10.8
+Operating System:   Linux
+Platform Machine:   x86_64
+Platform Version:   #1 SMP Sat Feb 7 00:49:44 EST 2026
+CPU Count:          192
+Pytorch Version:    2.7.1+cu126
+CUDA Version:       12.6
+GPU Count:          1
+Memory Avail:       747.02 GB / 754.91 GB (99.0%)
+Disk Space Avail:   1061.30 GB / 5120.00 GB (20.7%)
+===================================================
+AutoGluon infers your prediction problem is: 'multiclass' (because dtype of label-column == object).
+	5 unique label values:  ['Fear', 'Sad', 'Angry', 'Happy', 'Surprise']
+	If 'multiclass' is not the correct problem_type, please manually specify the problem_type parameter during Predictor init (You may specify problem_type as one of: ['binary', 'multiclass', 'regression', 'quantile'])
+
+AutoMM starts to create your model. ✨✨✨
+
+To track the learning progress, you can open a terminal and launch Tensorboard:
+    ```shell
+    # Assume you have installed tensorboard
+    tensorboard --logdir /ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354
+    ```
+
+[rank: 0] Seed set to 0
+GPU Count: 1
+GPU Count to be Used: 1
+GPU 0 Name: NVIDIA A30
+GPU 0 Memory: 0.4GB/24.0GB (Used/Total)
+
+Using 16bit Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+You are using a CUDA device ('NVIDIA A30') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name              | Type                            | Params | Mode 
+------------------------------------------------------------------------------
+0 | model             | TimmAutoModelForImagePrediction | 4.2 M  | train
+1 | validation_metric | MulticlassAccuracy              | 0      | train
+2 | loss_func         | CrossEntropyLoss                | 0      | train
+------------------------------------------------------------------------------
+4.2 M     Trainable params
+0         Non-trainable params
+4.2 M     Total params
+16.834    Total estimated model params size (MB)
+286       Modules in train mode
+0         Modules in eval mode
+SLURM auto-requeueing enabled. Setting signal handlers.
+Epoch 0, global step 221: 'val_accuracy' reached 0.37520 (best 0.37520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=0-step=221.ckpt' as top 3
+Epoch 0, global step 442: 'val_accuracy' reached 0.58680 (best 0.58680), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=0-step=442.ckpt' as top 3
+Epoch 1, global step 664: 'val_accuracy' reached 0.62200 (best 0.62200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=1-step=664.ckpt' as top 3
+Epoch 1, global step 885: 'val_accuracy' reached 0.70160 (best 0.70160), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=1-step=885.ckpt' as top 3
+Epoch 2, global step 1107: 'val_accuracy' reached 0.73720 (best 0.73720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=2-step=1107.ckpt' as top 3
+Epoch 2, global step 1328: 'val_accuracy' reached 0.76720 (best 0.76720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=2-step=1328.ckpt' as top 3
+Epoch 3, global step 1550: 'val_accuracy' reached 0.77960 (best 0.77960), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=3-step=1550.ckpt' as top 3
+Epoch 3, global step 1771: 'val_accuracy' reached 0.80400 (best 0.80400), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=3-step=1771.ckpt' as top 3
+Epoch 4, global step 1993: 'val_accuracy' reached 0.84720 (best 0.84720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=4-step=1993.ckpt' as top 3
+Epoch 4, global step 2214: 'val_accuracy' reached 0.85000 (best 0.85000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=4-step=2214.ckpt' as top 3
+Epoch 5, global step 2436: 'val_accuracy' reached 0.87120 (best 0.87120), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=5-step=2436.ckpt' as top 3
+Epoch 5, global step 2657: 'val_accuracy' reached 0.88840 (best 0.88840), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=5-step=2657.ckpt' as top 3
+Epoch 6, global step 2879: 'val_accuracy' reached 0.90560 (best 0.90560), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=6-step=2879.ckpt' as top 3
+Epoch 6, global step 3100: 'val_accuracy' reached 0.91880 (best 0.91880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=6-step=3100.ckpt' as top 3
+Epoch 7, global step 3322: 'val_accuracy' reached 0.92400 (best 0.92400), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=7-step=3322.ckpt' as top 3
+Epoch 7, global step 3543: 'val_accuracy' reached 0.94040 (best 0.94040), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=7-step=3543.ckpt' as top 3
+Epoch 8, global step 3765: 'val_accuracy' reached 0.94080 (best 0.94080), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=8-step=3765.ckpt' as top 3
+Epoch 8, global step 3986: 'val_accuracy' reached 0.94800 (best 0.94800), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=8-step=3986.ckpt' as top 3
+Epoch 9, global step 4208: 'val_accuracy' reached 0.94960 (best 0.94960), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=9-step=4208.ckpt' as top 3
+Epoch 9, global step 4429: 'val_accuracy' reached 0.95200 (best 0.95200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=9-step=4429.ckpt' as top 3
+Epoch 10, global step 4651: 'val_accuracy' reached 0.96040 (best 0.96040), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=10-step=4651.ckpt' as top 3
+Epoch 10, global step 4872: 'val_accuracy' reached 0.96640 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=10-step=4872.ckpt' as top 3
+Epoch 11, global step 5094: 'val_accuracy' reached 0.96360 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=11-step=5094.ckpt' as top 3
+Epoch 11, global step 5315: 'val_accuracy' reached 0.96320 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=11-step=5315.ckpt' as top 3
+Epoch 12, global step 5537: 'val_accuracy' reached 0.96880 (best 0.96880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=12-step=5537.ckpt' as top 3
+Epoch 12, global step 5758: 'val_accuracy' reached 0.97200 (best 0.97200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=12-step=5758.ckpt' as top 3
+Epoch 13, global step 5980: 'val_accuracy' reached 0.97520 (best 0.97520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=13-step=5980.ckpt' as top 3
+Epoch 13, global step 6201: 'val_accuracy' reached 0.97480 (best 0.97520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=13-step=6201.ckpt' as top 3
+Epoch 14, global step 6423: 'val_accuracy' reached 0.97720 (best 0.97720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=14-step=6423.ckpt' as top 3
+Epoch 14, global step 6644: 'val_accuracy' reached 0.97680 (best 0.97720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=14-step=6644.ckpt' as top 3
+Epoch 15, global step 6866: 'val_accuracy' reached 0.97880 (best 0.97880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=15-step=6866.ckpt' as top 3
+Epoch 15, global step 7087: 'val_accuracy' reached 0.98000 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=15-step=7087.ckpt' as top 3
+Epoch 16, global step 7309: 'val_accuracy' reached 0.97960 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=16-step=7309.ckpt' as top 3
+Epoch 16, global step 7530: 'val_accuracy' was not in top 3
+Epoch 17, global step 7752: 'val_accuracy' reached 0.97920 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=17-step=7752.ckpt' as top 3
+Epoch 17, global step 7973: 'val_accuracy' was not in top 3
+Epoch 18, global step 8195: 'val_accuracy' reached 0.98120 (best 0.98120), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354/epoch=18-step=8195.ckpt' as top 3
+Epoch 18, global step 8416: 'val_accuracy' was not in top 3
+Epoch 19, global step 8638: 'val_accuracy' was not in top 3
+Epoch 19, global step 8859: 'val_accuracy' was not in top 3
+`Trainer.fit` stopped: `max_epochs=20` reached.
+Start to fuse 3 checkpoints via the greedy soup algorithm.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+AutoMM has created your model. 🎉🎉🎉
+
+To load the model, use the code below:
+    ```python
+    from autogluon.multimodal import MultiModalPredictor
+    predictor = MultiModalPredictor.load("/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_201354")
+    ```
+
+If you are not satisfied with the model, try to increase the training time, 
+adjust the hyperparameters (https://auto.gluon.ai/stable/tutorials/multimodal/advanced_topics/customization.html),
+or post issues on GitHub (https://github.com/autogluon/autogluon/issues).
+
+
+No path specified. Models will be saved in: "AutogluonModels/ag-20260316_211834"
+=================== System Info ===================
+AutoGluon Version:  1.4.0
+Python Version:     3.10.8
+Operating System:   Linux
+Platform Machine:   x86_64
+Platform Version:   #1 SMP Sat Feb 7 00:49:44 EST 2026
+CPU Count:          192
+Pytorch Version:    2.7.1+cu126
+CUDA Version:       12.6
+GPU Count:          1
+Memory Avail:       745.52 GB / 754.91 GB (98.8%)
+Disk Space Avail:   1061.03 GB / 5120.00 GB (20.7%)
+===================================================
+AutoGluon infers your prediction problem is: 'multiclass' (because dtype of label-column == object).
+	5 unique label values:  ['Fear', 'Sad', 'Angry', 'Happy', 'Surprise']
+	If 'multiclass' is not the correct problem_type, please manually specify the problem_type parameter during Predictor init (You may specify problem_type as one of: ['binary', 'multiclass', 'regression', 'quantile'])
+
+AutoMM starts to create your model. ✨✨✨
+
+To track the learning progress, you can open a terminal and launch Tensorboard:
+    ```shell
+    # Assume you have installed tensorboard
+    tensorboard --logdir /ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834
+    ```
+
+[rank: 0] Seed set to 0
+GPU Count: 1
+GPU Count to be Used: 1
+GPU 0 Name: NVIDIA A30
+GPU 0 Memory: 0.8GB/24.0GB (Used/Total)
+
+Using 16bit Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name              | Type                            | Params | Mode 
+------------------------------------------------------------------------------
+0 | model             | TimmAutoModelForImagePrediction | 4.2 M  | train
+1 | validation_metric | MulticlassAccuracy              | 0      | train
+2 | loss_func         | CrossEntropyLoss                | 0      | train
+------------------------------------------------------------------------------
+4.2 M     Trainable params
+0         Non-trainable params
+4.2 M     Total params
+16.834    Total estimated model params size (MB)
+286       Modules in train mode
+0         Modules in eval mode
+SLURM auto-requeueing enabled. Setting signal handlers.
+Epoch 0, global step 221: 'val_accuracy' reached 0.37520 (best 0.37520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=0-step=221.ckpt' as top 3
+Epoch 0, global step 442: 'val_accuracy' reached 0.58680 (best 0.58680), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=0-step=442.ckpt' as top 3
+Epoch 1, global step 664: 'val_accuracy' reached 0.62200 (best 0.62200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=1-step=664.ckpt' as top 3
+Epoch 1, global step 885: 'val_accuracy' reached 0.70160 (best 0.70160), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=1-step=885.ckpt' as top 3
+Epoch 2, global step 1107: 'val_accuracy' reached 0.73720 (best 0.73720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=2-step=1107.ckpt' as top 3
+Epoch 2, global step 1328: 'val_accuracy' reached 0.76720 (best 0.76720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=2-step=1328.ckpt' as top 3
+Epoch 3, global step 1550: 'val_accuracy' reached 0.77960 (best 0.77960), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=3-step=1550.ckpt' as top 3
+Epoch 3, global step 1771: 'val_accuracy' reached 0.80400 (best 0.80400), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=3-step=1771.ckpt' as top 3
+Epoch 4, global step 1993: 'val_accuracy' reached 0.84720 (best 0.84720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=4-step=1993.ckpt' as top 3
+Epoch 4, global step 2214: 'val_accuracy' reached 0.85000 (best 0.85000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=4-step=2214.ckpt' as top 3
+Epoch 5, global step 2436: 'val_accuracy' reached 0.87120 (best 0.87120), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=5-step=2436.ckpt' as top 3
+Epoch 5, global step 2657: 'val_accuracy' reached 0.88840 (best 0.88840), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=5-step=2657.ckpt' as top 3
+Epoch 6, global step 2879: 'val_accuracy' reached 0.90560 (best 0.90560), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=6-step=2879.ckpt' as top 3
+Epoch 6, global step 3100: 'val_accuracy' reached 0.91880 (best 0.91880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=6-step=3100.ckpt' as top 3
+Epoch 7, global step 3322: 'val_accuracy' reached 0.92400 (best 0.92400), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=7-step=3322.ckpt' as top 3
+Epoch 7, global step 3543: 'val_accuracy' reached 0.94040 (best 0.94040), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=7-step=3543.ckpt' as top 3
+Epoch 8, global step 3765: 'val_accuracy' reached 0.94080 (best 0.94080), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=8-step=3765.ckpt' as top 3
+Epoch 8, global step 3986: 'val_accuracy' reached 0.94800 (best 0.94800), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=8-step=3986.ckpt' as top 3
+Epoch 9, global step 4208: 'val_accuracy' reached 0.94960 (best 0.94960), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=9-step=4208.ckpt' as top 3
+Epoch 9, global step 4429: 'val_accuracy' reached 0.95200 (best 0.95200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=9-step=4429.ckpt' as top 3
+Epoch 10, global step 4651: 'val_accuracy' reached 0.96040 (best 0.96040), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=10-step=4651.ckpt' as top 3
+Epoch 10, global step 4872: 'val_accuracy' reached 0.96640 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=10-step=4872.ckpt' as top 3
+Epoch 11, global step 5094: 'val_accuracy' reached 0.96360 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=11-step=5094.ckpt' as top 3
+Epoch 11, global step 5315: 'val_accuracy' reached 0.96320 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=11-step=5315.ckpt' as top 3
+Epoch 12, global step 5537: 'val_accuracy' reached 0.96880 (best 0.96880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=12-step=5537.ckpt' as top 3
+Epoch 12, global step 5758: 'val_accuracy' reached 0.97200 (best 0.97200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=12-step=5758.ckpt' as top 3
+Epoch 13, global step 5980: 'val_accuracy' reached 0.97520 (best 0.97520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=13-step=5980.ckpt' as top 3
+Epoch 13, global step 6201: 'val_accuracy' reached 0.97480 (best 0.97520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=13-step=6201.ckpt' as top 3
+Epoch 14, global step 6423: 'val_accuracy' reached 0.97720 (best 0.97720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=14-step=6423.ckpt' as top 3
+Epoch 14, global step 6644: 'val_accuracy' reached 0.97680 (best 0.97720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=14-step=6644.ckpt' as top 3
+Epoch 15, global step 6866: 'val_accuracy' reached 0.97880 (best 0.97880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=15-step=6866.ckpt' as top 3
+Epoch 15, global step 7087: 'val_accuracy' reached 0.98000 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=15-step=7087.ckpt' as top 3
+Epoch 16, global step 7309: 'val_accuracy' reached 0.97960 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=16-step=7309.ckpt' as top 3
+Epoch 16, global step 7530: 'val_accuracy' was not in top 3
+Epoch 17, global step 7752: 'val_accuracy' reached 0.97920 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=17-step=7752.ckpt' as top 3
+Epoch 17, global step 7973: 'val_accuracy' was not in top 3
+Epoch 18, global step 8195: 'val_accuracy' reached 0.98120 (best 0.98120), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834/epoch=18-step=8195.ckpt' as top 3
+Epoch 18, global step 8416: 'val_accuracy' was not in top 3
+Epoch 19, global step 8638: 'val_accuracy' was not in top 3
+Epoch 19, global step 8859: 'val_accuracy' was not in top 3
+`Trainer.fit` stopped: `max_epochs=20` reached.
+Start to fuse 3 checkpoints via the greedy soup algorithm.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+AutoMM has created your model. 🎉🎉🎉
+
+To load the model, use the code below:
+    ```python
+    from autogluon.multimodal import MultiModalPredictor
+    predictor = MultiModalPredictor.load("/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_211834")
+    ```
+
+If you are not satisfied with the model, try to increase the training time, 
+adjust the hyperparameters (https://auto.gluon.ai/stable/tutorials/multimodal/advanced_topics/customization.html),
+or post issues on GitHub (https://github.com/autogluon/autogluon/issues).
+
+
+No path specified. Models will be saved in: "AutogluonModels/ag-20260316_222458"
+=================== System Info ===================
+AutoGluon Version:  1.4.0
+Python Version:     3.10.8
+Operating System:   Linux
+Platform Machine:   x86_64
+Platform Version:   #1 SMP Sat Feb 7 00:49:44 EST 2026
+CPU Count:          192
+Pytorch Version:    2.7.1+cu126
+CUDA Version:       12.6
+GPU Count:          1
+Memory Avail:       745.52 GB / 754.91 GB (98.8%)
+Disk Space Avail:   1060.95 GB / 5120.00 GB (20.7%)
+===================================================
+AutoGluon infers your prediction problem is: 'multiclass' (because dtype of label-column == object).
+	5 unique label values:  ['Fear', 'Sad', 'Angry', 'Happy', 'Surprise']
+	If 'multiclass' is not the correct problem_type, please manually specify the problem_type parameter during Predictor init (You may specify problem_type as one of: ['binary', 'multiclass', 'regression', 'quantile'])
+
+AutoMM starts to create your model. ✨✨✨
+
+To track the learning progress, you can open a terminal and launch Tensorboard:
+    ```shell
+    # Assume you have installed tensorboard
+    tensorboard --logdir /ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458
+    ```
+
+[rank: 0] Seed set to 0
+GPU Count: 1
+GPU Count to be Used: 1
+GPU 0 Name: NVIDIA A30
+GPU 0 Memory: 0.8GB/24.0GB (Used/Total)
+
+Using 16bit Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name              | Type                            | Params | Mode 
+------------------------------------------------------------------------------
+0 | model             | TimmAutoModelForImagePrediction | 4.2 M  | train
+1 | validation_metric | MulticlassAccuracy              | 0      | train
+2 | loss_func         | CrossEntropyLoss                | 0      | train
+------------------------------------------------------------------------------
+4.2 M     Trainable params
+0         Non-trainable params
+4.2 M     Total params
+16.834    Total estimated model params size (MB)
+286       Modules in train mode
+0         Modules in eval mode
+SLURM auto-requeueing enabled. Setting signal handlers.
+Epoch 0, global step 221: 'val_accuracy' reached 0.37520 (best 0.37520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=0-step=221.ckpt' as top 3
+Epoch 0, global step 442: 'val_accuracy' reached 0.58680 (best 0.58680), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=0-step=442.ckpt' as top 3
+Epoch 1, global step 664: 'val_accuracy' reached 0.62200 (best 0.62200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=1-step=664.ckpt' as top 3
+Epoch 1, global step 885: 'val_accuracy' reached 0.70160 (best 0.70160), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=1-step=885.ckpt' as top 3
+Epoch 2, global step 1107: 'val_accuracy' reached 0.73720 (best 0.73720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=2-step=1107.ckpt' as top 3
+Epoch 2, global step 1328: 'val_accuracy' reached 0.76720 (best 0.76720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=2-step=1328.ckpt' as top 3
+Epoch 3, global step 1550: 'val_accuracy' reached 0.77960 (best 0.77960), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=3-step=1550.ckpt' as top 3
+Epoch 3, global step 1771: 'val_accuracy' reached 0.80400 (best 0.80400), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=3-step=1771.ckpt' as top 3
+Epoch 4, global step 1993: 'val_accuracy' reached 0.84720 (best 0.84720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=4-step=1993.ckpt' as top 3
+Epoch 4, global step 2214: 'val_accuracy' reached 0.85000 (best 0.85000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=4-step=2214.ckpt' as top 3
+Epoch 5, global step 2436: 'val_accuracy' reached 0.87120 (best 0.87120), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=5-step=2436.ckpt' as top 3
+Epoch 5, global step 2657: 'val_accuracy' reached 0.88840 (best 0.88840), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=5-step=2657.ckpt' as top 3
+Epoch 6, global step 2879: 'val_accuracy' reached 0.90560 (best 0.90560), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=6-step=2879.ckpt' as top 3
+Epoch 6, global step 3100: 'val_accuracy' reached 0.91880 (best 0.91880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=6-step=3100.ckpt' as top 3
+Epoch 7, global step 3322: 'val_accuracy' reached 0.92400 (best 0.92400), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=7-step=3322.ckpt' as top 3
+Epoch 7, global step 3543: 'val_accuracy' reached 0.94040 (best 0.94040), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=7-step=3543.ckpt' as top 3
+Epoch 8, global step 3765: 'val_accuracy' reached 0.94080 (best 0.94080), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=8-step=3765.ckpt' as top 3
+Epoch 8, global step 3986: 'val_accuracy' reached 0.94800 (best 0.94800), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=8-step=3986.ckpt' as top 3
+Epoch 9, global step 4208: 'val_accuracy' reached 0.94960 (best 0.94960), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=9-step=4208.ckpt' as top 3
+Epoch 9, global step 4429: 'val_accuracy' reached 0.95200 (best 0.95200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=9-step=4429.ckpt' as top 3
+Epoch 10, global step 4651: 'val_accuracy' reached 0.96040 (best 0.96040), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=10-step=4651.ckpt' as top 3
+Epoch 10, global step 4872: 'val_accuracy' reached 0.96640 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=10-step=4872.ckpt' as top 3
+Epoch 11, global step 5094: 'val_accuracy' reached 0.96360 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=11-step=5094.ckpt' as top 3
+Epoch 11, global step 5315: 'val_accuracy' reached 0.96320 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=11-step=5315.ckpt' as top 3
+Epoch 12, global step 5537: 'val_accuracy' reached 0.96880 (best 0.96880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=12-step=5537.ckpt' as top 3
+Epoch 12, global step 5758: 'val_accuracy' reached 0.97200 (best 0.97200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=12-step=5758.ckpt' as top 3
+Epoch 13, global step 5980: 'val_accuracy' reached 0.97520 (best 0.97520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=13-step=5980.ckpt' as top 3
+Epoch 13, global step 6201: 'val_accuracy' reached 0.97480 (best 0.97520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=13-step=6201.ckpt' as top 3
+Epoch 14, global step 6423: 'val_accuracy' reached 0.97720 (best 0.97720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=14-step=6423.ckpt' as top 3
+Epoch 14, global step 6644: 'val_accuracy' reached 0.97680 (best 0.97720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=14-step=6644.ckpt' as top 3
+Epoch 15, global step 6866: 'val_accuracy' reached 0.97880 (best 0.97880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=15-step=6866.ckpt' as top 3
+Epoch 15, global step 7087: 'val_accuracy' reached 0.98000 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=15-step=7087.ckpt' as top 3
+Epoch 16, global step 7309: 'val_accuracy' reached 0.97960 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=16-step=7309.ckpt' as top 3
+Epoch 16, global step 7530: 'val_accuracy' was not in top 3
+Epoch 17, global step 7752: 'val_accuracy' reached 0.97920 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=17-step=7752.ckpt' as top 3
+Epoch 17, global step 7973: 'val_accuracy' was not in top 3
+Epoch 18, global step 8195: 'val_accuracy' reached 0.98120 (best 0.98120), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458/epoch=18-step=8195.ckpt' as top 3
+Epoch 18, global step 8416: 'val_accuracy' was not in top 3
+Epoch 19, global step 8638: 'val_accuracy' was not in top 3
+Epoch 19, global step 8859: 'val_accuracy' was not in top 3
+`Trainer.fit` stopped: `max_epochs=20` reached.
+Start to fuse 3 checkpoints via the greedy soup algorithm.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+AutoMM has created your model. 🎉🎉🎉
+
+To load the model, use the code below:
+    ```python
+    from autogluon.multimodal import MultiModalPredictor
+    predictor = MultiModalPredictor.load("/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_222458")
+    ```
+
+If you are not satisfied with the model, try to increase the training time, 
+adjust the hyperparameters (https://auto.gluon.ai/stable/tutorials/multimodal/advanced_topics/customization.html),
+or post issues on GitHub (https://github.com/autogluon/autogluon/issues).
+
+
+No path specified. Models will be saved in: "AutogluonModels/ag-20260316_232759"
+=================== System Info ===================
+AutoGluon Version:  1.4.0
+Python Version:     3.10.8
+Operating System:   Linux
+Platform Machine:   x86_64
+Platform Version:   #1 SMP Sat Feb 7 00:49:44 EST 2026
+CPU Count:          192
+Pytorch Version:    2.7.1+cu126
+CUDA Version:       12.6
+GPU Count:          1
+Memory Avail:       745.51 GB / 754.91 GB (98.8%)
+Disk Space Avail:   1060.88 GB / 5120.00 GB (20.7%)
+===================================================
+AutoGluon infers your prediction problem is: 'multiclass' (because dtype of label-column == object).
+	5 unique label values:  ['Fear', 'Sad', 'Angry', 'Happy', 'Surprise']
+	If 'multiclass' is not the correct problem_type, please manually specify the problem_type parameter during Predictor init (You may specify problem_type as one of: ['binary', 'multiclass', 'regression', 'quantile'])
+
+AutoMM starts to create your model. ✨✨✨
+
+To track the learning progress, you can open a terminal and launch Tensorboard:
+    ```shell
+    # Assume you have installed tensorboard
+    tensorboard --logdir /ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759
+    ```
+
+[rank: 0] Seed set to 0
+GPU Count: 1
+GPU Count to be Used: 1
+GPU 0 Name: NVIDIA A30
+GPU 0 Memory: 0.79GB/24.0GB (Used/Total)
+
+Using 16bit Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name              | Type                            | Params | Mode 
+------------------------------------------------------------------------------
+0 | model             | TimmAutoModelForImagePrediction | 4.2 M  | train
+1 | validation_metric | MulticlassAccuracy              | 0      | train
+2 | loss_func         | CrossEntropyLoss                | 0      | train
+------------------------------------------------------------------------------
+4.2 M     Trainable params
+0         Non-trainable params
+4.2 M     Total params
+16.834    Total estimated model params size (MB)
+286       Modules in train mode
+0         Modules in eval mode
+SLURM auto-requeueing enabled. Setting signal handlers.
+Epoch 0, global step 221: 'val_accuracy' reached 0.37520 (best 0.37520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=0-step=221.ckpt' as top 3
+Epoch 0, global step 442: 'val_accuracy' reached 0.58680 (best 0.58680), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=0-step=442.ckpt' as top 3
+Epoch 1, global step 664: 'val_accuracy' reached 0.62200 (best 0.62200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=1-step=664.ckpt' as top 3
+Epoch 1, global step 885: 'val_accuracy' reached 0.70160 (best 0.70160), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=1-step=885.ckpt' as top 3
+Epoch 2, global step 1107: 'val_accuracy' reached 0.73720 (best 0.73720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=2-step=1107.ckpt' as top 3
+Epoch 2, global step 1328: 'val_accuracy' reached 0.76720 (best 0.76720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=2-step=1328.ckpt' as top 3
+Epoch 3, global step 1550: 'val_accuracy' reached 0.77960 (best 0.77960), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=3-step=1550.ckpt' as top 3
+Epoch 3, global step 1771: 'val_accuracy' reached 0.80400 (best 0.80400), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=3-step=1771.ckpt' as top 3
+Epoch 4, global step 1993: 'val_accuracy' reached 0.84720 (best 0.84720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=4-step=1993.ckpt' as top 3
+Epoch 4, global step 2214: 'val_accuracy' reached 0.85000 (best 0.85000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=4-step=2214.ckpt' as top 3
+Epoch 5, global step 2436: 'val_accuracy' reached 0.87120 (best 0.87120), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=5-step=2436.ckpt' as top 3
+Epoch 5, global step 2657: 'val_accuracy' reached 0.88840 (best 0.88840), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=5-step=2657.ckpt' as top 3
+Epoch 6, global step 2879: 'val_accuracy' reached 0.90560 (best 0.90560), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=6-step=2879.ckpt' as top 3
+Epoch 6, global step 3100: 'val_accuracy' reached 0.91880 (best 0.91880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=6-step=3100.ckpt' as top 3
+Epoch 7, global step 3322: 'val_accuracy' reached 0.92400 (best 0.92400), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=7-step=3322.ckpt' as top 3
+Epoch 7, global step 3543: 'val_accuracy' reached 0.94040 (best 0.94040), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=7-step=3543.ckpt' as top 3
+Epoch 8, global step 3765: 'val_accuracy' reached 0.94080 (best 0.94080), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=8-step=3765.ckpt' as top 3
+Epoch 8, global step 3986: 'val_accuracy' reached 0.94800 (best 0.94800), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=8-step=3986.ckpt' as top 3
+Epoch 9, global step 4208: 'val_accuracy' reached 0.94960 (best 0.94960), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=9-step=4208.ckpt' as top 3
+Epoch 9, global step 4429: 'val_accuracy' reached 0.95200 (best 0.95200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=9-step=4429.ckpt' as top 3
+Epoch 10, global step 4651: 'val_accuracy' reached 0.96040 (best 0.96040), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=10-step=4651.ckpt' as top 3
+Epoch 10, global step 4872: 'val_accuracy' reached 0.96640 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=10-step=4872.ckpt' as top 3
+Epoch 11, global step 5094: 'val_accuracy' reached 0.96360 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=11-step=5094.ckpt' as top 3
+Epoch 11, global step 5315: 'val_accuracy' reached 0.96320 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=11-step=5315.ckpt' as top 3
+Epoch 12, global step 5537: 'val_accuracy' reached 0.96880 (best 0.96880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=12-step=5537.ckpt' as top 3
+Epoch 12, global step 5758: 'val_accuracy' reached 0.97200 (best 0.97200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=12-step=5758.ckpt' as top 3
+Epoch 13, global step 5980: 'val_accuracy' reached 0.97520 (best 0.97520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=13-step=5980.ckpt' as top 3
+Epoch 13, global step 6201: 'val_accuracy' reached 0.97480 (best 0.97520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=13-step=6201.ckpt' as top 3
+Epoch 14, global step 6423: 'val_accuracy' reached 0.97720 (best 0.97720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=14-step=6423.ckpt' as top 3
+Epoch 14, global step 6644: 'val_accuracy' reached 0.97680 (best 0.97720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=14-step=6644.ckpt' as top 3
+Epoch 15, global step 6866: 'val_accuracy' reached 0.97880 (best 0.97880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=15-step=6866.ckpt' as top 3
+Epoch 15, global step 7087: 'val_accuracy' reached 0.98000 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=15-step=7087.ckpt' as top 3
+Epoch 16, global step 7309: 'val_accuracy' reached 0.97960 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=16-step=7309.ckpt' as top 3
+Epoch 16, global step 7530: 'val_accuracy' was not in top 3
+Epoch 17, global step 7752: 'val_accuracy' reached 0.97920 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=17-step=7752.ckpt' as top 3
+Epoch 17, global step 7973: 'val_accuracy' was not in top 3
+Epoch 18, global step 8195: 'val_accuracy' reached 0.98120 (best 0.98120), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759/epoch=18-step=8195.ckpt' as top 3
+Epoch 18, global step 8416: 'val_accuracy' was not in top 3
+Epoch 19, global step 8638: 'val_accuracy' was not in top 3
+Epoch 19, global step 8859: 'val_accuracy' was not in top 3
+`Trainer.fit` stopped: `max_epochs=20` reached.
+Start to fuse 3 checkpoints via the greedy soup algorithm.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+AutoMM has created your model. 🎉🎉🎉
+
+To load the model, use the code below:
+    ```python
+    from autogluon.multimodal import MultiModalPredictor
+    predictor = MultiModalPredictor.load("/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260316_232759")
+    ```
+
+If you are not satisfied with the model, try to increase the training time, 
+adjust the hyperparameters (https://auto.gluon.ai/stable/tutorials/multimodal/advanced_topics/customization.html),
+or post issues on GitHub (https://github.com/autogluon/autogluon/issues).
+
+
+No path specified. Models will be saved in: "AutogluonModels/ag-20260317_003119"
+=================== System Info ===================
+AutoGluon Version:  1.4.0
+Python Version:     3.10.8
+Operating System:   Linux
+Platform Machine:   x86_64
+Platform Version:   #1 SMP Sat Feb 7 00:49:44 EST 2026
+CPU Count:          192
+Pytorch Version:    2.7.1+cu126
+CUDA Version:       12.6
+GPU Count:          1
+Memory Avail:       745.50 GB / 754.91 GB (98.8%)
+Disk Space Avail:   1060.80 GB / 5120.00 GB (20.7%)
+===================================================
+AutoGluon infers your prediction problem is: 'multiclass' (because dtype of label-column == object).
+	5 unique label values:  ['Fear', 'Sad', 'Angry', 'Happy', 'Surprise']
+	If 'multiclass' is not the correct problem_type, please manually specify the problem_type parameter during Predictor init (You may specify problem_type as one of: ['binary', 'multiclass', 'regression', 'quantile'])
+
+AutoMM starts to create your model. ✨✨✨
+
+To track the learning progress, you can open a terminal and launch Tensorboard:
+    ```shell
+    # Assume you have installed tensorboard
+    tensorboard --logdir /ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119
+    ```
+
+[rank: 0] Seed set to 0
+GPU Count: 1
+GPU Count to be Used: 1
+GPU 0 Name: NVIDIA A30
+GPU 0 Memory: 0.79GB/24.0GB (Used/Total)
+
+Using 16bit Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name              | Type                            | Params | Mode 
+------------------------------------------------------------------------------
+0 | model             | TimmAutoModelForImagePrediction | 4.2 M  | train
+1 | validation_metric | MulticlassAccuracy              | 0      | train
+2 | loss_func         | CrossEntropyLoss                | 0      | train
+------------------------------------------------------------------------------
+4.2 M     Trainable params
+0         Non-trainable params
+4.2 M     Total params
+16.834    Total estimated model params size (MB)
+286       Modules in train mode
+0         Modules in eval mode
+SLURM auto-requeueing enabled. Setting signal handlers.
+Epoch 0, global step 221: 'val_accuracy' reached 0.37520 (best 0.37520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=0-step=221.ckpt' as top 3
+Epoch 0, global step 442: 'val_accuracy' reached 0.58680 (best 0.58680), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=0-step=442.ckpt' as top 3
+Epoch 1, global step 664: 'val_accuracy' reached 0.62200 (best 0.62200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=1-step=664.ckpt' as top 3
+Epoch 1, global step 885: 'val_accuracy' reached 0.70160 (best 0.70160), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=1-step=885.ckpt' as top 3
+Epoch 2, global step 1107: 'val_accuracy' reached 0.73720 (best 0.73720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=2-step=1107.ckpt' as top 3
+Epoch 2, global step 1328: 'val_accuracy' reached 0.76720 (best 0.76720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=2-step=1328.ckpt' as top 3
+Epoch 3, global step 1550: 'val_accuracy' reached 0.77960 (best 0.77960), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=3-step=1550.ckpt' as top 3
+Epoch 3, global step 1771: 'val_accuracy' reached 0.80400 (best 0.80400), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=3-step=1771.ckpt' as top 3
+Epoch 4, global step 1993: 'val_accuracy' reached 0.84720 (best 0.84720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=4-step=1993.ckpt' as top 3
+Epoch 4, global step 2214: 'val_accuracy' reached 0.85000 (best 0.85000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=4-step=2214.ckpt' as top 3
+Epoch 5, global step 2436: 'val_accuracy' reached 0.87120 (best 0.87120), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=5-step=2436.ckpt' as top 3
+Epoch 5, global step 2657: 'val_accuracy' reached 0.88840 (best 0.88840), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=5-step=2657.ckpt' as top 3
+Epoch 6, global step 2879: 'val_accuracy' reached 0.90560 (best 0.90560), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=6-step=2879.ckpt' as top 3
+Epoch 6, global step 3100: 'val_accuracy' reached 0.91880 (best 0.91880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=6-step=3100.ckpt' as top 3
+Epoch 7, global step 3322: 'val_accuracy' reached 0.92400 (best 0.92400), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=7-step=3322.ckpt' as top 3
+Epoch 7, global step 3543: 'val_accuracy' reached 0.94040 (best 0.94040), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=7-step=3543.ckpt' as top 3
+Epoch 8, global step 3765: 'val_accuracy' reached 0.94080 (best 0.94080), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=8-step=3765.ckpt' as top 3
+Epoch 8, global step 3986: 'val_accuracy' reached 0.94800 (best 0.94800), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=8-step=3986.ckpt' as top 3
+Epoch 9, global step 4208: 'val_accuracy' reached 0.94960 (best 0.94960), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=9-step=4208.ckpt' as top 3
+Epoch 9, global step 4429: 'val_accuracy' reached 0.95200 (best 0.95200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=9-step=4429.ckpt' as top 3
+Epoch 10, global step 4651: 'val_accuracy' reached 0.96040 (best 0.96040), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=10-step=4651.ckpt' as top 3
+Epoch 10, global step 4872: 'val_accuracy' reached 0.96640 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=10-step=4872.ckpt' as top 3
+Epoch 11, global step 5094: 'val_accuracy' reached 0.96360 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=11-step=5094.ckpt' as top 3
+Epoch 11, global step 5315: 'val_accuracy' reached 0.96320 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=11-step=5315.ckpt' as top 3
+Epoch 12, global step 5537: 'val_accuracy' reached 0.96880 (best 0.96880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=12-step=5537.ckpt' as top 3
+Epoch 12, global step 5758: 'val_accuracy' reached 0.97200 (best 0.97200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=12-step=5758.ckpt' as top 3
+Epoch 13, global step 5980: 'val_accuracy' reached 0.97520 (best 0.97520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=13-step=5980.ckpt' as top 3
+Epoch 13, global step 6201: 'val_accuracy' reached 0.97480 (best 0.97520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=13-step=6201.ckpt' as top 3
+Epoch 14, global step 6423: 'val_accuracy' reached 0.97720 (best 0.97720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=14-step=6423.ckpt' as top 3
+Epoch 14, global step 6644: 'val_accuracy' reached 0.97680 (best 0.97720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=14-step=6644.ckpt' as top 3
+Epoch 15, global step 6866: 'val_accuracy' reached 0.97880 (best 0.97880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=15-step=6866.ckpt' as top 3
+Epoch 15, global step 7087: 'val_accuracy' reached 0.98000 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=15-step=7087.ckpt' as top 3
+Epoch 16, global step 7309: 'val_accuracy' reached 0.97960 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=16-step=7309.ckpt' as top 3
+Epoch 16, global step 7530: 'val_accuracy' was not in top 3
+Epoch 17, global step 7752: 'val_accuracy' reached 0.97920 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=17-step=7752.ckpt' as top 3
+Epoch 17, global step 7973: 'val_accuracy' was not in top 3
+Epoch 18, global step 8195: 'val_accuracy' reached 0.98120 (best 0.98120), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119/epoch=18-step=8195.ckpt' as top 3
+Epoch 18, global step 8416: 'val_accuracy' was not in top 3
+Epoch 19, global step 8638: 'val_accuracy' was not in top 3
+Epoch 19, global step 8859: 'val_accuracy' was not in top 3
+`Trainer.fit` stopped: `max_epochs=20` reached.
+Start to fuse 3 checkpoints via the greedy soup algorithm.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+AutoMM has created your model. 🎉🎉🎉
+
+To load the model, use the code below:
+    ```python
+    from autogluon.multimodal import MultiModalPredictor
+    predictor = MultiModalPredictor.load("/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_003119")
+    ```
+
+If you are not satisfied with the model, try to increase the training time, 
+adjust the hyperparameters (https://auto.gluon.ai/stable/tutorials/multimodal/advanced_topics/customization.html),
+or post issues on GitHub (https://github.com/autogluon/autogluon/issues).
+
+
+No path specified. Models will be saved in: "AutogluonModels/ag-20260317_013619"
+=================== System Info ===================
+AutoGluon Version:  1.4.0
+Python Version:     3.10.8
+Operating System:   Linux
+Platform Machine:   x86_64
+Platform Version:   #1 SMP Sat Feb 7 00:49:44 EST 2026
+CPU Count:          192
+Pytorch Version:    2.7.1+cu126
+CUDA Version:       12.6
+GPU Count:          1
+Memory Avail:       745.41 GB / 754.91 GB (98.7%)
+Disk Space Avail:   1060.73 GB / 5120.00 GB (20.7%)
+===================================================
+AutoGluon infers your prediction problem is: 'multiclass' (because dtype of label-column == object).
+	5 unique label values:  ['Fear', 'Sad', 'Angry', 'Happy', 'Surprise']
+	If 'multiclass' is not the correct problem_type, please manually specify the problem_type parameter during Predictor init (You may specify problem_type as one of: ['binary', 'multiclass', 'regression', 'quantile'])
+
+AutoMM starts to create your model. ✨✨✨
+
+To track the learning progress, you can open a terminal and launch Tensorboard:
+    ```shell
+    # Assume you have installed tensorboard
+    tensorboard --logdir /ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619
+    ```
+
+[rank: 0] Seed set to 0
+GPU Count: 1
+GPU Count to be Used: 1
+GPU 0 Name: NVIDIA A30
+GPU 0 Memory: 0.83GB/24.0GB (Used/Total)
+
+Using 16bit Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name              | Type                            | Params | Mode 
+------------------------------------------------------------------------------
+0 | model             | TimmAutoModelForImagePrediction | 4.2 M  | train
+1 | validation_metric | MulticlassAccuracy              | 0      | train
+2 | loss_func         | CrossEntropyLoss                | 0      | train
+------------------------------------------------------------------------------
+4.2 M     Trainable params
+0         Non-trainable params
+4.2 M     Total params
+16.834    Total estimated model params size (MB)
+286       Modules in train mode
+0         Modules in eval mode
+SLURM auto-requeueing enabled. Setting signal handlers.
+Epoch 0, global step 221: 'val_accuracy' reached 0.37520 (best 0.37520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=0-step=221.ckpt' as top 3
+Epoch 0, global step 442: 'val_accuracy' reached 0.58680 (best 0.58680), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=0-step=442.ckpt' as top 3
+Epoch 1, global step 664: 'val_accuracy' reached 0.62200 (best 0.62200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=1-step=664.ckpt' as top 3
+Epoch 1, global step 885: 'val_accuracy' reached 0.70160 (best 0.70160), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=1-step=885.ckpt' as top 3
+Epoch 2, global step 1107: 'val_accuracy' reached 0.73720 (best 0.73720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=2-step=1107.ckpt' as top 3
+Epoch 2, global step 1328: 'val_accuracy' reached 0.76720 (best 0.76720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=2-step=1328.ckpt' as top 3
+Epoch 3, global step 1550: 'val_accuracy' reached 0.77960 (best 0.77960), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=3-step=1550.ckpt' as top 3
+Epoch 3, global step 1771: 'val_accuracy' reached 0.80400 (best 0.80400), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=3-step=1771.ckpt' as top 3
+Epoch 4, global step 1993: 'val_accuracy' reached 0.84720 (best 0.84720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=4-step=1993.ckpt' as top 3
+Epoch 4, global step 2214: 'val_accuracy' reached 0.85000 (best 0.85000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=4-step=2214.ckpt' as top 3
+Epoch 5, global step 2436: 'val_accuracy' reached 0.87120 (best 0.87120), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=5-step=2436.ckpt' as top 3
+Epoch 5, global step 2657: 'val_accuracy' reached 0.88840 (best 0.88840), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=5-step=2657.ckpt' as top 3
+Epoch 6, global step 2879: 'val_accuracy' reached 0.90560 (best 0.90560), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=6-step=2879.ckpt' as top 3
+Epoch 6, global step 3100: 'val_accuracy' reached 0.91880 (best 0.91880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=6-step=3100.ckpt' as top 3
+Epoch 7, global step 3322: 'val_accuracy' reached 0.92400 (best 0.92400), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=7-step=3322.ckpt' as top 3
+Epoch 7, global step 3543: 'val_accuracy' reached 0.94040 (best 0.94040), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=7-step=3543.ckpt' as top 3
+Epoch 8, global step 3765: 'val_accuracy' reached 0.94080 (best 0.94080), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=8-step=3765.ckpt' as top 3
+Epoch 8, global step 3986: 'val_accuracy' reached 0.94800 (best 0.94800), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=8-step=3986.ckpt' as top 3
+Epoch 9, global step 4208: 'val_accuracy' reached 0.94960 (best 0.94960), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=9-step=4208.ckpt' as top 3
+Epoch 9, global step 4429: 'val_accuracy' reached 0.95200 (best 0.95200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=9-step=4429.ckpt' as top 3
+Epoch 10, global step 4651: 'val_accuracy' reached 0.96040 (best 0.96040), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=10-step=4651.ckpt' as top 3
+Epoch 10, global step 4872: 'val_accuracy' reached 0.96640 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=10-step=4872.ckpt' as top 3
+Epoch 11, global step 5094: 'val_accuracy' reached 0.96360 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=11-step=5094.ckpt' as top 3
+Epoch 11, global step 5315: 'val_accuracy' reached 0.96320 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=11-step=5315.ckpt' as top 3
+Epoch 12, global step 5537: 'val_accuracy' reached 0.96880 (best 0.96880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=12-step=5537.ckpt' as top 3
+Epoch 12, global step 5758: 'val_accuracy' reached 0.97200 (best 0.97200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=12-step=5758.ckpt' as top 3
+Epoch 13, global step 5980: 'val_accuracy' reached 0.97520 (best 0.97520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=13-step=5980.ckpt' as top 3
+Epoch 13, global step 6201: 'val_accuracy' reached 0.97480 (best 0.97520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=13-step=6201.ckpt' as top 3
+Epoch 14, global step 6423: 'val_accuracy' reached 0.97720 (best 0.97720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=14-step=6423.ckpt' as top 3
+Epoch 14, global step 6644: 'val_accuracy' reached 0.97680 (best 0.97720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=14-step=6644.ckpt' as top 3
+Epoch 15, global step 6866: 'val_accuracy' reached 0.97880 (best 0.97880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=15-step=6866.ckpt' as top 3
+Epoch 15, global step 7087: 'val_accuracy' reached 0.98000 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=15-step=7087.ckpt' as top 3
+Epoch 16, global step 7309: 'val_accuracy' reached 0.97960 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=16-step=7309.ckpt' as top 3
+Epoch 16, global step 7530: 'val_accuracy' was not in top 3
+Epoch 17, global step 7752: 'val_accuracy' reached 0.97920 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=17-step=7752.ckpt' as top 3
+Epoch 17, global step 7973: 'val_accuracy' was not in top 3
+Epoch 18, global step 8195: 'val_accuracy' reached 0.98120 (best 0.98120), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619/epoch=18-step=8195.ckpt' as top 3
+Epoch 18, global step 8416: 'val_accuracy' was not in top 3
+Epoch 19, global step 8638: 'val_accuracy' was not in top 3
+Epoch 19, global step 8859: 'val_accuracy' was not in top 3
+`Trainer.fit` stopped: `max_epochs=20` reached.
+Start to fuse 3 checkpoints via the greedy soup algorithm.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+AutoMM has created your model. 🎉🎉🎉
+
+To load the model, use the code below:
+    ```python
+    from autogluon.multimodal import MultiModalPredictor
+    predictor = MultiModalPredictor.load("/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_013619")
+    ```
+
+If you are not satisfied with the model, try to increase the training time, 
+adjust the hyperparameters (https://auto.gluon.ai/stable/tutorials/multimodal/advanced_topics/customization.html),
+or post issues on GitHub (https://github.com/autogluon/autogluon/issues).
+
+
+No path specified. Models will be saved in: "AutogluonModels/ag-20260317_024041"
+=================== System Info ===================
+AutoGluon Version:  1.4.0
+Python Version:     3.10.8
+Operating System:   Linux
+Platform Machine:   x86_64
+Platform Version:   #1 SMP Sat Feb 7 00:49:44 EST 2026
+CPU Count:          192
+Pytorch Version:    2.7.1+cu126
+CUDA Version:       12.6
+GPU Count:          1
+Memory Avail:       745.47 GB / 754.91 GB (98.8%)
+Disk Space Avail:   1060.65 GB / 5120.00 GB (20.7%)
+===================================================
+AutoGluon infers your prediction problem is: 'multiclass' (because dtype of label-column == object).
+	5 unique label values:  ['Fear', 'Sad', 'Angry', 'Happy', 'Surprise']
+	If 'multiclass' is not the correct problem_type, please manually specify the problem_type parameter during Predictor init (You may specify problem_type as one of: ['binary', 'multiclass', 'regression', 'quantile'])
+
+AutoMM starts to create your model. ✨✨✨
+
+To track the learning progress, you can open a terminal and launch Tensorboard:
+    ```shell
+    # Assume you have installed tensorboard
+    tensorboard --logdir /ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041
+    ```
+
+[rank: 0] Seed set to 0
+GPU Count: 1
+GPU Count to be Used: 1
+GPU 0 Name: NVIDIA A30
+GPU 0 Memory: 0.83GB/24.0GB (Used/Total)
+
+Using 16bit Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name              | Type                            | Params | Mode 
+------------------------------------------------------------------------------
+0 | model             | TimmAutoModelForImagePrediction | 4.2 M  | train
+1 | validation_metric | MulticlassAccuracy              | 0      | train
+2 | loss_func         | CrossEntropyLoss                | 0      | train
+------------------------------------------------------------------------------
+4.2 M     Trainable params
+0         Non-trainable params
+4.2 M     Total params
+16.834    Total estimated model params size (MB)
+286       Modules in train mode
+0         Modules in eval mode
+SLURM auto-requeueing enabled. Setting signal handlers.
+Epoch 0, global step 221: 'val_accuracy' reached 0.37520 (best 0.37520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=0-step=221.ckpt' as top 3
+Epoch 0, global step 442: 'val_accuracy' reached 0.58680 (best 0.58680), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=0-step=442.ckpt' as top 3
+Epoch 1, global step 664: 'val_accuracy' reached 0.62200 (best 0.62200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=1-step=664.ckpt' as top 3
+Epoch 1, global step 885: 'val_accuracy' reached 0.70160 (best 0.70160), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=1-step=885.ckpt' as top 3
+Epoch 2, global step 1107: 'val_accuracy' reached 0.73720 (best 0.73720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=2-step=1107.ckpt' as top 3
+Epoch 2, global step 1328: 'val_accuracy' reached 0.76720 (best 0.76720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=2-step=1328.ckpt' as top 3
+Epoch 3, global step 1550: 'val_accuracy' reached 0.77960 (best 0.77960), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=3-step=1550.ckpt' as top 3
+Epoch 3, global step 1771: 'val_accuracy' reached 0.80400 (best 0.80400), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=3-step=1771.ckpt' as top 3
+Epoch 4, global step 1993: 'val_accuracy' reached 0.84720 (best 0.84720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=4-step=1993.ckpt' as top 3
+Epoch 4, global step 2214: 'val_accuracy' reached 0.85000 (best 0.85000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=4-step=2214.ckpt' as top 3
+Epoch 5, global step 2436: 'val_accuracy' reached 0.87120 (best 0.87120), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=5-step=2436.ckpt' as top 3
+Epoch 5, global step 2657: 'val_accuracy' reached 0.88840 (best 0.88840), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=5-step=2657.ckpt' as top 3
+Epoch 6, global step 2879: 'val_accuracy' reached 0.90560 (best 0.90560), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=6-step=2879.ckpt' as top 3
+Epoch 6, global step 3100: 'val_accuracy' reached 0.91880 (best 0.91880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=6-step=3100.ckpt' as top 3
+Epoch 7, global step 3322: 'val_accuracy' reached 0.92400 (best 0.92400), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=7-step=3322.ckpt' as top 3
+Epoch 7, global step 3543: 'val_accuracy' reached 0.94040 (best 0.94040), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=7-step=3543.ckpt' as top 3
+Epoch 8, global step 3765: 'val_accuracy' reached 0.94080 (best 0.94080), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=8-step=3765.ckpt' as top 3
+Epoch 8, global step 3986: 'val_accuracy' reached 0.94800 (best 0.94800), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=8-step=3986.ckpt' as top 3
+Epoch 9, global step 4208: 'val_accuracy' reached 0.94960 (best 0.94960), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=9-step=4208.ckpt' as top 3
+Epoch 9, global step 4429: 'val_accuracy' reached 0.95200 (best 0.95200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=9-step=4429.ckpt' as top 3
+Epoch 10, global step 4651: 'val_accuracy' reached 0.96040 (best 0.96040), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=10-step=4651.ckpt' as top 3
+Epoch 10, global step 4872: 'val_accuracy' reached 0.96640 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=10-step=4872.ckpt' as top 3
+Epoch 11, global step 5094: 'val_accuracy' reached 0.96360 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=11-step=5094.ckpt' as top 3
+Epoch 11, global step 5315: 'val_accuracy' reached 0.96320 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=11-step=5315.ckpt' as top 3
+Epoch 12, global step 5537: 'val_accuracy' reached 0.96880 (best 0.96880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=12-step=5537.ckpt' as top 3
+Epoch 12, global step 5758: 'val_accuracy' reached 0.97200 (best 0.97200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=12-step=5758.ckpt' as top 3
+Epoch 13, global step 5980: 'val_accuracy' reached 0.97520 (best 0.97520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=13-step=5980.ckpt' as top 3
+Epoch 13, global step 6201: 'val_accuracy' reached 0.97480 (best 0.97520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=13-step=6201.ckpt' as top 3
+Epoch 14, global step 6423: 'val_accuracy' reached 0.97720 (best 0.97720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=14-step=6423.ckpt' as top 3
+Epoch 14, global step 6644: 'val_accuracy' reached 0.97680 (best 0.97720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=14-step=6644.ckpt' as top 3
+Epoch 15, global step 6866: 'val_accuracy' reached 0.97880 (best 0.97880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=15-step=6866.ckpt' as top 3
+Epoch 15, global step 7087: 'val_accuracy' reached 0.98000 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=15-step=7087.ckpt' as top 3
+Epoch 16, global step 7309: 'val_accuracy' reached 0.97960 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=16-step=7309.ckpt' as top 3
+Epoch 16, global step 7530: 'val_accuracy' was not in top 3
+Epoch 17, global step 7752: 'val_accuracy' reached 0.97920 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=17-step=7752.ckpt' as top 3
+Epoch 17, global step 7973: 'val_accuracy' was not in top 3
+Epoch 18, global step 8195: 'val_accuracy' reached 0.98120 (best 0.98120), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041/epoch=18-step=8195.ckpt' as top 3
+Epoch 18, global step 8416: 'val_accuracy' was not in top 3
+Epoch 19, global step 8638: 'val_accuracy' was not in top 3
+Epoch 19, global step 8859: 'val_accuracy' was not in top 3
+`Trainer.fit` stopped: `max_epochs=20` reached.
+Start to fuse 3 checkpoints via the greedy soup algorithm.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+AutoMM has created your model. 🎉🎉🎉
+
+To load the model, use the code below:
+    ```python
+    from autogluon.multimodal import MultiModalPredictor
+    predictor = MultiModalPredictor.load("/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_024041")
+    ```
+
+If you are not satisfied with the model, try to increase the training time, 
+adjust the hyperparameters (https://auto.gluon.ai/stable/tutorials/multimodal/advanced_topics/customization.html),
+or post issues on GitHub (https://github.com/autogluon/autogluon/issues).
+
+
+No path specified. Models will be saved in: "AutogluonModels/ag-20260317_034442"
+=================== System Info ===================
+AutoGluon Version:  1.4.0
+Python Version:     3.10.8
+Operating System:   Linux
+Platform Machine:   x86_64
+Platform Version:   #1 SMP Sat Feb 7 00:49:44 EST 2026
+CPU Count:          192
+Pytorch Version:    2.7.1+cu126
+CUDA Version:       12.6
+GPU Count:          1
+Memory Avail:       745.49 GB / 754.91 GB (98.8%)
+Disk Space Avail:   1060.58 GB / 5120.00 GB (20.7%)
+===================================================
+AutoGluon infers your prediction problem is: 'multiclass' (because dtype of label-column == object).
+	5 unique label values:  ['Fear', 'Sad', 'Angry', 'Happy', 'Surprise']
+	If 'multiclass' is not the correct problem_type, please manually specify the problem_type parameter during Predictor init (You may specify problem_type as one of: ['binary', 'multiclass', 'regression', 'quantile'])
+
+AutoMM starts to create your model. ✨✨✨
+
+To track the learning progress, you can open a terminal and launch Tensorboard:
+    ```shell
+    # Assume you have installed tensorboard
+    tensorboard --logdir /ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442
+    ```
+
+[rank: 0] Seed set to 0
+GPU Count: 1
+GPU Count to be Used: 1
+GPU 0 Name: NVIDIA A30
+GPU 0 Memory: 0.8GB/24.0GB (Used/Total)
+
+Using 16bit Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name              | Type                            | Params | Mode 
+------------------------------------------------------------------------------
+0 | model             | TimmAutoModelForImagePrediction | 4.2 M  | train
+1 | validation_metric | MulticlassAccuracy              | 0      | train
+2 | loss_func         | CrossEntropyLoss                | 0      | train
+------------------------------------------------------------------------------
+4.2 M     Trainable params
+0         Non-trainable params
+4.2 M     Total params
+16.834    Total estimated model params size (MB)
+286       Modules in train mode
+0         Modules in eval mode
+SLURM auto-requeueing enabled. Setting signal handlers.
+Epoch 0, global step 221: 'val_accuracy' reached 0.37520 (best 0.37520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=0-step=221.ckpt' as top 3
+Epoch 0, global step 442: 'val_accuracy' reached 0.58680 (best 0.58680), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=0-step=442.ckpt' as top 3
+Epoch 1, global step 664: 'val_accuracy' reached 0.62200 (best 0.62200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=1-step=664.ckpt' as top 3
+Epoch 1, global step 885: 'val_accuracy' reached 0.70160 (best 0.70160), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=1-step=885.ckpt' as top 3
+Epoch 2, global step 1107: 'val_accuracy' reached 0.73720 (best 0.73720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=2-step=1107.ckpt' as top 3
+Epoch 2, global step 1328: 'val_accuracy' reached 0.76720 (best 0.76720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=2-step=1328.ckpt' as top 3
+Epoch 3, global step 1550: 'val_accuracy' reached 0.77960 (best 0.77960), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=3-step=1550.ckpt' as top 3
+Epoch 3, global step 1771: 'val_accuracy' reached 0.80400 (best 0.80400), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=3-step=1771.ckpt' as top 3
+Epoch 4, global step 1993: 'val_accuracy' reached 0.84720 (best 0.84720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=4-step=1993.ckpt' as top 3
+Epoch 4, global step 2214: 'val_accuracy' reached 0.85000 (best 0.85000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=4-step=2214.ckpt' as top 3
+Epoch 5, global step 2436: 'val_accuracy' reached 0.87120 (best 0.87120), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=5-step=2436.ckpt' as top 3
+Epoch 5, global step 2657: 'val_accuracy' reached 0.88840 (best 0.88840), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=5-step=2657.ckpt' as top 3
+Epoch 6, global step 2879: 'val_accuracy' reached 0.90560 (best 0.90560), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=6-step=2879.ckpt' as top 3
+Epoch 6, global step 3100: 'val_accuracy' reached 0.91880 (best 0.91880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=6-step=3100.ckpt' as top 3
+Epoch 7, global step 3322: 'val_accuracy' reached 0.92400 (best 0.92400), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=7-step=3322.ckpt' as top 3
+Epoch 7, global step 3543: 'val_accuracy' reached 0.94040 (best 0.94040), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=7-step=3543.ckpt' as top 3
+Epoch 8, global step 3765: 'val_accuracy' reached 0.94080 (best 0.94080), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=8-step=3765.ckpt' as top 3
+Epoch 8, global step 3986: 'val_accuracy' reached 0.94800 (best 0.94800), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=8-step=3986.ckpt' as top 3
+Epoch 9, global step 4208: 'val_accuracy' reached 0.94960 (best 0.94960), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=9-step=4208.ckpt' as top 3
+Epoch 9, global step 4429: 'val_accuracy' reached 0.95200 (best 0.95200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=9-step=4429.ckpt' as top 3
+Epoch 10, global step 4651: 'val_accuracy' reached 0.96040 (best 0.96040), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=10-step=4651.ckpt' as top 3
+Epoch 10, global step 4872: 'val_accuracy' reached 0.96640 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=10-step=4872.ckpt' as top 3
+Epoch 11, global step 5094: 'val_accuracy' reached 0.96360 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=11-step=5094.ckpt' as top 3
+Epoch 11, global step 5315: 'val_accuracy' reached 0.96320 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=11-step=5315.ckpt' as top 3
+Epoch 12, global step 5537: 'val_accuracy' reached 0.96880 (best 0.96880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=12-step=5537.ckpt' as top 3
+Epoch 12, global step 5758: 'val_accuracy' reached 0.97200 (best 0.97200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=12-step=5758.ckpt' as top 3
+Epoch 13, global step 5980: 'val_accuracy' reached 0.97520 (best 0.97520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=13-step=5980.ckpt' as top 3
+Epoch 13, global step 6201: 'val_accuracy' reached 0.97480 (best 0.97520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=13-step=6201.ckpt' as top 3
+Epoch 14, global step 6423: 'val_accuracy' reached 0.97720 (best 0.97720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=14-step=6423.ckpt' as top 3
+Epoch 14, global step 6644: 'val_accuracy' reached 0.97680 (best 0.97720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=14-step=6644.ckpt' as top 3
+Epoch 15, global step 6866: 'val_accuracy' reached 0.97880 (best 0.97880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=15-step=6866.ckpt' as top 3
+Epoch 15, global step 7087: 'val_accuracy' reached 0.98000 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=15-step=7087.ckpt' as top 3
+Epoch 16, global step 7309: 'val_accuracy' reached 0.97960 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=16-step=7309.ckpt' as top 3
+Epoch 16, global step 7530: 'val_accuracy' was not in top 3
+Epoch 17, global step 7752: 'val_accuracy' reached 0.97920 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=17-step=7752.ckpt' as top 3
+Epoch 17, global step 7973: 'val_accuracy' was not in top 3
+Epoch 18, global step 8195: 'val_accuracy' reached 0.98120 (best 0.98120), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442/epoch=18-step=8195.ckpt' as top 3
+Epoch 18, global step 8416: 'val_accuracy' was not in top 3
+Epoch 19, global step 8638: 'val_accuracy' was not in top 3
+Epoch 19, global step 8859: 'val_accuracy' was not in top 3
+`Trainer.fit` stopped: `max_epochs=20` reached.
+Start to fuse 3 checkpoints via the greedy soup algorithm.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+AutoMM has created your model. 🎉🎉🎉
+
+To load the model, use the code below:
+    ```python
+    from autogluon.multimodal import MultiModalPredictor
+    predictor = MultiModalPredictor.load("/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_034442")
+    ```
+
+If you are not satisfied with the model, try to increase the training time, 
+adjust the hyperparameters (https://auto.gluon.ai/stable/tutorials/multimodal/advanced_topics/customization.html),
+or post issues on GitHub (https://github.com/autogluon/autogluon/issues).
+
+
+No path specified. Models will be saved in: "AutogluonModels/ag-20260317_044817"
+=================== System Info ===================
+AutoGluon Version:  1.4.0
+Python Version:     3.10.8
+Operating System:   Linux
+Platform Machine:   x86_64
+Platform Version:   #1 SMP Sat Feb 7 00:49:44 EST 2026
+CPU Count:          192
+Pytorch Version:    2.7.1+cu126
+CUDA Version:       12.6
+GPU Count:          1
+Memory Avail:       745.42 GB / 754.91 GB (98.7%)
+Disk Space Avail:   1060.50 GB / 5120.00 GB (20.7%)
+===================================================
+AutoGluon infers your prediction problem is: 'multiclass' (because dtype of label-column == object).
+	5 unique label values:  ['Fear', 'Sad', 'Angry', 'Happy', 'Surprise']
+	If 'multiclass' is not the correct problem_type, please manually specify the problem_type parameter during Predictor init (You may specify problem_type as one of: ['binary', 'multiclass', 'regression', 'quantile'])
+
+AutoMM starts to create your model. ✨✨✨
+
+To track the learning progress, you can open a terminal and launch Tensorboard:
+    ```shell
+    # Assume you have installed tensorboard
+    tensorboard --logdir /ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817
+    ```
+
+[rank: 0] Seed set to 0
+GPU Count: 1
+GPU Count to be Used: 1
+GPU 0 Name: NVIDIA A30
+GPU 0 Memory: 0.83GB/24.0GB (Used/Total)
+
+Using 16bit Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name              | Type                            | Params | Mode 
+------------------------------------------------------------------------------
+0 | model             | TimmAutoModelForImagePrediction | 4.2 M  | train
+1 | validation_metric | MulticlassAccuracy              | 0      | train
+2 | loss_func         | CrossEntropyLoss                | 0      | train
+------------------------------------------------------------------------------
+4.2 M     Trainable params
+0         Non-trainable params
+4.2 M     Total params
+16.834    Total estimated model params size (MB)
+286       Modules in train mode
+0         Modules in eval mode
+SLURM auto-requeueing enabled. Setting signal handlers.
+Epoch 0, global step 221: 'val_accuracy' reached 0.37520 (best 0.37520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=0-step=221.ckpt' as top 3
+Epoch 0, global step 442: 'val_accuracy' reached 0.58680 (best 0.58680), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=0-step=442.ckpt' as top 3
+Epoch 1, global step 664: 'val_accuracy' reached 0.62200 (best 0.62200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=1-step=664.ckpt' as top 3
+Epoch 1, global step 885: 'val_accuracy' reached 0.70160 (best 0.70160), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=1-step=885.ckpt' as top 3
+Epoch 2, global step 1107: 'val_accuracy' reached 0.73720 (best 0.73720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=2-step=1107.ckpt' as top 3
+Epoch 2, global step 1328: 'val_accuracy' reached 0.76720 (best 0.76720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=2-step=1328.ckpt' as top 3
+Epoch 3, global step 1550: 'val_accuracy' reached 0.77960 (best 0.77960), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=3-step=1550.ckpt' as top 3
+Epoch 3, global step 1771: 'val_accuracy' reached 0.80400 (best 0.80400), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=3-step=1771.ckpt' as top 3
+Epoch 4, global step 1993: 'val_accuracy' reached 0.84720 (best 0.84720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=4-step=1993.ckpt' as top 3
+Epoch 4, global step 2214: 'val_accuracy' reached 0.85000 (best 0.85000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=4-step=2214.ckpt' as top 3
+Epoch 5, global step 2436: 'val_accuracy' reached 0.87120 (best 0.87120), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=5-step=2436.ckpt' as top 3
+Epoch 5, global step 2657: 'val_accuracy' reached 0.88840 (best 0.88840), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=5-step=2657.ckpt' as top 3
+Epoch 6, global step 2879: 'val_accuracy' reached 0.90560 (best 0.90560), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=6-step=2879.ckpt' as top 3
+Epoch 6, global step 3100: 'val_accuracy' reached 0.91880 (best 0.91880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=6-step=3100.ckpt' as top 3
+Epoch 7, global step 3322: 'val_accuracy' reached 0.92400 (best 0.92400), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=7-step=3322.ckpt' as top 3
+Epoch 7, global step 3543: 'val_accuracy' reached 0.94040 (best 0.94040), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=7-step=3543.ckpt' as top 3
+Epoch 8, global step 3765: 'val_accuracy' reached 0.94080 (best 0.94080), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=8-step=3765.ckpt' as top 3
+Epoch 8, global step 3986: 'val_accuracy' reached 0.94800 (best 0.94800), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=8-step=3986.ckpt' as top 3
+Epoch 9, global step 4208: 'val_accuracy' reached 0.94960 (best 0.94960), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=9-step=4208.ckpt' as top 3
+Epoch 9, global step 4429: 'val_accuracy' reached 0.95200 (best 0.95200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=9-step=4429.ckpt' as top 3
+Epoch 10, global step 4651: 'val_accuracy' reached 0.96040 (best 0.96040), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=10-step=4651.ckpt' as top 3
+Epoch 10, global step 4872: 'val_accuracy' reached 0.96640 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=10-step=4872.ckpt' as top 3
+Epoch 11, global step 5094: 'val_accuracy' reached 0.96360 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=11-step=5094.ckpt' as top 3
+Epoch 11, global step 5315: 'val_accuracy' reached 0.96320 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=11-step=5315.ckpt' as top 3
+Epoch 12, global step 5537: 'val_accuracy' reached 0.96880 (best 0.96880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=12-step=5537.ckpt' as top 3
+Epoch 12, global step 5758: 'val_accuracy' reached 0.97200 (best 0.97200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=12-step=5758.ckpt' as top 3
+Epoch 13, global step 5980: 'val_accuracy' reached 0.97520 (best 0.97520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=13-step=5980.ckpt' as top 3
+Epoch 13, global step 6201: 'val_accuracy' reached 0.97480 (best 0.97520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=13-step=6201.ckpt' as top 3
+Epoch 14, global step 6423: 'val_accuracy' reached 0.97720 (best 0.97720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=14-step=6423.ckpt' as top 3
+Epoch 14, global step 6644: 'val_accuracy' reached 0.97680 (best 0.97720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=14-step=6644.ckpt' as top 3
+Epoch 15, global step 6866: 'val_accuracy' reached 0.97880 (best 0.97880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=15-step=6866.ckpt' as top 3
+Epoch 15, global step 7087: 'val_accuracy' reached 0.98000 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=15-step=7087.ckpt' as top 3
+Epoch 16, global step 7309: 'val_accuracy' reached 0.97960 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=16-step=7309.ckpt' as top 3
+Epoch 16, global step 7530: 'val_accuracy' was not in top 3
+Epoch 17, global step 7752: 'val_accuracy' reached 0.97920 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=17-step=7752.ckpt' as top 3
+Epoch 17, global step 7973: 'val_accuracy' was not in top 3
+Epoch 18, global step 8195: 'val_accuracy' reached 0.98120 (best 0.98120), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817/epoch=18-step=8195.ckpt' as top 3
+Epoch 18, global step 8416: 'val_accuracy' was not in top 3
+Epoch 19, global step 8638: 'val_accuracy' was not in top 3
+Epoch 19, global step 8859: 'val_accuracy' was not in top 3
+`Trainer.fit` stopped: `max_epochs=20` reached.
+Start to fuse 3 checkpoints via the greedy soup algorithm.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+AutoMM has created your model. 🎉🎉🎉
+
+To load the model, use the code below:
+    ```python
+    from autogluon.multimodal import MultiModalPredictor
+    predictor = MultiModalPredictor.load("/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_044817")
+    ```
+
+If you are not satisfied with the model, try to increase the training time, 
+adjust the hyperparameters (https://auto.gluon.ai/stable/tutorials/multimodal/advanced_topics/customization.html),
+or post issues on GitHub (https://github.com/autogluon/autogluon/issues).
+
+
+No path specified. Models will be saved in: "AutogluonModels/ag-20260317_055138"
+=================== System Info ===================
+AutoGluon Version:  1.4.0
+Python Version:     3.10.8
+Operating System:   Linux
+Platform Machine:   x86_64
+Platform Version:   #1 SMP Sat Feb 7 00:49:44 EST 2026
+CPU Count:          192
+Pytorch Version:    2.7.1+cu126
+CUDA Version:       12.6
+GPU Count:          1
+Memory Avail:       745.43 GB / 754.91 GB (98.7%)
+Disk Space Avail:   1060.64 GB / 5120.00 GB (20.7%)
+===================================================
+AutoGluon infers your prediction problem is: 'multiclass' (because dtype of label-column == object).
+	5 unique label values:  ['Fear', 'Sad', 'Angry', 'Happy', 'Surprise']
+	If 'multiclass' is not the correct problem_type, please manually specify the problem_type parameter during Predictor init (You may specify problem_type as one of: ['binary', 'multiclass', 'regression', 'quantile'])
+
+AutoMM starts to create your model. ✨✨✨
+
+To track the learning progress, you can open a terminal and launch Tensorboard:
+    ```shell
+    # Assume you have installed tensorboard
+    tensorboard --logdir /ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138
+    ```
+
+[rank: 0] Seed set to 0
+GPU Count: 1
+GPU Count to be Used: 1
+GPU 0 Name: NVIDIA A30
+GPU 0 Memory: 0.8GB/24.0GB (Used/Total)
+
+Using 16bit Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name              | Type                            | Params | Mode 
+------------------------------------------------------------------------------
+0 | model             | TimmAutoModelForImagePrediction | 4.2 M  | train
+1 | validation_metric | MulticlassAccuracy              | 0      | train
+2 | loss_func         | CrossEntropyLoss                | 0      | train
+------------------------------------------------------------------------------
+4.2 M     Trainable params
+0         Non-trainable params
+4.2 M     Total params
+16.834    Total estimated model params size (MB)
+286       Modules in train mode
+0         Modules in eval mode
+SLURM auto-requeueing enabled. Setting signal handlers.
+Epoch 0, global step 221: 'val_accuracy' reached 0.37520 (best 0.37520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=0-step=221.ckpt' as top 3
+Epoch 0, global step 442: 'val_accuracy' reached 0.58680 (best 0.58680), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=0-step=442.ckpt' as top 3
+Epoch 1, global step 664: 'val_accuracy' reached 0.62200 (best 0.62200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=1-step=664.ckpt' as top 3
+Epoch 1, global step 885: 'val_accuracy' reached 0.70160 (best 0.70160), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=1-step=885.ckpt' as top 3
+Epoch 2, global step 1107: 'val_accuracy' reached 0.73720 (best 0.73720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=2-step=1107.ckpt' as top 3
+Epoch 2, global step 1328: 'val_accuracy' reached 0.76720 (best 0.76720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=2-step=1328.ckpt' as top 3
+Epoch 3, global step 1550: 'val_accuracy' reached 0.77960 (best 0.77960), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=3-step=1550.ckpt' as top 3
+Epoch 3, global step 1771: 'val_accuracy' reached 0.80400 (best 0.80400), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=3-step=1771.ckpt' as top 3
+Epoch 4, global step 1993: 'val_accuracy' reached 0.84720 (best 0.84720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=4-step=1993.ckpt' as top 3
+Epoch 4, global step 2214: 'val_accuracy' reached 0.85000 (best 0.85000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=4-step=2214.ckpt' as top 3
+Epoch 5, global step 2436: 'val_accuracy' reached 0.87120 (best 0.87120), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=5-step=2436.ckpt' as top 3
+Epoch 5, global step 2657: 'val_accuracy' reached 0.88840 (best 0.88840), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=5-step=2657.ckpt' as top 3
+Epoch 6, global step 2879: 'val_accuracy' reached 0.90560 (best 0.90560), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=6-step=2879.ckpt' as top 3
+Epoch 6, global step 3100: 'val_accuracy' reached 0.91880 (best 0.91880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=6-step=3100.ckpt' as top 3
+Epoch 7, global step 3322: 'val_accuracy' reached 0.92400 (best 0.92400), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=7-step=3322.ckpt' as top 3
+Epoch 7, global step 3543: 'val_accuracy' reached 0.94040 (best 0.94040), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=7-step=3543.ckpt' as top 3
+Epoch 8, global step 3765: 'val_accuracy' reached 0.94080 (best 0.94080), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=8-step=3765.ckpt' as top 3
+Epoch 8, global step 3986: 'val_accuracy' reached 0.94800 (best 0.94800), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=8-step=3986.ckpt' as top 3
+Epoch 9, global step 4208: 'val_accuracy' reached 0.94960 (best 0.94960), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=9-step=4208.ckpt' as top 3
+Epoch 9, global step 4429: 'val_accuracy' reached 0.95200 (best 0.95200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=9-step=4429.ckpt' as top 3
+Epoch 10, global step 4651: 'val_accuracy' reached 0.96040 (best 0.96040), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=10-step=4651.ckpt' as top 3
+Epoch 10, global step 4872: 'val_accuracy' reached 0.96640 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=10-step=4872.ckpt' as top 3
+Epoch 11, global step 5094: 'val_accuracy' reached 0.96360 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=11-step=5094.ckpt' as top 3
+Epoch 11, global step 5315: 'val_accuracy' reached 0.96320 (best 0.96640), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=11-step=5315.ckpt' as top 3
+Epoch 12, global step 5537: 'val_accuracy' reached 0.96880 (best 0.96880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=12-step=5537.ckpt' as top 3
+Epoch 12, global step 5758: 'val_accuracy' reached 0.97200 (best 0.97200), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=12-step=5758.ckpt' as top 3
+Epoch 13, global step 5980: 'val_accuracy' reached 0.97520 (best 0.97520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=13-step=5980.ckpt' as top 3
+Epoch 13, global step 6201: 'val_accuracy' reached 0.97480 (best 0.97520), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=13-step=6201.ckpt' as top 3
+Epoch 14, global step 6423: 'val_accuracy' reached 0.97720 (best 0.97720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=14-step=6423.ckpt' as top 3
+Epoch 14, global step 6644: 'val_accuracy' reached 0.97680 (best 0.97720), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=14-step=6644.ckpt' as top 3
+Epoch 15, global step 6866: 'val_accuracy' reached 0.97880 (best 0.97880), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=15-step=6866.ckpt' as top 3
+Epoch 15, global step 7087: 'val_accuracy' reached 0.98000 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=15-step=7087.ckpt' as top 3
+Epoch 16, global step 7309: 'val_accuracy' reached 0.97960 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=16-step=7309.ckpt' as top 3
+Epoch 16, global step 7530: 'val_accuracy' was not in top 3
+Epoch 17, global step 7752: 'val_accuracy' reached 0.97920 (best 0.98000), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=17-step=7752.ckpt' as top 3
+Epoch 17, global step 7973: 'val_accuracy' was not in top 3
+Epoch 18, global step 8195: 'val_accuracy' reached 0.98120 (best 0.98120), saving model to '/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138/epoch=18-step=8195.ckpt' as top 3
+Epoch 18, global step 8416: 'val_accuracy' was not in top 3
+Epoch 19, global step 8638: 'val_accuracy' was not in top 3
+Epoch 19, global step 8859: 'val_accuracy' was not in top 3
+`Trainer.fit` stopped: `max_epochs=20` reached.
+Start to fuse 3 checkpoints via the greedy soup algorithm.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+SLURM auto-requeueing enabled. Setting signal handlers.
+AutoMM has created your model. 🎉🎉🎉
+
+To load the model, use the code below:
+    ```python
+    from autogluon.multimodal import MultiModalPredictor
+    predictor = MultiModalPredictor.load("/ccstar/scratch/user/u.ks124812/ood_automl/AutogluonModels/ag-20260317_055138")
+    ```
+
+If you are not satisfied with the model, try to increase the training time, 
+adjust the hyperparameters (https://auto.gluon.ai/stable/tutorials/multimodal/advanced_topics/customization.html),
+or post issues on GitHub (https://github.com/autogluon/autogluon/issues).
+
+

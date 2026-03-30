@@ -45,9 +45,7 @@ def main() -> None:
         multimodal_option.click()
 
         enable_gpu_checkbox = wait.until(
-            EC.element_to_be_clickable(
-                (By.XPATH, "//label[contains(@class,'n-checkbox')][.//span[normalize-space()='Enable GPU']]")
-            )
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "[data-testid='enable-gpu-checkbox']"))
         )
         enable_gpu_checkbox.click()
 

@@ -87,7 +87,10 @@
 
                   <n-gi>
                     <n-form-item label="Enable GPU">
-                      <n-checkbox v-model:checked="form.enable_gpu">
+                      <n-checkbox
+                        v-model:checked="form.enable_gpu"
+                        data-testid="enable-gpu-checkbox"
+                      >
                         Enable GPU
                       </n-checkbox>
                     </n-form-item>

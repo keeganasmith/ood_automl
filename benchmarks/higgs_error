@@ -1,0 +1,26 @@
+No path specified. Models will be saved in: "AutogluonModels/ag-20260320_204252"
+Verbosity: 2 (Standard Logging)
+=================== System Info ===================
+AutoGluon Version:  1.4.0
+Python Version:     3.10.8
+Operating System:   Linux
+Platform Machine:   x86_64
+Platform Version:   #1 SMP Sat Feb 7 00:49:44 EST 2026
+CPU Count:          192
+Memory Avail:       741.36 GB / 754.91 GB (98.2%)
+Disk Space Avail:   1043.18 GB / 5120.00 GB (20.4%)
+===================================================
+Presets specified: ['medium_quality']
+Using hyperparameters preset: hyperparameters='default'
+Traceback (most recent call last):
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/higgs_test.py", line 32, in <module>
+    main()
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/benchmarks/higgs_test.py", line 16, in main
+    TabularPredictor(label="label").fit(
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/autogluon/core/utils/decorators.py", line 31, in _call
+    return f(*gargs, **gkwargs)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/autogluon/tabular/predictor/predictor.py", line 1208, in fit
+    self._learner.validate_label(X=train_data)
+  File "/ccstar/scratch/user/u.ks124812/ood_automl/backend/venv/lib/python3.10/site-packages/autogluon/tabular/learner/abstract_learner.py", line 401, in validate_label
+    raise KeyError(f"Label column '{self.label}' is missing from training data. Training data columns: {list(X.columns)}")
+KeyError: "Label column 'label' is missing from training data. Training data columns: ['1.000000000000000000e+00', '8.692932128906250000e-01', '-6.350818276405334473e-01', '2.256902605295181274e-01', '3.274700641632080078e-01', '-6.899932026863098145e-01', '7.542022466659545898e-01', '-2.485731393098831177e-01', '-1.092063903808593750e+00', '0.000000000000000000e+00', '1.374992132186889648e+00', '-6.536741852760314941e-01', '9.303491115570068359e-01', '1.107436060905456543e+00', '1.138904333114624023e+00', '-1.578198313713073730e+00', '-1.046985387802124023e+00', '0.000000000000000000e+00.1', '6.579295396804809570e-01', '-1.045456994324922562e-02', '-4.576716944575309753e-02', '3.101961374282836914e+00', '1.353760004043579102e+00', '9.795631170272827148e-01', '9.780761599540710449e-01', '9.200048446655273438e-01', '7.216574549674987793e-01', '9.887509346008300781e-01', '8.766783475875854492e-01']"
