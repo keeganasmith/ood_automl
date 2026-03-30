@@ -19,7 +19,7 @@ module purge
 module load WebProxy
 export CODE_PATH="/sw/hprc/sw/ood_automl"
 source "${CODE_PATH}/modules.sh"
-source "${CODE_PATH}/backend/venv/bin/activate"
+source "${CODE_PATH}/venv/bin/activate"
 module list
 
 # unset XDG_RUNTIME_DIR. It cause trouble starting jupyter notebook
