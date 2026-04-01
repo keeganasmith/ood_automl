@@ -165,6 +165,57 @@
                       />
                     </n-form-item>
                   </n-gi>
+
+                  <!-- Segmentation-specific fields -->
+                  <n-gi v-if="isSegmentation">
+                    <n-form-item label="image_column" :rule="{ required: true, message: 'Required for segmentation' }">
+                      <n-input
+                        v-model:value="form.image_column"
+                        placeholder='e.g., "image_path"'
+                      />
+                    </n-form-item>
+                  </n-gi>
+
+                  <n-gi v-if="isSegmentation">
+                    <n-form-item label="mask_column" :rule="{ required: true, message: 'Required for segmentation' }">
+                      <n-input
+                        v-model:value="form.mask_column"
+                        placeholder='e.g., "mask_path"'
+                      />
+                    </n-form-item>
+                  </n-gi>
+
+                  <n-gi v-if="isSegmentation">
+                    <n-form-item label="classes (optional; comma-separated)">
+                      <n-input
+                        v-model:value="form.classesText"
+                        placeholder='e.g., background, road, car'
+                      />
+                    </n-form-item>
+                  </n-gi>
+
+                  <n-gi v-if="isSegmentation">
+                    <n-form-item label="num_classes (optional)">
+                      <n-input-number
+                        v-model:value="form.num_classes"
+                        :min="1"
+                        :step="1"
+                        placeholder="e.g., 21"
+                        style="width: 100%;"
+                      />
+                    </n-form-item>
+                  </n-gi>
+
+                  <n-gi v-if="isSegmentation">
+                    <n-form-item label="ignore_label (optional)">
+                      <n-input-number
+                        v-model:value="form.ignore_label"
+                        :step="1"
+                        placeholder="e.g., 255"
+                        style="width: 100%;"
+                      />
+                    </n-form-item>
+                  </n-gi>
                 </n-grid>
               </n-form>
             </n-tab-pane>
@@ -256,6 +307,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['update:modelValue', 'start', 'status', 'cancel', 'clear'])
 const isSeries = ref(false)
+const isSegmentation = ref(false)
 const form = reactive({
   label: '',
   train_path: '',
@@ -276,18 +328,30 @@ const form = reactive({
   id_column: '',
   time_column: '',
   freq: '',
+
+  // segmentation only
+  image_column: '',
+  mask_column: '',
+  classesText: '',
+  num_classes: null,
+  ignore_label: null,
 })
 const onDataTypeChange = (value) => {
   console.log('data_type changed to', value)
-
-  if (value !== 'series') {
+  isSeries.value = value === 'series'
+  isSegmentation.value = value === 'segmentation'
+  if (!isSeries.value) {
     form.prediction_length = null
     form.id_column = ''
     form.time_column = ''
     form.freq = ''
   }
-  else if(value === 'series'){
-    isSeries.value = true
+  if (!isSegmentation.value) {
+    form.image_column = ''
+    form.mask_column = ''
+    form.classesText = ''
+    form.num_classes = null
+    form.ignore_label = null
   }
 }
 const presetOptions = [
@@ -300,7 +364,8 @@ const presetOptions = [
 const dataTypeOptions = [
   { label: "tabular", value: "tabular"},
   { label: "multi-modal", value: "mm"},
-  { label: "series", value: "series"}
+  { label: "series", value: "series"},
+  { label: "segmentation", value: "segmentation"}
 ]
 
 const problemTypeOptions = [
@@ -379,6 +444,19 @@ function buildCfgFromForm () {
     if (f.id_column) cfg.id_column = f.id_column
     if (f.time_column) cfg.time_column = f.time_column
     if (f.freq) cfg.freq = f.freq
+  }
+  if (f.data_type === 'segmentation') {
+    if (f.image_column) cfg.image_column = f.image_column
+    if (f.mask_column) cfg.mask_column = f.mask_column
+    if (f.classesText && f.classesText.trim()) {
+      const classes = f.classesText
+        .split(',')
+        .map((c) => c.trim())
+        .filter(Boolean)
+      if (classes.length) cfg.classes = classes
+    }
+    if (Number.isFinite(f.num_classes) && f.num_classes > 0) cfg.num_classes = f.num_classes
+    if (Number.isFinite(f.ignore_label)) cfg.ignore_label = f.ignore_label
   }
 
   return cfg
