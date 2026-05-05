@@ -157,6 +157,9 @@ def _worker_train_entry(
         hyperparameters = cfg.get("hyperparameters")
         problem_type = cfg.get("problem_type")
         data_type = cfg.get("data_type")
+        eval_metric = cfg.get("eval_metric")
+        # NOTE: eval_metric compatibility depends on problem_type / data type;
+        # AutoGluon will raise if an invalid metric is provided.
         if cfg.get("num_gpus") == 0 or cfg.get("enable_gpu") is False:
             requested_num_gpus = 0
         else:
@@ -175,12 +178,14 @@ def _worker_train_entry(
                 label=label,
                 path=path,
                 problem_type=problem_type,
+                eval_metric=eval_metric,
             )
         elif data_type == "mm":
             predictor = MultiModalPredictor(
                 label=label,
                 path=path,
                 problem_type=problem_type,
+                eval_metric=eval_metric,
             )
         elif data_type == "series":
             # --- Time series predictor setup ---
@@ -228,6 +233,27 @@ def _worker_train_entry(
                 target=label,
                 path=path,
                 freq=freq,
+                eval_metric=eval_metric,
+            )
+        elif data_type == "segmentation":
+            image_column = cfg.get("image_column")
+            mask_column = cfg.get("mask_column")
+            if not image_column or not mask_column:
+                raise ValueError("Segmentation requires both image_column and mask_column")
+            if train_data is not None and hasattr(train_data, "columns"):
+                missing_cols = [c for c in [image_column, mask_column] if c not in train_data.columns]
+                if missing_cols:
+                    raise ValueError(f"Missing required segmentation columns in train data: {missing_cols}")
+            if tuning_data is not None and hasattr(tuning_data, "columns"):
+                missing_cols = [c for c in [image_column, mask_column] if c not in tuning_data.columns]
+                if missing_cols:
+                    raise ValueError(f"Missing required segmentation columns in tuning data: {missing_cols}")
+            problem_type = problem_type or "semantic_segmentation"
+            predictor = MultiModalPredictor(
+                label=mask_column,
+                path=path,
+                problem_type=problem_type,
+                eval_metric=eval_metric,
             )
         else:
             train_data = _apply_drop_columns(
@@ -273,6 +299,14 @@ def _worker_train_entry(
                 ag_args_fit={"num_gpus": requested_num_gpus},
             )
         elif data_type == "mm":
+            predictor.fit(
+                train_data=train_data,
+                tuning_data=tuning_data,
+                hyperparameters=hyperparameters,
+                presets=presets,
+                time_limit=time_limit,
+            )
+        elif data_type == "segmentation":
             predictor.fit(
                 train_data=train_data,
                 tuning_data=tuning_data,
@@ -346,10 +380,28 @@ class JobRunner:
 
     async def validate(self, cfg: Dict[str, Any]) -> tuple[bool, Optional[str]]:
         # Minimal validation for Tabular: require label and training data or path
+        data_type = cfg.get("data_type", "tabular")
+        if data_type == "segmentation":
+            mask_column = cfg.get("mask_column")
+            if not mask_column:
+                return False, "cfg.mask_column is required for segmentation"
+            if "label" not in cfg or not cfg.get("label"):
+                cfg["label"] = mask_column
         if "label" not in cfg:
             return False, "cfg.label is required"
         if not (("train_df" in cfg) or ("train_data" in cfg) or ("train_path" in cfg)):
             return False, "Provide training data via cfg.train_df/cfg.train_data/cfg.train_path"
+        if data_type == "segmentation":
+            if not cfg.get("image_column"):
+                return False, "cfg.image_column is required for segmentation"
+            if not cfg.get("mask_column"):
+                return False, "cfg.mask_column is required for segmentation"
+            num_classes = cfg.get("num_classes")
+            if num_classes is not None and (not isinstance(num_classes, int) or num_classes <= 0):
+                return False, "cfg.num_classes must be a positive integer when provided"
+            ignore_label = cfg.get("ignore_label")
+            if ignore_label is not None and not isinstance(ignore_label, int):
+                return False, "cfg.ignore_label must be an integer when provided"
         job_id = cfg.get("job_id")
         if job_id is not None:
             if not isinstance(job_id, str):

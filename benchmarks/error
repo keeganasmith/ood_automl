@@ -4,4 +4,3 @@ curl: (7) Failed to connect to localhost port 8000: Connection refused
 curl: (7) Failed to connect to localhost port 8000: Connection refused
 curl: (7) Failed to connect to localhost port 8000: Connection refused
 curl: (7) Failed to connect to localhost port 8000: Connection refused
-[2026-02-09T12:58:59.452] error: *** JOB 289034 ON lc15 CANCELLED AT 2026-02-09T12:58:59 DUE to SIGNAL Terminated ***
